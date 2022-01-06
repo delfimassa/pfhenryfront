@@ -1,20 +1,23 @@
-import './App.css';
-import {
+import { 
   Routes,
   Route,
-  Link
+  Link 
 } from "react-router-dom";
-import NavBar from "./Components/NavBar";
-import Footer from "./Components/Footer";
 // import Landing from "./Components/Home/Landing";
-// import Login from "./Components/Login"
+import Navbar from "./Components/Common/Navbar";
+import Footer from "./Components/Common/Footer";
+import Login from "./auth/Login";
+import Register from "./auth/Register";
 
 function App() {
   return (
-    <div className="App">
-      <NavBar/>
-      <Footer/>
-    </div>
+      <Navbar />
+      <Routes>
+        {/* <Route path="/" element={<Landing />} /> */}
+        <Route path="/" element={<Login />} /> {/* AÑADIR PATH LOGIN*/}
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Footer />
   );
 }
 

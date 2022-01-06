@@ -1,10 +1,11 @@
 import React from 'react';
 import SearchBar from "./SearchBar"
+import "./Landing.css"
 
 const Landing = () => {
     return (
-        <div>
-            <p>Landing hola mundooo</p>
+        <div class="container">
+            <h2 class="title">Reservá tu turno</h2>
             <SearchBar />
         </div>
     );

@@ -1,0 +1,39 @@
+:root {
+    --blanco: #ffffff;
+    --gris1: #edf2f6;
+    --gris2: #2f3848;
+    --gris3: #1a202d;
+    --negro: #000000;
+    --headingFont: "Raleway", sans-serif;
+    --textFont: "Roboto", sans-serif;
+}
+
+body{
+    font-family: var(--textFont);
+}
+
+.container{
+    background-color: var(--gris2);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+.title{
+    color: var(--blanco);
+    font-size: 4em;
+    letter-spacing: 8px;
+}
+
+@media (max-width: 600px){
+    .title{
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 400px){
+    .title{
+        letter-spacing: 3px;
+    }
+}

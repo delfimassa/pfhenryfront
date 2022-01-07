@@ -21,6 +21,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         loading: false,
         currentUser: action.payload,
+        user: initialState,
       };
     }
     case actions.REGISTER_FAIL: {
@@ -42,6 +43,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         loading: false,
         currentUser: action.payload,
+        user: action.payload,
       };
     }
     case actions.LOGIN_FAIL: {
@@ -61,7 +63,8 @@ export default function rootReducer(state = initialState, action) {
     case actions.LOGOUT_SUCCESS: {
       return {
         ...state,
-        currentUser: null
+        currentUser: null,
+        user: null
       };
     }
     case actions.LOGOUT_FAIL: {
@@ -70,6 +73,15 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         error: action.payload,
       };
+    }
+    // user
+    case actions.SET_USER: {
+      return{
+        ...state,
+        loading: false,
+        currentUser: action.paylodad,
+        user: action.payload
+      }
     }
     //DEFAULT
     default:

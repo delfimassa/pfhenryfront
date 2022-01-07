@@ -12,6 +12,8 @@ export const LOGOUT = "LOGOUT";
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAIL = "LOGOUT_FAIL";
 
+export const SET_USER = "SET_USER"
+
 //REGISTER
 export function register() {
     return{
@@ -89,10 +91,9 @@ export function logout() {
     }
 }
 
-export function logoutSuccess(user) {
+export function logoutSuccess() {
     return{
         type: LOGOUT_SUCCESS,
-        payload: user
     }
 }
 
@@ -106,12 +107,20 @@ export function logoutInitiate(){
     return async function (dispatch){
         dispatch(logout());
         try {
-            let user = await signOut()
+            const user = await signOut(auth)
             dispatch(logoutSuccess())
             console.log(user)
           } catch (error) {
-            dispatch(loginFail(error))
+            dispatch(logoutFail(error))
             console.log(error.message)
           }
+    }
+}
+
+// USER
+export function setUser(user){
+    return{
+        type: SET_USER,
+        payload: user
     }
 }

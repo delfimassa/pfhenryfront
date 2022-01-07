@@ -111,7 +111,7 @@ const NuevaCuenta = () => {
           />
         </div>
 
-        <Link to={"/"} className="enlace-cuenta">
+        <Link to={"/login"} className="enlace-cuenta">
           {/*CAMBIAR A PATH LOGIN*/}
           Ya tengo cuenta
         </Link>

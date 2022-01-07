@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 
@@ -17,9 +17,9 @@ const SearchBar = () => {
 
     return (
         <div>
-            <form onSubmit={(e) => handleOnSubmit(e)}>
-                <input type="text" onChange={(e) => handleOnChange(e)}/>
-                <button>Buscar</button>
+            <form class="d-flex" onSubmit={(e) => handleOnSubmit(e)}>
+                <input class="form-control me-sm-2" type="text" placeholder="Search" onChange={(e) => handleOnChange(e)} />
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
     );

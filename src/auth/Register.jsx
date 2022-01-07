@@ -1,37 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {useDispatch, useSelector} from 'react-redux'
 import { Link } from "react-router-dom";
+import { registerInitiate } from "../Redux/actions/register";
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
-  const [usuario, setUsuario] = useState({
-    nombre: "",
+  const [user, setUser] = useState({
+    name: "",
     email: "",
     password: "",
-    confirmar: "",
+    passwordConfirm: "",
   });
 
   //extraer de usario
-  const { nombre, email, password, confirmar } = usuario;
+  const { name, email, password, passwordConfirm } = user;
+
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setUser({
+      ...user,
       [e.target.name]: e.target.value,
     });
   };
 
-  //Cuando usuario quiere iniciar sesión
   const onSubmit = (e) => {
     e.preventDefault();
-
     //Validar que no haya campos vacíos
-
-    //Contraseña mínima de 6 caracteres
-
+    if(!name || !email || !password || !passwordConfirm){
+      return
+    }
     //Contraseñas iguales
-
+    if(password !== passwordConfirm){
+      return;
+    }
     //Pasarlo al reducer
-  };
+    dispatch(registerInitiate(name, email, password));
+    setUser({name: "", email: "", password: "", passwordConfirm: ""});
+  }; 
 
   //Registrarse con google
   const registerWithGoogle = () => {};
@@ -42,14 +48,15 @@ const NuevaCuenta = () => {
         <h1>Registrarse</h1>
         <form onSubmit={onSubmit}>
           <div className="campo-form">
-            <label htmlFor="nombre">Nombre</label>
+            <label htmlFor="name">Nombre</label>
             <input
               type="text"
-              id="nombre"
-              name="nombre"
+              id="name"
+              name="name"
               placeholder="Tu Nombre"
-              value={nombre}
+              value={name}
               onChange={onChange}
+              required
             />
           </div>
           <div className="campo-form">
@@ -61,6 +68,7 @@ const NuevaCuenta = () => {
               placeholder="Tu Email"
               value={email}
               onChange={onChange}
+              required
             />
           </div>
           <div className="campo-form">
@@ -72,25 +80,26 @@ const NuevaCuenta = () => {
               placeholder="Tu Contraseña"
               value={password}
               onChange={onChange}
+              required
             />
           </div>
           <div className="campo-form">
-            <label htmlFor="confirmar">Confirmar Contraseña</label>
+            <label htmlFor="passwordConfirm">Confirmar Contraseña</label>
             <input
               type="password"
-              id="confirmar"
-              name="confirmar"
+              id="passwordConfirm"
+              name="passwordConfirm"
               placeholder="Repite tu contraseña"
-              value={confirmar}
+              value={passwordConfirm}
               onChange={onChange}
+              required
             />
           </div>
           <div className="campo-form">
-            <input
+            <button
               type="submit"
-              className="btn btn-primario btn-block"
-              value="Registrar Cuenta"
-            />
+              className="btn btn-primario btn-block" 
+            >Registrar Cuenta</button>
           </div>
         </form>
         <div className="campo-form">

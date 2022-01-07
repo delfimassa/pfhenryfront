@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { loginInitiate } from "../Redux/actions/register";
 
 const Login = () => {
   // State para iniciar sesión
-  const [usuario, setUsuario] = useState({
+  const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
   //extraer de usario
-  const { email, password } = usuario;
+  const { email, password } = user;
+
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setUser({
+      ...user,
       [e.target.name]: e.target.value,
     });
   };
@@ -23,8 +27,12 @@ const Login = () => {
     e.preventDefault();
 
     //Validar que no haya campos vacíos
-
+    if (!email || !password) {
+      return;
+    }
     //Pasarlo al reducer
+    dispatch(loginInitiate(email, password));
+    setUser({ email: "", password: "" });
   };
 
   //Iniciar sesión con google

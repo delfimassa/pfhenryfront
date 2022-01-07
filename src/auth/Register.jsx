@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from "react-router-dom";
 import { registerInitiate } from "../Redux/actions/register";
+import { signInWithGoogle } from "../firebase-config";
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
@@ -38,10 +39,6 @@ const NuevaCuenta = () => {
     dispatch(registerInitiate(name, email, password));
     setUser({name: "", email: "", password: "", passwordConfirm: ""});
   }; 
-
-  //Registrarse con google
-  const registerWithGoogle = () => {};
-
   return (
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
@@ -107,7 +104,7 @@ const NuevaCuenta = () => {
             type="submit"
             className="btn btn-primario btn-block"
             value="Registrarse con Google"
-            onClick={registerWithGoogle}
+            onClick={signInWithGoogle}
           />
         </div>
 

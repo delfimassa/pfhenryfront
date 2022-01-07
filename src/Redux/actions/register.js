@@ -1,5 +1,5 @@
-import { auth } from "../../firebase-config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth'
+import { auth, signInWithGoogle } from "../../firebase-config";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 export const REGISTER = "REGISTER";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
@@ -83,6 +83,7 @@ export function loginInitiate( email, password){
           }
     }
 }
+
 
 //LOGOUT
 export function logout() {

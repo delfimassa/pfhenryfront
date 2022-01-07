@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { loginInitiate, logoutInitiate } from "../Redux/actions/register";
+import { loginInitiate, logoutInitiate, loginGoogleInitiate } from "../Redux/actions/register";
+import { signInWithGoogle } from "../firebase-config";
 
 const Login = () => {
   // State para iniciar sesión
@@ -37,9 +38,6 @@ const Login = () => {
     dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
   };
-
-  //Iniciar sesión con google
-  const loginWithGoogle = () => { };
 
   // Logout
   const logout = () => {
@@ -87,7 +85,7 @@ const Login = () => {
             type="submit"
             className="btn btn-primario btn-block"
             value="Iniciar Sesión con Google"
-            onClick={loginWithGoogle}
+            onClick={signInWithGoogle}
           />
         </div>
 

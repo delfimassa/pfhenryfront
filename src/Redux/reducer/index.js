@@ -31,6 +31,7 @@ export default function rootReducer(state = initialState, action) {
         error: action.payload,
       };
     }
+    
     //LOGIN
     case actions.LOGIN: {
       return {
@@ -53,6 +54,7 @@ export default function rootReducer(state = initialState, action) {
         error: action.payload,
       };
     }
+
     //LOGOUT
     case actions.LOGOUT: {
       return {

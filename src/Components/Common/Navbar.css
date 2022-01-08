@@ -1,3 +1,6 @@
 .bg-beige{
     background-color: #e0c29e;
 }
+.navbar-collapse{
+    justify-content: end;
+}

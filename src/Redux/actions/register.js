@@ -1,4 +1,4 @@
-import { auth, signInWithGoogle } from "../../firebase-config";
+import { auth } from "../../firebase-config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth'
 export const REGISTER = "REGISTER";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";

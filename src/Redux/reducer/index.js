@@ -1,10 +1,12 @@
 import * as actions from "../actions/register";
+import * as actions2 from "../actions/adminlog";
 
 const initialState = {
   loading: false,
   currentUser: null,
   error: null,
   user: "",
+  adminUser: false,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -83,6 +85,15 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.paylodad,
         user: action.payload
+      }
+    }
+    case actions2.LOGIN_ADMIN_USER:{
+      return{
+        ...state,
+        loading: false,
+        currentUser: action.payload,
+        user: action.payload,
+        adminUser: true
       }
     }
     //DEFAULT

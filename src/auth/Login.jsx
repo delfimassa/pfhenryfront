@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginInitiate, logoutInitiate, loginGoogleInitiate } from "../Redux/actions/register";
+import { loginAdminInitiate } from "../Redux/actions/adminlog";
 import { signInWithGoogle } from "../firebase-config";
 
 const Login = () => {
@@ -49,11 +50,22 @@ const Login = () => {
     console.log(currentUser)
    };
 
+
+  //  const adminUser = useSelector((state) => state.user);
+  //  function activeAdmin(e){
+  //    e.preventDefault();
+  //   if (adminUser){
+  //     adminUser = true
+  //   }
+  //  }
+
   return (
     <div className="form-usuario">
+
       <div className="contenedor-form sombra-dark">
         <h1>Iniciar Sesión</h1>
         <form onSubmit={onSubmit}>
+          {/* <button onClick={(e)=>{activeAdmin(e)}}>Soy Peluqueria</button> */}
           <div className="campo-form">
             <label htmlFor="email">Email</label>
             <input

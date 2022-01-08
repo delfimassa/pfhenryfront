@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from "./SearchBar"
+import SearchBar from "./Home/SearchBar"
 import "./Landing.css"
 
 const Landing = () => {

@@ -1,13 +1,14 @@
 import React from 'react';
-import Navbar from '../Common/Navbar';
 import Card from '../Cards/Card';
 import FilterPanel from './FilterPanel';
+import SearchBar from  './SearchBar';
+
 import './Home.css'
 
 function Home() {
     return (
         <div>
-            <Navbar />
+            <SearchBar />
             <div className='container'>
             <FilterPanel /> 
             <Card /> 

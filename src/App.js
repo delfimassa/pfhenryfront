@@ -1,13 +1,18 @@
 import React, {useEffect} from "react";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
- 
-import SearchBar from './Components/Home/SearchBar';
-import Landing from "./Components/Home/Landing";
+
+import Landing from "./Components/Landing";
+import Favoritos from "./Components/Favoritos";
+import Admin from "./Components/Admin";
+import Carrito from "./Components/Carrito";
+import Perfil from "./Components/Perfil";
+import TusCompras from "./Components/TusCompras";
 import Navbar from "./Components/Common/Navbar";
+import Footer from "./Components/Common/Footer";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
-import Home from "./Components/Visual/Home";
+import Home from "./Components/Home/Home";
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { auth } from "./firebase-config";
 import {setUser} from "./Redux/actions/register"
@@ -27,14 +32,17 @@ function App() {
   
   return (
     <div className="App">
-      {/* <Home /> */}
       <Navbar />
-      <SearchBar />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} /> {/* AÑADIR PATH LOGIN*/}
         <Route path="/register" element={<Register />} />
-        <Route path="/home" element={<Home />}/>
+        <Route path="/favoritos" element={<Favoritos />}/>
+        <Route path="/carrito" element={<Carrito />}/>
+        <Route path="/perfil" element={<Perfil />}/>
+        <Route path="/tuscompras" element={<TusCompras />}/>
+        <Route path="/admin" element={<Admin />}/>
       </Routes>
       <Footer />
     </div>

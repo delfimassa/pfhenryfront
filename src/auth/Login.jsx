@@ -1,19 +1,27 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { loginInitiate, logoutInitiate, loginGoogleInitiate } from "../Redux/actions/register";
+import { signInWithGoogle } from "../firebase-config";
 
 const Login = () => {
   // State para iniciar sesión
-  const [usuario, setUsuario] = useState({
+  const [state, setState] = useState({
     email: "",
     password: "",
   });
 
   //extraer de usario
-  const { email, password } = usuario;
+  const { email, password } = state;
+
+  const currentUser = useSelector((state) => state.user)
+
+  // const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
-    setUsuario({
-      ...usuario,
+    setState({
+      ...state,
       [e.target.name]: e.target.value,
     });
   };
@@ -23,12 +31,23 @@ const Login = () => {
     e.preventDefault();
 
     //Validar que no haya campos vacíos
-
+    if (!email || !password) {
+      return;
+    }
     //Pasarlo al reducer
+    dispatch(loginInitiate(email, password));
+    setState({ email: "", password: "" });
   };
 
-  //Iniciar sesión con google
-  const loginGoogle = () => {};
+  // Logout
+  const logout = () => {
+    if(currentUser){
+      dispatch(logoutInitiate())
+    }else{
+      alert("No estas logueado")
+    }
+    console.log(currentUser)
+   };
 
   return (
     <div className="form-usuario">
@@ -58,11 +77,7 @@ const Login = () => {
             />
           </div>
           <div className="campo-form">
-            <input
-              type="submit"
-              className="btn btn-primario btn-block"
-              value="Iniciar Sesión"
-            />
+            <button className="btn btn-primario btn-block" type="submit">Iniciar Sesion</button>
           </div>
         </form>
         <div className="campo-form">
@@ -70,13 +85,16 @@ const Login = () => {
             type="submit"
             className="btn btn-primario btn-block"
             value="Iniciar Sesión con Google"
-            onClick={loginGoogle}
+            onClick={signInWithGoogle}
           />
         </div>
 
         <Link to={"/register"} className="enlace-cuenta">
           Registrarse
         </Link>
+        <div >
+            <button className="enlace-cuenta" type="submit" onClick={logout}>Logout</button>
+          </div>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import "./Landing.css"
 const Landing = () => {
     return (
         <div class="container">
-            <h2 class="title">Reservá tu turno</h2>
+            <h2 class="title">Bienvenidos</h2>
             <SearchBar />
         </div>
     );

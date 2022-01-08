@@ -42,7 +42,7 @@ const Navbar = (props) => {
                 </a>
               </li> */}
               <li className="nav-item">
-                <NavLink to="/register" className="nav-link" activeClassName="selected">
+                <NavLink to="/registersalon" className="nav-link" activeClassName="selected">
               <FontAwesomeIcon icon={faStore} className="mx-1"></FontAwesomeIcon>
                   Registra tu negocio
                 </NavLink>

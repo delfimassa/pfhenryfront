@@ -11,6 +11,10 @@
   width: 500px;
 }
 
+.text-titular {
+  font-weight: 800;
+}
+
 .card-body {
   height: 160px;
 }

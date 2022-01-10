@@ -15,6 +15,7 @@ const PeluDetail = () => {
     return (
         <div>
             <p>{selectedPelu.name}</p>
+            <p>detalle peluuu</p>
         </div>
     );
 };

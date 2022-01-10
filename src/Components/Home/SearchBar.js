@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import SearchCiudad from "./SearchCiudad";
 import SearchNombre from "./SearchNombre";
 import SearchServicio from "./SearchServicio";
+import "./SearchBar.css";
 
 const SearchBar = () => {
   const [searchBar, setSearchBar] = useState("ciudad");
@@ -15,7 +16,6 @@ const SearchBar = () => {
     <div className="barraSearch">
       <div className="conenidoTitleBarra">
         <h2>Encontrá tu peluquería donde sea que estes!</h2>
-
         {searchBar === "ciudad" ? (
           <SearchCiudad />
         ) : (searchBar === "nombre" ? (
@@ -23,7 +23,6 @@ const SearchBar = () => {
         ) : (
           <SearchServicio />
         ))}
-
         <div>
           <button onClick={(e)=>{botonBusqueda("nombre", e)}}>Buscar por Nombre</button>
           <button onClick={(e)=>{botonBusqueda("ciudad", e)}}>Buscar por ciudad</button>

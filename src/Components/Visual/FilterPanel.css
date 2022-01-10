@@ -1,6 +1,8 @@
 .content-filterpanel{
     padding: 2em; 
     background-color: rgb(243, 243, 243);
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .title-filterpanel{

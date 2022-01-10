@@ -21,7 +21,6 @@
     background-repeat:no-repeat;
     object-fit: cover;
     z-index: 2;
-    margin-bottom: 15px;
     background-position: bottom;
     display:flex;
     align-items: center;

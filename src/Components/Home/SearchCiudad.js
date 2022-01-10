@@ -30,7 +30,7 @@ const SearchCiudad = () => {
         type="submit"
         className="btn btn-primary my-2 my-sm-0"
       >
-        Search
+        Buscar
       </button>{" "}
     </form>
   );

@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 import Landing from "./Components/Landing";
 import Favoritos from "./Components/Favoritos";
+import PeluDetail from "./Components/PeluDetail";
 import RegistroPelus from "./Components/RegistroPelus";
 import Admin from "./Components/Admin";
 import Carrito from "./Components/Carrito";
@@ -48,6 +49,7 @@ function App() {
         <Route path="/perfil" element={<Perfil />}/>
         <Route path="/tuscompras" element={<TusCompras />}/>
         <Route path="/admin" element={<Admin />}/>
+        <Route path="/peluquerias" element={<PeluDetail />}/>
       </Routes>
       <Footer />
     </div>

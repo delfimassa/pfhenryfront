@@ -6,7 +6,7 @@ import SearchServicio from "./SearchServicio";
 import "./SearchBar.css";
 
 const SearchBar = () => {
-  const [searchBar, setSearchBar] = useState("ciudad");
+  const [searchBar, setSearchBar] = useState("nombre");
   function botonBusqueda(valor, e) {
     e.preventDefault();
     setSearchBar(valor);

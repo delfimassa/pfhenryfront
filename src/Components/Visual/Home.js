@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "../Cards/Cards";
 import SearchBar from "../Home/SearchBar";
 import FilterPanel from "./FilterPanel";
@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 function Home() {
   const currentUser = useSelector((state) => state.user);
   const peluquerias = useSelector((state) => state.peluquerias);
+
+  const [optionSearchBar, setOptionSearchBar] = useState('')
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

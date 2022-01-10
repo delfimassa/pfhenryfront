@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
-import Navbar from "../Common/Navbar";
 import Cards from "../Cards/Cards";
-import Card from "../Cards/Card";
 import SearchBar from "../Home/SearchBar";
 import FilterPanel from "./FilterPanel";
 import { getPeluquerias } from "../../Redux/actions/peluqueria";
 import "./Home.css";
-import { connect } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { connect, useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function Home({ getPeluquerias, peluquerias }) {
+
+function Home() {
   const currentUser = useSelector((state) => state.user);
+  const peluquerias = useSelector((state) => state.peluquerias);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
+    dispatch(getPeluquerias());
     if (!currentUser) {
       navigate("/");
     }
@@ -21,9 +24,10 @@ function Home({ getPeluquerias, peluquerias }) {
     // obtenerDatos();
     console.log("user home " + currentUser);
   }, [currentUser, navigate]);
-  useEffect(() => {
-    getPeluquerias();
-  }, [getPeluquerias]);
+  
+  // useEffect(() => {
+  //   getPeluquerias();
+  // }, [getPeluquerias]);
 
   return (
     <div>

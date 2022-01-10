@@ -1,6 +1,6 @@
 // import * as actions from "../actions/register";
-import * as actions2 from "../actions/adminlog";
-import * as actions3 from "../actions/peluqueria";
+// import * as actions from "../actions/adminlog";
+// import * as actions from "../actions/peluqueria";
 import * as actions from "../types/types";
 
 const initialState = {
@@ -97,13 +97,13 @@ export default function rootReducer(state = initialState, action) {
     }
 
     //REGISTER ADMIN
-    case actions2.REGISTER_ADMIN: {
+    case actions.REGISTER_ADMIN: {
       return {
         ...state,
         loading: true,
       };
     }
-    case actions2.REGISTER_ADMIN_SUCCESS: {
+    case actions.REGISTER_ADMIN_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -112,7 +112,7 @@ export default function rootReducer(state = initialState, action) {
         adminUser: true
       };
     }
-    case actions2.REGISTER_ADMIN_FAIL: {
+    case actions.REGISTER_ADMIN_FAIL: {
       return {
         ...state,
         loading: false,
@@ -121,13 +121,13 @@ export default function rootReducer(state = initialState, action) {
     }
 
     //LOGIN ADMIN
-    case actions2.LOGIN_ADMIN: {
+    case actions.LOGIN_ADMIN: {
       return {
         ...state,
         loading: true,
       };
     }
-    case actions2.LOGIN_ADMIN_SUCCESS: {
+    case actions.LOGIN_ADMIN_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -137,7 +137,7 @@ export default function rootReducer(state = initialState, action) {
       };
     }
   
-    case actions2.LOGIN_ADMIN_FAIL: {
+    case actions.LOGIN_ADMIN_FAIL: {
       return {
         ...state,
         loading: false,
@@ -169,7 +169,7 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
-    case actions3.GET_PELUQUERIAS: {
+    case actions.GET_PELUQUERIAS: {
       return { ...state, peluquerias: action.payload };
     }
     //peluqueria

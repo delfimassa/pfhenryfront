@@ -96,7 +96,40 @@ const Navbar = ({}) => {
                       Carrito
                     </NavLink>
                   </li>
-                  <li className="nav-item dropdown">
+
+                  <li className="nav-item">
+                    <NavLink
+                      to="/perfil"
+                      className="nav-link"
+                      activeClassName="selected"
+                    >
+                      <FontAwesomeIcon icon={faUserCircle}></FontAwesomeIcon>
+                      Perfil
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    <NavLink
+                      to="/tuscompras"
+                      className="nav-link"
+                      activeClassName="selected"
+                    >
+                      Tus compras
+                    </NavLink>
+                  </li>
+                  <li className="nav-item">
+                    {" "}
+                    <imput
+                      className="nav-link"
+                      type="submit"
+                      onClick={(e) => {
+                        logout(e);
+                      }}
+                    >
+                      Log out
+                    </imput>
+                  </li>
+
+                  {/* <li className="nav-item dropdown">
                     <a
                       className="nav-link dropdown-toggle"
                       data-bs-toggle="dropdown"
@@ -132,7 +165,7 @@ const Navbar = ({}) => {
                         Log out
                       </button>
                     </div>
-                  </li>
+                  </li> */}
                 </ul>
               )
             ) : (

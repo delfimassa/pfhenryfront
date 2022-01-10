@@ -9,6 +9,7 @@ const initialState = {
   currentUser: null,
   error: null,
   user: "",
+  text: ''
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -125,26 +126,19 @@ export default function rootReducer(state = initialState, action) {
       }
     }
     
-    case actions.FILTER_SERVICIES:{
-        if(action.payload === "perfilado"){
-          state.allPeluquerias = state.backupPeluquerias
-          state.filteredPeluquerias = state.allPeluquerias.forEach(e => {e.services.filter(servicios => servicios === "Perfilado")})
-          return{...state, allPeluquerias: state.filteredPeluquerias}
-        }
-        if(action.payload === "alisado"){
-
-        }
-        if(action.payload === "tintura"){
-
-        }
-        if(action.payload === "corte"){
-
-        }
-        else return{
-          ...state,
-          allPeluquerias: state.backupPeluquerias
-        }
+    case actions.SEARCH_NAME:{
+      state.allPeluquerias = state.backupPeluquerias 
+      state.allPeluquerias.forEach(e => e.name = e.name.toLowerCase()) 
+      state.filteredPeluquerias = state.allPeluquerias.filter(e => e.name.includes(action.payload)) 
+       return {...state, allPeluquerias: state.filteredPeluquerias}
     }
+
+    case actions.SEARCH_CITY:{
+      state.allPeluquerias = state.backupPeluquerias
+      state.filteredPeluquerias = state.allPeluquerias.filter(e => e.city.includes(action.payload))
+      return {...state,allPeluquerias: state.filteredPeluquerias}
+    }
+
 
 
     //DEFAULT

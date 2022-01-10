@@ -17,5 +17,6 @@ export const GET_PELUQUERIAS = 'GET_PELUQUERIAS';
 //filtros
 export const FILTER_SERVICIES = 'FILTER_SERVICIES';
 export const FILTER_RATING = 'FILTER_RATING';
-// export const 
-// export const 
+//search name
+export const SEARCH_NAME = 'SEARCH_NAME'
+export const SEARCH_CITY= 'SEARCH_CITY' 

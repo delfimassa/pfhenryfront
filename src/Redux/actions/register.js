@@ -176,22 +176,3 @@ export function loginGoogleInitiate(){
     }
 }
 
-export function loginGoogleAdminInitiate(){
-    return async function (dispatch){
-        dispatch(loginGoogle());
-        try {
-            let user = await signInWithPopup(auth, provider)
-            dispatch(loginGoogleSuccess(user))
-            console.log("uid loguin =>"+ user.user.uid)
-
-            const hola = await getUsersId()
-            const filterHola = hola.find(e => e === user.user.id)
-            if(!filterHola){
-                await createUserAdminDocument(user, "Matias");
-            }   
-          } catch (error) {
-            dispatch(loginGoogleFail(error))
-            console.log(error.message)
-          }
-    }
-}

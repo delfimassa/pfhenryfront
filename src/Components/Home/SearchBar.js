@@ -17,9 +17,17 @@ const SearchBar = () => {
 
     return (
         <div>
+            <div>
+            <h1>Encontrá tu peluquería donde sea que estes!</h1>
+            </div>
             <form class="d-flex" onSubmit={(e) => handleOnSubmit(e)}>
-                <input class="form-control me-sm-2" type="text" placeholder="Search" onChange={(e) => handleOnChange(e)} />
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control input-search" type="text" placeholder="Search" onChange={(e) => handleOnChange(e)} />
+                <select style={{outline: 'none', width:'200px'}} class="me-sm-2">
+                    <option name="ciudad">Ciudad</option>
+                    <option name="servicio">Servicio</option>
+                </select>
+                <button type="submit" class="btn btn-primary my-2 my-sm-0">Search</button>
+                <button class="btn btn-secondary my-2 my-sm-0" type="submit"></button>
             </form>
         </div>
     );

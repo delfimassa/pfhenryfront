@@ -1,24 +1,25 @@
-import { auth , createUserDocument, createUserAdminDocument, provider, getUsersId} from "../../firebase-config";
+import { auth , createUserDocument, createUserAdminDocument, provider, getUsersId, signInWithGoogle} from "../../firebase-config";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 
+// export const REGISTER = "REGISTER";
+// export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+// export const REGISTER_FAIL = "REGISTER_FAIL";
 
-export const REGISTER = "REGISTER";
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAIL = "REGISTER_FAIL";
+// export const LOGIN = "LOGIN";
+// export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+// export const LOGIN_FAIL = "LOGIN_FAIL";
 
-export const LOGIN = "LOGIN";
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
-export const LOGIN_FAIL = "LOGIN_FAIL";
-
-export const LOGOUT = "LOGOUT";
-export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
-export const LOGOUT_FAIL = "LOGOUT_FAIL";
+// export const LOGOUT = "LOGOUT";
+// export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
+// export const LOGOUT_FAIL = "LOGOUT_FAIL";
 
 export const LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOGIN_GOOGLE_SUCCESS = "LOGIN_GOOGLE_SUCCESS";
 export const LOGIN_GOOGLE_FAIL = "LOGIN_GOOGLE_FAIL";
 
-export const SET_USER = "SET_USER"
+// export const SET_USER = "SET_USER"
+
+import { REGISTER, REGISTER_SUCCESS, REGISTER_FAIL, LOGIN, LOGIN_FAIL, LOGIN_SUCCESS,LOGOUT, LOGOUT_FAIL, LOGOUT_SUCCESS, SET_USER } from "../types/types";
 
 //REGISTER
 export function register() {

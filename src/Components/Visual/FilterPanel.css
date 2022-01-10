@@ -1,0 +1,22 @@
+.content-filterpanel{
+    padding: 2em; 
+    background-color: rgb(243, 243, 243);
+}
+
+.title-filterpanel{
+    margin: 0.5em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+label{
+    margin-left: 5px;
+}
+
+.servicios{
+    display: flex;
+    flex-direction: column;
+}

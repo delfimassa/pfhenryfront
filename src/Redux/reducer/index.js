@@ -1,8 +1,11 @@
-import * as actions from "../actions/register";
+// import * as actions from "../actions/register";
 import * as actions2 from "../actions/adminlog";
 import * as actions3 from "../actions/peluqueria";
+import * as actions from "../types/types";
 
 const initialState = {
+  allPeluquerias: [],
+  backupPeluquerias: [],
   loading: false,
   currentUser: null,
   error: null,
@@ -169,7 +172,17 @@ export default function rootReducer(state = initialState, action) {
     case actions3.GET_PELUQUERIAS: {
       return { ...state, peluquerias: action.payload };
     }
+    //peluqueria
+    case actions.GET_PELUQUERIAS:{
+      return{
+        ...state,
+        allPeluquerias: action.payload,
+        backupPeluquerias: action.payload
+      }
+    }
+
     //DEFAULT
+    
     default:
       return state;
   }

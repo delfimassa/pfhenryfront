@@ -1,0 +1,14 @@
+.select-Search {
+    outline: none;
+    border:none;
+    border-left: 0.5px rgba(185, 185, 185, 0.616) solid;
+    width: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(226, 226, 226);
+    justify-content: center;
+}
+
+.input-search {
+    background-color: rgb(226, 226, 226);
+}

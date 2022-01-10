@@ -12,7 +12,7 @@ body{
     font-family: var(--textFont);
 }
 
-.container{
+.container-landing{
     background-color: var(--gris2);
     display: flex;
     align-items: center;

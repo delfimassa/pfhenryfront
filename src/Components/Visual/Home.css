@@ -1,5 +1,6 @@
 
-.container{
+.container-home{
+  margin: 4.5em;
     display: flex;
     justify-content: space-between;
 }

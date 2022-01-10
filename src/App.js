@@ -15,10 +15,11 @@ import Footer from "./Components/Common/Footer";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
 import RegisterAdmin from "./auth/RegisterAdmin";
-import Home from "./Components/Home/Home";
 import "bootswatch/dist/lux/bootstrap.min.css";
+import Home from "./Components/Visual/Home";
 import { auth } from "./firebase-config";
-import {setUser} from "./Redux/actions/register"
+import {setUser} from "./Redux/actions/register";
+import "bootswatch/dist/lux/bootstrap.min.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,7 +40,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home />}/>
         <Route path="/login" element={<Login />} /> {/* AÑADIR PATH LOGIN*/}
         <Route path="/register" element={<Register />} />
         <Route path="/registerAdmin" element={<RegisterAdmin />} />

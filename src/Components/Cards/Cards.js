@@ -2,16 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Card from './Card'
 
-function Cards() {
-    return (
-        <Link to={`id o nombre?`}> 
+function Cards({peluquerias}) {
+    return (peluquerias.map(e =>
+        <Link style={{textDecoration: 'none'}}to={`${e._id}`}> 
             <Card 
-            
-            //valores de las peluquerias
-            
+                name= {e.name}
+                address={e.address}
+                rating={e.rating}
+                avatar={e.avatar}
+                schedule={e.schedule}
             />
         </Link>
-    )
+    ))
 }
 
 export default Cards

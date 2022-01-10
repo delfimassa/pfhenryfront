@@ -159,10 +159,35 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: action.payload,
-        // adminUser: null
+        adminUser: null
       };
     }
     case actions.LOGIN_GOOGLE_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    }
+
+    
+    //LOGIN GOOGLE ADMIN
+    case actions.LOGIN_GOOGLE_ADMIN: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case actions.LOGIN_GOOGLE_ADMIN_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        currentUser: action.payload,
+        user: action.payload,
+        adminUser: true
+      };
+    }
+    case actions.LOGIN_GOOGLE_ADMIN_FAIL: {
       return {
         ...state,
         loading: false,

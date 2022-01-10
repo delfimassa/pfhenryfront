@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
 import { registerAdminInitiate } from "../Redux/actions/adminlog";
-import { loginGoogleAdminInitiate } from "../Redux/actions/register";
+import { loginGoogleAdminInitiate } from "../Redux/actions/adminlog";
 
 
 const NuevaCuenta = () => {

@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './FilterPanel.css'
 import SearchName from './SearchName'
+import SearchProvincia from './SearchProvincia'
 
 
 function FilterPanel(props) {
@@ -46,6 +47,7 @@ function FilterPanel(props) {
                     </select>
                 </ul>
             <SearchName />
+            <SearchProvincia />
         </div>
     )
 }

@@ -19,13 +19,12 @@ function Home({getPeluquerias, peluquerias}) {
             <div className='container-home'>
             <FilterPanel /> 
             <div className='cards-container'>
-                <Cards peluquerias={peluquerias} /> 
+               <Cards peluquerias={peluquerias} /> 
             </div>
             </div>
         </div>
     )
 }
- //agregar algo para q las cards bajen a partir de cierto punto
 function mapStateToProps(state){
     return{
         peluquerias: state.allPeluquerias,

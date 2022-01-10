@@ -1,8 +1,15 @@
 import React from 'react'
+import { connect } from 'react-redux';
+import {searchName} from '../../Redux/actions/search'
 
-function SearchName() {
+function SearchName({searchName}) {
+
+    function mins(string) {
+        return string.toLowerCase() 
+    };
 
     function buscadorChange(e){
+        searchName(mins(e.target.value))
     }
 
     return (
@@ -12,4 +19,10 @@ function SearchName() {
     )
 }
 
-export default SearchName
+function mapStateToProps(state){
+    return{
+        texto: state.text
+    }
+}
+
+export default connect(mapStateToProps, {searchName})(SearchName)

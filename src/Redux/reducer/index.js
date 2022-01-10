@@ -1,6 +1,8 @@
-import * as actions from "../actions/register";
+import * as actions from "../types/types";
 
 const initialState = {
+  allPeluquerias: [],
+  backupPeluquerias: [],
   loading: false,
   currentUser: null,
   error: null,
@@ -85,7 +87,17 @@ export default function rootReducer(state = initialState, action) {
         user: action.payload
       }
     }
+    //peluqueria
+    case actions.GET_PELUQUERIAS:{
+      return{
+        ...state,
+        allPeluquerias: action.payload,
+        backupPeluquerias: action.payload
+      }
+    }
+
     //DEFAULT
+    
     default:
       return state;
   }

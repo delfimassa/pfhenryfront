@@ -8,8 +8,10 @@ import Navbar from "./Components/Common/Navbar";
 import Footer from "./Components/Common/Footer";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import Home from "./Components/Visual/Home";
 import { auth } from "./firebase-config";
-import {setUser} from "./Redux/actions/register"
+import {setUser} from "./Redux/actions/register";
+import "bootswatch/dist/lux/bootstrap.min.css";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,9 +29,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <SearchBar />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />}/>
         <Route path="/login" element={<Login />} /> {/* AÑADIR PATH LOGIN*/}
         <Route path="/register" element={<Register />} />
       </Routes>

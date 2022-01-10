@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../Common/Navbar';
+import Cards from '../Cards/Cards'
 import Card from '../Cards/Card';
+import SearchBar from '../Home/SearchBar';
 import FilterPanel from './FilterPanel';
-import './Home.css'
+import { getPeluquerias } from '../../Redux/actions/peluqueria';
+import './Home.css';
+import { connect } from 'react-redux';
 
-function Home() {
+function Home({getPeluquerias, peluquerias}) {
+    useEffect(() => {
+        getPeluquerias()
+    },[getPeluquerias])
+
     return (
         <div>
-            <Navbar />
-            <div className='container'>
+            <SearchBar />
+            <div className='container-home'>
             <FilterPanel /> 
-            <Card /> 
+            <div className='cards-container'>
+                <Cards peluquerias={peluquerias} /> 
             </div>
-            <div class="containerImg">
-                    <img src="https://album.mediaset.es/eimg/2020/04/16/TFkIELZDad4N9wJvYdCP06.jpg?w=1200&h=900" alt="Avatar" class="image"/>
-                    <div class="middle">
-                    <a href="#" class="card-link"><button type="button" class="btn btn-primary">Comprar</button></a>
-                    <a href="#" class="card-link"><button type="button" class="btn btn-outline-primary" style={{paddingTop:'5.5px', paddingBottom: '5.5px'}}>+Info</button></a>      
-                    </div>
-    </div>
+            </div>
         </div>
     )
 }
  //agregar algo para q las cards bajen a partir de cierto punto
-export default Home
+function mapStateToProps(state){
+    return{
+        peluquerias: state.allPeluquerias
+    }
+}
+
+export default connect(mapStateToProps, {getPeluquerias})(Home)

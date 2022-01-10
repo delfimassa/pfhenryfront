@@ -3,6 +3,8 @@ import * as actions from "../types/types";
 const initialState = {
   allPeluquerias: [],
   backupPeluquerias: [],
+  filteredPeluquerias: [],
+  orden: '',
   loading: false,
   currentUser: null,
   error: null,
@@ -95,6 +97,55 @@ export default function rootReducer(state = initialState, action) {
         backupPeluquerias: action.payload
       }
     }
+    //filtros
+    case actions.FILTER_RATING:{
+      
+      if(action.payload ==="menor"){
+        state.allPeluquerias = state.backupPeluquerias
+        state.allPeluquerias.forEach(e => {if(!e.rating){return e.rating = 0}})
+        state.allPeluquerias.sort((a, b) =>{
+          if(a.rating < b.rating){return -1}
+          if(a.rating > b.rating){return 1}
+          return 0
+        })
+      }
+      if(action.payload === "mayor"){
+        state.allPeluquerias = state.backupPeluquerias
+        state.allPeluquerias.forEach(e => {if(!e.rating){return e.rating = 0}})
+        state.allPeluquerias.sort((a, b) => {
+          if(a.rating > b.rating){return -1}
+          if(a.rating < b.rating){return 1}
+          return 0
+        })
+      }
+      return{
+        ...state,
+        orden: action.payload,
+        allPeluquerias: state.backupPeluquerias
+      }
+    }
+    
+    case actions.FILTER_SERVICIES:{
+        if(action.payload === "perfilado"){
+          state.allPeluquerias = state.backupPeluquerias
+          state.filteredPeluquerias = state.allPeluquerias.forEach(e => {e.services.filter(servicios => servicios === "Perfilado")})
+          return{...state, allPeluquerias: state.filteredPeluquerias}
+        }
+        if(action.payload === "alisado"){
+
+        }
+        if(action.payload === "tintura"){
+
+        }
+        if(action.payload === "corte"){
+
+        }
+        else return{
+          ...state,
+          allPeluquerias: state.backupPeluquerias
+        }
+    }
+
 
     //DEFAULT
     

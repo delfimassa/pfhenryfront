@@ -14,3 +14,8 @@ export const LOGOUT_FAIL = "LOGOUT_FAIL";
 export const SET_USER = "SET_USER"
 //peluquerias
 export const GET_PELUQUERIAS = 'GET_PELUQUERIAS';
+//filtros
+export const FILTER_SERVICIES = 'FILTER_SERVICIES';
+export const FILTER_RATING = 'FILTER_RATING';
+// export const 
+// export const 

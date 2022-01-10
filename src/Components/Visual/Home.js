@@ -28,7 +28,8 @@ function Home({getPeluquerias, peluquerias}) {
  //agregar algo para q las cards bajen a partir de cierto punto
 function mapStateToProps(state){
     return{
-        peluquerias: state.allPeluquerias
+        peluquerias: state.allPeluquerias,
+        orden: state.orden
     }
 }
 

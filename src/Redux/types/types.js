@@ -14,6 +14,8 @@ export const LOGOUT_FAIL = "LOGOUT_FAIL";
 export const SET_USER = "SET_USER"
 //peluquerias
 export const GET_PELUQUERIAS = 'GET_PELUQUERIAS';
+export const GET_PELUQUERIA_BY_ID = 'GET_PELUQUERIAS_BY_ID';
+
 
 export const LOGIN_GOOGLE = "LOGIN_GOOGLE";
 export const LOGIN_GOOGLE_SUCCESS = "LOGIN_GOOGLE_SUCCESS";

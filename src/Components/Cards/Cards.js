@@ -4,7 +4,7 @@ import Card from './Card'
 
 function Cards({peluquerias}) {
     return (peluquerias.map(e =>
-        <Link style={{textDecoration: 'none'}}to={`${e._id}`}> 
+        <Link style={{textDecoration: 'none'}} to={`${e._id}`}> 
             <Card 
                 name= {e.name}
                 address={e.address}

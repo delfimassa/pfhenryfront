@@ -1,18 +1,20 @@
 import React, { useState, useEffect }from 'react';
 import { useDispatch, useSelector} from "react-redux";
-import { getPeluquerias } from '../Redux/actions/peluqueria';
-
+import { getPeluqueriaById } from "../Redux/actions/peluqueria";
+import { useParams } from "react-router-dom";
 
 
 const PeluDetail = () => {
   const dispatch  = useDispatch();
-  useEffect(()=>{dispatch(getPeluquerias())}, []);
-
-  const {peluquerias} = useSelector((state) => state);
+  const params = useParams();
+  console.log("params desde detail", params);
+  useEffect(()=>{dispatch(getPeluqueriaById(params.id))}, [dispatch]);
+  const selectedPelu = useSelector((state) => state.selectedPelu);
+  console.log("selectedPelu desde detail", selectedPelu);
     
     return (
         <div>
-            {peluquerias.map((p)=>{return (<p>{p.name}</p>)})}
+            <p>{selectedPelu.name}</p>
         </div>
     );
 };

@@ -12,6 +12,7 @@ const initialState = {
   user: "",
   adminUser: false,
   peluquerias: [],
+  selectedPelu: {}
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -178,6 +179,12 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         allPeluquerias: action.payload,
         backupPeluquerias: action.payload
+      }
+    }
+    case actions.GET_PELUQUERIA_BY_ID:{
+      return{
+        ...state,
+        selectedPelu: action.payload
       }
     }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Card.css';
 
-function Card({name, address, rating, avatar, schedule}) {
+function Card({name, address, city, state, rating, avatar, schedule}) {
     return (
         <div className="all">
                   <div className="containerImg">
@@ -37,7 +37,10 @@ function Card({name, address, rating, avatar, schedule}) {
             <h6 class="card-subtitle mb-2 text-muted">{schedule}</h6>
             <div className="descPelu">
               <p class="card-text">
-                {address}
+              <b><i>{city}</i></b> - {state}
+              </p>
+              <p class="card-text">
+              {address}
               </p>
             </div>
             <div>

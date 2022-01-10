@@ -8,6 +8,8 @@ function Cards({peluquerias}) {
             <Card 
                 name= {e.name}
                 address={e.address}
+                city={e.city}
+                state={e.state}
                 rating={e.rating}
                 avatar={e.avatar}
                 schedule={e.schedule}

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginInitiate, logoutInitiate, loginGoogleInitiate } from "../Redux/actions/register";
 import { loginAdminInitiate } from "../Redux/actions/adminlog";
 import { signInWithGoogle } from "../firebase-config";
+import {Switch} from 'antd'
 
 const Login = () => {
   // State para iniciar sesión
@@ -12,13 +13,26 @@ const Login = () => {
     password: "",
   });
 
+  const [toggle, setToggle] = useState(false)
+
+  const toggler = () => {
+    toggle ? setToggle(false) : setToggle(true)
+  }
+
   //extraer de usario
   const { email, password } = state;
 
   const currentUser = useSelector((state) => state.user)
+  // const adminUserr = useSelector((state) => state.adminUser);
 
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(currentUser) {
+      navigate("/home")
+    }
+  }, [currentUser, navigate])
 
   const onChange = (e) => {
     setState({
@@ -36,7 +50,12 @@ const Login = () => {
       return;
     }
     //Pasarlo al reducer
-    dispatch(loginInitiate(email, password));
+    if(toggle){
+      dispatch(loginAdminInitiate(email, password));
+    } else{
+      dispatch(loginInitiate(email, password));
+    }
+    // dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
   };
 
@@ -50,14 +69,9 @@ const Login = () => {
     console.log(currentUser)
    };
 
-
-  //  const adminUser = useSelector((state) => state.user);
-  //  function activeAdmin(e){
-  //    e.preventDefault();
-  //   if (adminUser){
-  //     adminUser = true
-  //   }
-  //  }
+   const loginGoogle = () => {
+     dispatch(loginGoogleInitiate())
+   }
 
   return (
     <div className="form-usuario">
@@ -88,6 +102,10 @@ const Login = () => {
               onChange={onChange}
             />
           </div>
+          <div>
+            <Switch onClick={toggler}/>
+            {toggle ? <span>Soy peluqueria</span> : <span>Soy usuario</span>}
+          </div>
           <div className="campo-form">
             <button className="btn btn-primario btn-block" type="submit">Iniciar Sesion</button>
           </div>
@@ -97,16 +115,13 @@ const Login = () => {
             type="submit"
             className="btn btn-primario btn-block"
             value="Iniciar Sesión con Google"
-            onClick={signInWithGoogle}
+            onClick={loginGoogle}
           />
         </div>
 
         <Link to={"/register"} className="enlace-cuenta">
           Registrarse
         </Link>
-        <div >
-            <button className="enlace-cuenta" type="submit" onClick={logout}>Logout</button>
-          </div>
       </div>
     </div>
   );

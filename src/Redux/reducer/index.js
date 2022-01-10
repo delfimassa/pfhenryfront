@@ -6,7 +6,7 @@ const initialState = {
   currentUser: null,
   error: null,
   user: "",
-  adminUser: false,
+  adminUser: null,
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -24,6 +24,7 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: initialState,
+        adminUser: null
       };
     }
     case actions.REGISTER_FAIL: {
@@ -47,6 +48,7 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: action.payload,
+        // adminUser: null
       };
     }
     case actions.LOGIN_FAIL: {
@@ -68,7 +70,8 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentUser: null,
-        user: null
+        user: null, 
+        adminUser: null
       };
     }
     case actions.LOGOUT_FAIL: {
@@ -87,14 +90,76 @@ export default function rootReducer(state = initialState, action) {
         user: action.payload
       }
     }
-    case actions2.LOGIN_ADMIN_USER:{
-      return{
+    //REGISTER ADMIN
+    case actions2.REGISTER_ADMIN: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case actions2.REGISTER_ADMIN_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        currentUser: action.payload,
+        user: initialState,
+        adminUser: true
+      };
+    }
+    case actions2.REGISTER_ADMIN_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    }
+
+    //LOGIN ADMIN
+    case actions2.LOGIN_ADMIN: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case actions2.LOGIN_ADMIN_SUCCESS: {
+      return {
         ...state,
         loading: false,
         currentUser: action.payload,
         user: action.payload,
         adminUser: true
-      }
+      };
+    }
+    case actions2.LOGIN_ADMIN_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    }
+
+    //LOGIN GOOGLE
+    case actions.LOGIN_GOOGLE: {
+      return {
+        ...state,
+        loading: true,
+      };
+    }
+    case actions.LOGIN_GOOGLE_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        currentUser: action.payload,
+        user: action.payload,
+        // adminUser: null
+      };
+    }
+    case actions.LOGIN_GOOGLE_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     }
     //DEFAULT
     default:

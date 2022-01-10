@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
-import { registerInitiate, loginGoogleInitiate } from "../Redux/actions/register";
-import { signInWithGoogle } from "../firebase-config";
+import { registerAdminInitiate } from "../Redux/actions/adminlog";
+import { loginGoogleAdminInitiate } from "../Redux/actions/register";
+
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
@@ -11,10 +12,11 @@ const NuevaCuenta = () => {
     email: "",
     password: "",
     passwordConfirm: "",
+    address: ""
   });
 
   //extraer de usario
-  const { name, email, password, passwordConfirm } = user;
+  const { name, email, password, passwordConfirm, address } = user;
   const currentUser = useSelector((state) => state.user)
 
   const navigate = useNavigate()
@@ -33,10 +35,6 @@ const NuevaCuenta = () => {
     });
   };
 
-  const loginGoogle = () => {
-    dispatch(loginGoogleInitiate())
-  }
-
   const onSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacíos
@@ -48,22 +46,38 @@ const NuevaCuenta = () => {
       return;
     }
     //Pasarlo al reducer
-    dispatch(registerInitiate(name, email, password));
-    setUser({name: "", email: "", password: "", passwordConfirm: ""});
+    dispatch(registerAdminInitiate(name, email, password));
+    setUser({name: "", email: "", password: "", passwordConfirm: "", address: ""});
   }; 
+
+  const loginGoogle = () => {
+    dispatch(loginGoogleAdminInitiate())
+  }
   return (
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
-        <h1>Registrarse</h1>
+        <h1>Registro negocio</h1>
         <form onSubmit={onSubmit}>
           <div className="campo-form">
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor="name">Nombre del negocio</label>
             <input
               type="text"
               id="name"
               name="name"
               placeholder="Tu Nombre"
               value={name}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="address">Direccion</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Direccion"
+              value={address}
               onChange={onChange}
               required
             />

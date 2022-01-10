@@ -13,6 +13,7 @@ import Navbar from "./Components/Common/Navbar";
 import Footer from "./Components/Common/Footer";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
+import RegisterAdmin from "./auth/RegisterAdmin";
 import Home from "./Components/Home/Home";
 import "bootswatch/dist/lux/bootstrap.min.css";
 import { auth } from "./firebase-config";
@@ -25,6 +26,7 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if(authUser){
         dispatch(setUser(authUser))
+        authUser.getIdTokenResult().then((token) =>{console.log(token)})
       } else{
         dispatch(setUser(null))
       }
@@ -39,6 +41,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} /> {/* AÑADIR PATH LOGIN*/}
         <Route path="/register" element={<Register />} />
+        <Route path="/registerAdmin" element={<RegisterAdmin />} />
         <Route path="/registersalon" element={<RegistroPelus />} />
         <Route path="/favoritos" element={<Favoritos />}/>
         <Route path="/carrito" element={<Carrito />}/>

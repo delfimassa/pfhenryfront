@@ -1,5 +1,6 @@
 import * as actions from "../actions/register";
 import * as actions2 from "../actions/adminlog";
+import * as actions3 from "../actions/peluqueria";
 
 const initialState = {
   loading: false,
@@ -7,6 +8,7 @@ const initialState = {
   error: null,
   user: "",
   adminUser: false,
+  peluquerias: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -33,7 +35,7 @@ export default function rootReducer(state = initialState, action) {
         error: action.payload,
       };
     }
-    
+
     //LOGIN
     case actions.LOGIN: {
       return {
@@ -68,7 +70,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentUser: null,
-        user: null
+        user: null,
       };
     }
     case actions.LOGOUT_FAIL: {
@@ -80,21 +82,24 @@ export default function rootReducer(state = initialState, action) {
     }
     // user
     case actions.SET_USER: {
-      return{
+      return {
         ...state,
         loading: false,
         currentUser: action.paylodad,
-        user: action.payload
-      }
+        user: action.payload,
+      };
     }
-    case actions2.LOGIN_ADMIN_USER:{
-      return{
+    case actions2.LOGIN_ADMIN_USER: {
+      return {
         ...state,
         loading: false,
         currentUser: action.payload,
         user: action.payload,
-        adminUser: true
-      }
+        adminUser: true,
+      };
+    }
+    case actions3.GET_PELUQUERIAS: {
+      return { ...state, peluquerias: action.payload };
     }
     //DEFAULT
     default:

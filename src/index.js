@@ -9,6 +9,8 @@ import store from "./Redux/store/index";
 import 'antd/dist/antd.css'
 // import dotenv from "dotenv";
 import axios from 'axios';
+import { persistor } from './Redux/store';
+import {PersistGate} from 'redux-persist/integration/react'
 
 // dotenv.config();
 axios.defaults.baseURL = "http://localhost:4000";
@@ -17,7 +19,10 @@ ReactDOM.render(
   <React.StrictMode>
      <Provider store={store}>
       <Router>
-        <App />
+        <PersistGate persistor={persistor}>
+          <App />
+
+        </PersistGate>
       </Router>
     </Provider>
   </React.StrictMode>,

@@ -10,9 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 function Home() {
   const currentUser = useSelector((state) => state.user);
-  const peluquerias = useSelector((state) => state.peluquerias);
-
-  const [optionSearchBar, setOptionSearchBar] = useState('')
+  const allPeluquerias = useSelector((state) => state.allPeluquerias);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,17 +35,18 @@ function Home() {
       <div className="container-home">
         <FilterPanel />
         <div className="cards-container">
-          <Cards peluquerias={peluquerias} />
+          <Cards peluquerias={allPeluquerias} />
         </div>
       </div>
     </div>
   );
 }
-//agregar algo para q las cards bajen a partir de cierto punto
-function mapStateToProps(state) {
-  return {
-    peluquerias: state.allPeluquerias,
-  };
+
+function mapStateToProps(state){
+    return{
+        peluquerias: state.allPeluquerias,
+        orden: state.orden
+    }
 }
 
 export default connect(mapStateToProps, { getPeluquerias })(Home);

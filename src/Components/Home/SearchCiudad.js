@@ -22,15 +22,15 @@ const SearchCiudad = () => {
         onChange={(e) => handleOnChange(e)}
       />
       <select style={{ outline: "none", width: "200px" }} className="me-sm-2">
-        <option name="ciudad">Ciudad</option>
-        <option name="servicio">Servicio</option>
+        <option name="ciudad">Provincia</option>
+        <option name="servicio">opc provincias</option>
       </select>
       <button
         style={{ borderRadius: "3px" }}
         type="submit"
         className="btn btn-primary my-2 my-sm-0"
       >
-        Search
+        Buscar
       </button>{" "}
     </form>
   );

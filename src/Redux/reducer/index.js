@@ -6,12 +6,16 @@ import * as actions from "../types/types";
 const initialState = {
   allPeluquerias: [],
   backupPeluquerias: [],
+  filteredPeluquerias: [],
+  orden: "",
   loading: false,
   currentUser: null,
   error: null,
   user: "",
   adminUser: false,
   peluquerias: [],
+  selectedPelu: {},
+  text: "",
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -29,7 +33,7 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: initialState,
-        adminUser: null
+        adminUser: null,
       };
     }
     case actions.REGISTER_FAIL: {
@@ -53,7 +57,7 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: action.payload,
-        adminUser: null
+        adminUser: null,
       };
     }
     case actions.LOGIN_FAIL: {
@@ -75,8 +79,8 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         currentUser: null,
-        user: null, 
-        adminUser: null
+        user: null,
+        adminUser: null,
       };
     }
     case actions.LOGOUT_FAIL: {
@@ -109,7 +113,7 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: initialState,
-        adminUser: true
+        adminUser: true,
       };
     }
     case actions.REGISTER_ADMIN_FAIL: {
@@ -133,10 +137,10 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: action.payload,
-        adminUser: true
+        adminUser: true,
       };
     }
-  
+
     case actions.LOGIN_ADMIN_FAIL: {
       return {
         ...state,
@@ -158,7 +162,7 @@ export default function rootReducer(state = initialState, action) {
         loading: false,
         currentUser: action.payload,
         user: action.payload,
-        // adminUser: null
+        adminUser: null
       };
     }
     case actions.LOGIN_GOOGLE_FAIL: {
@@ -169,20 +173,109 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
-    case actions.GET_PELUQUERIAS: {
-      return { ...state, peluquerias: action.payload };
-    }
-    //peluqueria
-    case actions.GET_PELUQUERIAS:{
-      return{
+    
+    //LOGIN GOOGLE ADMIN
+    case actions.LOGIN_GOOGLE_ADMIN: {
+      return {
         ...state,
-        allPeluquerias: action.payload,
-        backupPeluquerias: action.payload
-      }
+        loading: true,
+      };
+    }
+    case actions.LOGIN_GOOGLE_ADMIN_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        currentUser: action.payload,
+        user: action.payload,
+        adminUser: true
+      };
+    }
+    case actions.LOGIN_GOOGLE_ADMIN_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     }
 
-    //DEFAULT
+    //peluqueria
+    case actions.GET_PELUQUERIAS: {
+      return {
+        ...state,
+        // peluquerias: action.payload,
+        allPeluquerias: action.payload,
+        backupPeluquerias: action.payload,
+      };
+    }
+
+    case actions.GET_PELUQUERIA_BY_ID: {
+      return {
+        ...state,
+        selectedPelu: action.payload,
+      };
+    }
     
+    //filtros
+    case actions.FILTER_RATING: {
+      if (action.payload === "menor") {
+        state.allPeluquerias = state.backupPeluquerias;
+        state.allPeluquerias.forEach((e) => {
+          if (!e.rating) {
+            return (e.rating = 0);
+          }
+        });
+        state.allPeluquerias.sort((a, b) => {
+          if (a.rating < b.rating) {
+            return -1;
+          }
+          if (a.rating > b.rating) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+      if (action.payload === "mayor") {
+        state.allPeluquerias = state.backupPeluquerias;
+        state.allPeluquerias.forEach((e) => {
+          if (!e.rating) {
+            return (e.rating = 0);
+          }
+        });
+        state.allPeluquerias.sort((a, b) => {
+          if (a.rating > b.rating) {
+            return -1;
+          }
+          if (a.rating < b.rating) {
+            return 1;
+          }
+          return 0;
+        });
+      }
+      return {
+        ...state,
+        orden: action.payload,
+        allPeluquerias: state.backupPeluquerias,
+      };
+    }
+
+    case actions.SEARCH_NAME: {
+      state.allPeluquerias = state.backupPeluquerias;
+      state.allPeluquerias.forEach((e) => (e.name = e.name.toLowerCase()));
+      console.log("desde reducer", state.allPeluquerias);
+      state.filteredPeluquerias = state.allPeluquerias.filter((e) =>
+        e.name.includes(action.payload)
+      );
+      return { ...state, allPeluquerias: state.filteredPeluquerias };
+    }
+
+    // case actions.SEARCH_CITY:{
+    //   state.allPeluquerias = state.backupPeluquerias
+    //   state.filteredPeluquerias = state.allPeluquerias.filter(e => e.city.includes(action.payload))
+    //   return {...state,allPeluquerias: state.filteredPeluquerias}
+    // }
+
+    //DEFAULT
+
     default:
       return state;
   }

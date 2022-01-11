@@ -24,11 +24,11 @@ function FilterPanel() {
             </form>
             <h3 className='title'> Ordenar por: </h3>
             <form>
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">no se q poner aca</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Mejores reseñas</a>
-                <a class="dropdown-item" href="#">Mayor precio</a>
-                <a class="dropdown-item" href="#">Menor precio</a>
+            <a className="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">no se q poner aca</a>
+            <div className="dropdown-menu">
+                <a className="dropdown-item" href="#">Mejores reseñas</a>
+                <a className="dropdown-item" href="#">Mayor precio</a>
+                <a className="dropdown-item" href="#">Menor precio</a>
             </div>
             </form>
         </div>

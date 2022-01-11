@@ -2,9 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Card from './Card'
 
+// dipatch getPeluqueriaById(id)
+// useSelector me complete el estado selectedPelu
+// desde card mostrar la data de ese estado
+
 function Cards({peluquerias}) {
     return (peluquerias.map(e =>
-        <Link style={{textDecoration: 'none', color: 'black'}}to={`${e._id}`}> 
+        <Link style={{textDecoration: 'none', color: 'black'}} to={`/${e._id}`}> 
             <Card 
                 name= {e.name}
                 address={e.address}

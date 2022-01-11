@@ -15,7 +15,7 @@
 
 .barraSearch {
     height: 50vh;
-    width: 100vw;    
+    /* width: 100vw;     */
     background-image: url(https://i.imgur.com/ZgpHM5R.jpg);
     background-size: 100% ;
     background-repeat:no-repeat;

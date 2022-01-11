@@ -51,7 +51,8 @@ function App() {
         <Route path="/tuscompras" element={<TusCompras />}/>
         <Route path="/admin" element={<Admin />}/>
         {/* <Route path="/detallepeluqueria/:id" element={<PeluDetail />}/> */}
-        <Route path="/detallepeluqueria/:id" element={({match})=> <PeluDetail id={match.params.id}/>}/>
+        {/* <Route path="/detallepeluqueria/:id" element={({match})=> <PeluDetail id={match.params.id}/>}/> */}
+        <Route path="/:id" element={<PeluDetail />} />
       </Routes>
       <Footer />
     </div>

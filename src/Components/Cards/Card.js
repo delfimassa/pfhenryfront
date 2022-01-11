@@ -38,16 +38,13 @@ function Card({name, address, city, state, rating, avatar, schedule}) {
             <h4 className="card-title">{name}</h4>
             <h6 className="card-subtitle mb-2 text-muted">{schedule}</h6>
             <div className="descPelu">
-              <p className="card-text">
-              <b><i>{city}</i></b> - {state}
-              </p>
-              <p className="card-text">
-              {address}
+              <p class="card-text">
+              City: {state} - {city}<br/>Address: {address}
               </p>
             </div>
             <div>
                 <p>
-                    Rating: {rating ? rating : "Aun no fue calificada por nadie"}
+                    Valoracion: {rating ? rating+' Estrellas' : '- Estrellas'}
                 </p>
             </div>
             {/* <a href="#" className="card-link"><button type="button" className="btn btn-primary">Comprar</button></a>

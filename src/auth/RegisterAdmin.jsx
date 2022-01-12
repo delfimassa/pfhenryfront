@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
 import { postPeluqueria, registerAdminInitiate } from "../Redux/actions/adminlog";
 import { loginGoogleAdminInitiate } from "../Redux/actions/adminlog";
+import SelectProvince from "../Components/SelectProvince";
 
 
 const NuevaCuenta = () => {
@@ -126,7 +127,8 @@ const NuevaCuenta = () => {
               required
             />
           </div>
-          <div className="campo-form">
+          <SelectProvince className="campo-form"></SelectProvince>
+          {/* <div className="campo-form">
             <label htmlFor="username">Ciudad</label>
             <input
               type="text"
@@ -149,7 +151,7 @@ const NuevaCuenta = () => {
               onChange={onChange}
               required
             />
-          </div>
+          </div> */}
           <div className="campo-form">
             <label htmlFor="username">Telefono</label>
             <input

@@ -1,5 +1,6 @@
 // import { auth, createUserAdminDocument } from "../../firebase-config";
 import { auth , createUserDocument, createUserAdminDocument, provider, getUsersId, signInWithGoogle} from "../../firebase-config";
+import axios from "axios";
 
 
 import {
@@ -17,7 +18,8 @@ import {
   REGISTER_ADMIN_FAIL,
   LOGIN_GOOGLE_ADMIN, 
   LOGIN_GOOGLE_ADMIN_SUCCESS, 
-  LOGIN_GOOGLE_ADMIN_FAIL
+  LOGIN_GOOGLE_ADMIN_FAIL,
+  POST_PELUQUERIA
 } from "../types/types";
 
 //LOGIN
@@ -127,5 +129,21 @@ export function loginGoogleAdminInitiate(){
           dispatch(loginGoogleAdminFail(error))
           console.log(error.message)
         }
+  }
+}
+
+//POST DB
+export function postPeluqueria(payload, username, password){
+  return async function(dispatch){
+    const response = await axios.post('http://localhost:4000/peluqueria/create', payload)
+    .then((pelus) =>{
+      dispatch({
+        type: POST_PELUQUERIA,
+        payload: pelus
+      })
+    })
+    const user = await createUserWithEmailAndPassword(auth, username, password);
+      dispatch(registerAdminSuccess(user));
+      return response
   }
 }

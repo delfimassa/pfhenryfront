@@ -124,6 +124,12 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
+    case actions.POST_PELUQUERIA: {
+      return {
+        ...state
+      }
+    }
+
     //LOGIN ADMIN
     case actions.LOGIN_ADMIN: {
       return {

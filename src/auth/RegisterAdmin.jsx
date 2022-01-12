@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
-import { registerAdminInitiate } from "../Redux/actions/adminlog";
+import { postPeluqueria, registerAdminInitiate } from "../Redux/actions/adminlog";
 import { loginGoogleAdminInitiate } from "../Redux/actions/adminlog";
 
 
@@ -9,18 +9,24 @@ const NuevaCuenta = () => {
   // State para iniciar sesión
   const [user, setUser] = useState({
     name: "",
-    email: "",
+    username: "",
     password: "",
     passwordConfirm: "",
-    address: ""
+    address: "",
+    city: "",
+    state: "",
+    phone: "",
+    schedule: "",
+    services: []
   });
 
   //extraer de usario
-  const { name, email, password, passwordConfirm, address } = user;
+  const { name, username, password, passwordConfirm, address, city, phone, state, schedule } = user;
   const currentUser = useSelector((state) => state.user)
 
   const navigate = useNavigate()
   useEffect(() => {
+    
     if(currentUser) {
       navigate("/home")
     }
@@ -38,7 +44,7 @@ const NuevaCuenta = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacíos
-    if(!name || !email || !password || !passwordConfirm){
+    if(!name || !username || !password || !passwordConfirm){
       return
     }
     //Contraseñas iguales
@@ -46,8 +52,9 @@ const NuevaCuenta = () => {
       return;
     }
     //Pasarlo al reducer
-    dispatch(registerAdminInitiate(name, email, password));
-    setUser({name: "", email: "", password: "", passwordConfirm: "", address: ""});
+    dispatch(postPeluqueria(user, username, password))
+    // dispatch(registerAdminInitiate(name, username, password));
+    setUser({name: "", username: "", password: "", passwordConfirm: "", address: ""});
   }; 
 
   const loginGoogle = () => {
@@ -70,26 +77,15 @@ const NuevaCuenta = () => {
               required
             />
           </div>
+        
           <div className="campo-form">
-            <label htmlFor="address">Direccion</label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              placeholder="Direccion"
-              value={address}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="campo-form">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Email</label>
             <input
               type="email"
-              id="email"
-              name="email"
+              id="username"
+              name="username"
               placeholder="Tu Email"
-              value={email}
+              value={username}
               onChange={onChange}
               required
             />
@@ -119,20 +115,81 @@ const NuevaCuenta = () => {
             />
           </div>
           <div className="campo-form">
+            <label htmlFor="address">Direccion</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Direccion"
+              value={address}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="username">Ciudad</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Ciudad"
+              value={city}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="username">Provicia</label>
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="Provicia"
+              value={state}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="username">Telefono</label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="Telefono"
+              value={phone}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="username">Calendario</label>
+            <input
+              type="text"
+              id="schedule"
+              name="schedule"
+              placeholder="Calendario"
+              value={schedule}
+              onChange={onChange}
+              required
+            />
+          </div>
+ 
+          <div className="campo-form">
             <button
               type="submit"
               className="btn btn-primario btn-block" 
             >Registrar Cuenta</button>
           </div>
         </form>
-        <div className="campo-form">
+        {/* <div className="campo-form">
           <input
             type="submit"
             className="btn btn-primario btn-block"
             value="Registrarse con Google"
             onClick={loginGoogle}
           />
-        </div>
+        </div> */}
 
         <Link to={"/login"} className="enlace-cuenta">
           {/*CAMBIAR A PATH LOGIN*/}

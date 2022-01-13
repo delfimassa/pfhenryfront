@@ -7,15 +7,18 @@ function Card({name, address, city, state, rating, avatar, schedule}) {
     return (
         <div className="all">
                   <div className="containerImg">
-          {avatar[0] === 'h' ? <img
+          {avatar ? 
+          <img
             className="image"
             src={avatar}
             alt="Avatar"
-          />: <img
-          className="image"
-          src='https://image.freepik.com/foto-gratis/tijeras-peluquero-peluqueria-hombre-brutal-bigote-macho-peluqueria-corte-pelo-afeitado-mans-corte-pelo-peluqueria-perfil-hombre-barba-elegante-tijeras-hombre-barbudo-aislado-espacio-blanco_264277-227.jpg'
-          alt="Avatar"
-        />}
+          />
+          :
+           <img 
+           className="image"
+           src='https://image.freepik.com/foto-gratis/tijeras-peluquero-peluqueria-hombre-brutal-bigote-macho-peluqueria-corte-pelo-afeitado-mans-corte-pelo-peluqueria-perfil-hombre-barba-elegante-tijeras-hombre-barbudo-aislado-espacio-blanco_264277-227.jpg'
+           alt="Avatar"
+         />}
           <div className="middle" style={{display: 'flex', alignItems: 'center'}}>
             <a href="#" className="card-link">
               <button type="button" className="btn btn-primary">

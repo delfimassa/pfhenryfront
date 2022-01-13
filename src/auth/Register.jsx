@@ -4,6 +4,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerInitiate, loginGoogleInitiate } from "../Redux/actions/register";
 import { signInWithGoogle } from "../firebase-config";
 
+import Swal from "sweetalert2";
+
+// {
+//   Swal.fire(
+//     "Enhorabuena!",
+//     "Tu consulta fue enviada correctamente.",
+//     "success"
+//   );
+//   e.target.reset();
+//   setValidated(false);
+// },
+// (error) => {
+//   Swal.fire(
+//     "Ups!",
+//     "Hubo un problema al enviar tu consulta. Por favor intentalo nuevamente.",
+//     "error"
+//   );
+// }
+
 const NuevaCuenta = () => {
   // State para iniciar sesión
   const [user, setUser] = useState({

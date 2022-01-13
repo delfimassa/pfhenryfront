@@ -64,16 +64,6 @@ const Login = () => {
     setState({ email: "", password: "" });
   };
 
-  // Logout
-  const logout = () => {
-    if (currentUser) {
-      dispatch(logoutInitiate());
-    } else {
-      alert("No estas logueado");
-    }
-    console.log(currentUser);
-  };
-
   const loginGoogle = () => {
     dispatch(loginGoogleInitiate());
   };

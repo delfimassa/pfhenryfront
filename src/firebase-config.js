@@ -52,16 +52,6 @@ export const createUserDocument = async (user, name) => {
   });
 };
 
-export const createUserAdminDocument = async (user, name) => {
-  if (!user) return;
-
-  await setDoc(doc(firestore, "users", `${user.user.uid}`), {
-    name: name,
-    email: user.user.email,
-    rol: "admin",
-  });
-};
-
 export const getUsersId = async () => {
 
   const q = query(collection(firestore, "users"));
@@ -70,7 +60,7 @@ export const getUsersId = async () => {
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     usersId.push(doc.id)
-    // console.log(doc.id, " => ", doc.data());
+    console.log(doc, " => ", doc.data());
   });
 //   console.log(usersId)
   return usersId;

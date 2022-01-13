@@ -5,13 +5,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 
 const PeluDetail = () => {
-  //   const dispatch  = useDispatch();
-  //   const params = useParams();
-  //   console.log("params desde detail", params);
-  //   useEffect(()=>{dispatch(getPeluqueriaById(params.id))}, [dispatch]);
-  //   const selectedPelu = useSelector((state) => state.selectedPelu);
-  //   console.log("selectedPelu desde detail", selectedPelu);
-
   const [pelu, setPelu] = useState(null);
   let { id } = useParams();
 

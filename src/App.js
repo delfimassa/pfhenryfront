@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import Landing from "./Components/Landing";
 import Favoritos from "./Components/Favoritos";
 import PeluDetail from "./Components/PeluDetail";
-import RegistroPelus from "./Components/RegistroPelus";
+// import RegistroPelus from "./Components/RegistroPelus";
 import Admin from "./Components/Admin";
 import Panel from "./Components/Admin/Panel"
 import Carrito from "./Components/Carrito";
@@ -29,7 +29,7 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if(authUser){
         dispatch(setUser(authUser))
-        authUser.getIdTokenResult().then((token) =>{console.log(token)})
+        // authUser.getIdTokenResult().then((token) =>{console.log(token)})
       } else{
         dispatch(setUser(null))
       }
@@ -45,7 +45,7 @@ function App() {
         <Route path="/login" element={<Login />} /> {/* AÑADIR PATH LOGIN*/}
         <Route path="/register" element={<Register />} />
         <Route path="/registerAdmin" element={<RegisterAdmin />} />
-        <Route path="/registersalon" element={<RegistroPelus />} />
+        {/* <Route path="/registersalon" element={<RegistroPelus />} /> */}
         <Route path="/favoritos" element={<Favoritos />}/>
         <Route path="/carrito" element={<Carrito />}/>
         <Route path="/perfil" element={<Perfil />}/>

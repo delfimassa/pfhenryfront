@@ -1,28 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { registerAdminInitiate } from "../Redux/actions/adminlog";
-import { loginGoogleAdminInitiate } from "../Redux/actions/adminlog";
-import style from "./styles/RegisterAdmin.module.css";
+import { postPeluqueria } from "../Redux/actions/adminlog";
+import SelectProvince from "../Components/SelectProvince";
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
   const [user, setUser] = useState({
     name: "",
-    email: "",
+    username: "",
     password: "",
     passwordConfirm: "",
     address: "",
+    city: "",
+    state: "",
+    phone: "",
+    schedule: "",
+    services: []
   });
 
   //extraer de usario
-  const { name, email, password, passwordConfirm, address } = user;
-  const currentUser = useSelector((state) => state.user);
+  const { name, username, password, passwordConfirm, address, city, phone, state, schedule } = user;
+  const currentUser = useSelector((state) => state.user)
 
   const navigate = useNavigate();
   useEffect(() => {
-    if (currentUser) {
-      navigate("/home");
+    if(currentUser) {
+      navigate("/home")
     }
   }, [currentUser, navigate]);
 
@@ -38,142 +42,147 @@ const NuevaCuenta = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacíos
-    if (!name || !email || !password || !passwordConfirm) {
-      return;
+
+    if(!name || !username || !password || !passwordConfirm){
+      return
     }
     //Contraseñas iguales
     if (password !== passwordConfirm) {
       return;
     }
     //Pasarlo al reducer
-    dispatch(registerAdminInitiate(name, email, password));
-    setUser({
-      name: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
-      address: "",
-    });
-  };
+    dispatch(postPeluqueria(user, username, password))
+    setUser({name: "", username: "", password: "", passwordConfirm: "", address: ""});
+  }; 
 
-  const loginGoogle = () => {
-    dispatch(loginGoogleAdminInitiate());
-  };
   return (
-    <div>
-      <div>
-        <div className={style.allLogin}>
-          <div className={style.contenedorFormulario}>
-            <h1>Registrar Negocio</h1>
-            <form onSubmit={onSubmit}>
-              {/* <button onClick={(e)=>{activeAdmin(e)}}>Soy Peluqueria</button> */}
-              <div>
-                <div className={style.formGroup}>
-                  <label class="form-label mt-4" htmlFor="name">
-                    Nombre del negocio
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Tu Nombre"
-                    value={name}
-                    className={style.formControled}
-                    onChange={onChange}
-                    required
-                  />
-                </div>
-                <div style={{display:'flex'}}>
-                <div>
-                  <div className={style.formGroup}>
-                    <label htmlFor="address" class="form-label mt-4">Direccion</label>
-                    <input
-                      type="text"
-                      id="address"
-                      name="address"
-                      placeholder="Direccion"
-                      value={address}
-                      onChange={onChange}
-                      className={style.formControled}
-                      required
-                    />
-                  </div>
-                  <div className={style.formGroup}>
-                    <label htmlFor="email" class="form-label mt-4">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={email}
-                      onChange={onChange}
-                      className={style.formControled}
-                      aria-describedby="emailHelp"
-                      placeholder="ejemplo@hairup.com"
-                      required
-                    />
-                    <small id="emailHelp" class="form-text text-muted">
-                      Nunca compartiremos su correo electrónico con nadie más.
-                    </small>
-                  </div>
-                </div>
-
-                <div>
-                  <div className={style.formGroup}>
-                    <label htmlFor="password" class="form-label mt-4">
-                      Contraseña
-                    </label>
-                    <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={password}
-                      onChange={onChange}
-                      className={style.formControled}
-                      placeholder="********"
-                      required
-                    />
-                  </div>
-                  <div className={style.formGroup}>
-                    <label htmlFor="passwordConfirm" class="form-label mt-4">
-                      Confirmar Contraseña
-                    </label>
-                    <input
-                      type="password"
-                      id="passwordConfirm"
-                      name="passwordConfirm"
-                      placeholder="Repite tu contraseña"
-                      value={passwordConfirm}
-                      onChange={onChange}
-                      className={style.formControled}
-                      required
-                    />
-                  </div>
-                </div>
-                </div>
-              </div>
-              <Link to={"/login"}>
-                <p className={style.linkRegister}>Ya tengo cuenta</p>
-              </Link>
-              <div style={{display: 'flex', justifyContent: 'space-around'}}>
-              <div className={style.contenedorBotones}>
-                <button type="submit" className="btn btn-outline-primary">
-                  Registrar Cuenta
-                </button>
-              </div>
-              <div className={style.contenedorBotones}>
-                <input
-                  type="submit"
-                  className="btn btn-outline-primary"
-                  value="Registrarse con Google"
-                  onClick={loginGoogle}
-                />
-              </div>
-              </div>
-            </form>
+    <div className="form-usuario">
+      <div className="contenedor-form sombra-dark">
+        <h1>Registro negocio</h1>
+        <form onSubmit={onSubmit}>
+          <div className="campo-form">
+            <label htmlFor="name">Nombre del negocio</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Tu Nombre"
+              value={name}
+              onChange={onChange}
+              required
+            />
           </div>
-        </div>
+        
+          <div className="campo-form">
+            <label htmlFor="username">Email</label>
+            <input
+              type="email"
+              id="username"
+              name="username"
+              placeholder="Tu Email"
+              value={username}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Tu Contraseña"
+              value={password}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="passwordConfirm">Confirmar Contraseña</label>
+            <input
+              type="password"
+              id="passwordConfirm"
+              name="passwordConfirm"
+              placeholder="Repite tu contraseña"
+              value={passwordConfirm}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="address">Direccion</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              placeholder="Direccion"
+              value={address}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <SelectProvince className="campo-form"></SelectProvince>
+          {/* <div className="campo-form">
+            <label htmlFor="username">Ciudad</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              placeholder="Ciudad"
+              value={city}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="username">Provicia</label>
+            <input
+              type="text"
+              id="state"
+              name="state"
+              placeholder="Provicia"
+              value={state}
+              onChange={onChange}
+              required
+            />
+          </div> */}
+          <div className="campo-form">
+            <label htmlFor="username">Telefono</label>
+            <input
+              type="text"
+              id="phone"
+              name="phone"
+              placeholder="Telefono"
+              value={phone}
+              onChange={onChange}
+              required
+            />
+          </div>
+          <div className="campo-form">
+            <label htmlFor="username">Calendario</label>
+            <input
+              type="text"
+              id="schedule"
+              name="schedule"
+              placeholder="Calendario"
+              value={schedule}
+              onChange={onChange}
+              required
+            />
+          </div>
+ 
+          <div className="campo-form">
+            <button
+              type="submit"
+              className="btn btn-primario btn-block" 
+            >Registrar Cuenta</button>
+          </div>
+        </form>
+
+        <Link to={"/login"} className="enlace-cuenta">
+          {/*CAMBIAR A PATH LOGIN*/}
+          Ya tengo cuenta
+        </Link>
       </div>
     </div>
   );

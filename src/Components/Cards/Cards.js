@@ -7,9 +7,11 @@ import Card from './Card'
 // desde card mostrar la data de ese estado
 
 function Cards({peluquerias}) {
+
     return (peluquerias.map(e =>
         <Link style={{textDecoration: 'none', color: 'black'}} to={`/detallepeluqueria/${e._id}`}> 
             <Card 
+                id={e._id}
                 name= {e.name}
                 address={e.address}
                 city={e.city}

@@ -1,11 +1,12 @@
 import React from "react";
 import "./Card.css";
 
-function Card({ name, address, city, state, rating, avatar, schedule, id }) {
+
+function Card({ name, address, city, state, rating, avatar, schedule }) {
   return (
     <div className="all">
       <div className="containerImg">
-        {avatar[0] === "h" ? (
+        {avatar !== 0 ? (
           <img className="image" src={avatar} alt="Avatar" />
         ) : (
           <img
@@ -39,16 +40,14 @@ function Card({ name, address, city, state, rating, avatar, schedule, id }) {
           <h4 className="card-title">{name}</h4>
           <h6 className="card-subtitle mb-2 text-muted">{schedule}</h6>
           <div className="descPelu">
-            <p className="card-text">
-              <b>
-                <i>{city}</i>
-              </b>{" "}
-              - {state}
+            <p class="card-text">
+              City: {state} - {city}
+              <br />
+              Address: {address}
             </p>
-            <p className="card-text">{address}</p>
           </div>
           <div>
-            <p>Rating: {rating ? rating : "Aun no fue calificada por nadie"}</p>
+            <p>Valoracion: {rating ? rating + " Estrellas" : "- Estrellas"}</p>
           </div>
           {/* <a href="#" className="card-link"><button type="button" className="btn btn-primary">Comprar</button></a>
                       <a href="#" className="card-link"><button type="button" className="btn btn-outline-primary" style={{paddingTop:'5.5px', paddingBottom: '5.5px'}}>+Info</button></a>       */}

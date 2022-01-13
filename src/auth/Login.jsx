@@ -10,6 +10,8 @@ import { loginAdminInitiate } from "../Redux/actions/adminlog";
 import { signInWithGoogle } from "../firebase-config";
 import { Switch } from "antd";
 import style from "./styles/Login.module.css";
+// import Swal from "sweetalert2";
+
 
 const Login = () => {
   // State para iniciar sesión
@@ -52,6 +54,11 @@ const Login = () => {
 
     //Validar que no haya campos vacíos
     if (!email || !password) {
+      // Swal.fire(
+      //   "Ups!",
+      //   "Por favor completa todos los campos",
+      //   "error"
+      // );
       return;
     }
     //Pasarlo al reducer

@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerInitiate, loginGoogleInitiate, postClient } from "../Redux/actions/register";
 import { signInWithGoogle } from "../firebase-config";
 import style from "./styles/Register.module.css";
+// import Swal from "sweetalert2";
+
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
@@ -43,11 +45,19 @@ const NuevaCuenta = () => {
     e.preventDefault();
     //Validar que no haya campos vacíos
     if(!name || !username || !password || !passwordConfirm){
-      return
+      // Swal.fire(
+      //   "Ups!",
+      //   "Por favor completa todos los campos",
+      //   "error"
+      // );
     }
     //Contraseñas iguales
     if (password !== passwordConfirm) {
-      return;
+      // Swal.fire(
+      //   "Ups!",
+      //   "La contraseña no coincide",
+      //   "error"
+      // );
     }
     //Pasarlo al reducer
     dispatch(postClient(user));

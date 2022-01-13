@@ -29,6 +29,8 @@ import {
   GET_PELUQUERIAS,
   POST_PELUQUERIA,
 } from "../types/types";
+import Swal from "sweetalert2";
+
 
 //REGISTER
 export function register() {
@@ -45,6 +47,7 @@ export function registerSuccess(user) {
 }
 
 export function registerFail(error) {
+  Swal.fire("Ups!", "Lo sentimos, no pudimos registrarte. Por favor revisa si ya estas registrado con este email", "error");
   return {
     type: REGISTER_FAIL,
     payload: error,
@@ -57,7 +60,7 @@ export function registerInitiate(name, email, password) {
     try {
       const user = await createUserWithEmailAndPassword(auth, email, password);
       dispatch(registerSuccess(user));
-    //   dispatch(postClient(name, email, password));
+      //   dispatch(postClient(name, email, password));
       console.log(user);
       await createUserDocument(user, name);
     } catch (error) {
@@ -82,6 +85,8 @@ export function loginSuccess(user) {
 }
 
 export function loginFail(error) {
+  Swal.fire("Ups!", "Email o contraseña incorrectos. Asegurate que ya estes registrado con este email", "error");
+
   return {
     type: LOGIN_FAIL,
     payload: error,
@@ -178,15 +183,15 @@ export function loginGoogleInitiate() {
       console.log(user);
       console.log(filterHola);
       const payloadGoogle = {
-          name: user.user.displayName,
-          username: user.user.email,
-          password: user.user.uid
-      }
-      
+        name: user.user.displayName,
+        username: user.user.email,
+        password: user.user.uid,
+      };
+
       if (!filterHola) {
-          dispatch(postClient(payloadGoogle))
-          await createUserDocument(user, user.user.displayName);
-      } 
+        dispatch(postClient(payloadGoogle));
+        await createUserDocument(user, user.user.displayName);
+      }
     } catch (error) {
       dispatch(loginGoogleFail(error));
       console.log(error.message);
@@ -194,17 +199,17 @@ export function loginGoogleInitiate() {
   };
 }
 
-export function postClient(payload){
-    return async function (dispatch) {
-        const response = await axios
-          .post("http://localhost:4000/clients/create", payload)
-          .then((client) => {
-            dispatch({
-              type: POST_PELUQUERIA,
-              payload: client,
-            });
-          });
-        
-        return response;
-      };
+export function postClient(payload) {
+  return async function (dispatch) {
+    const response = await axios
+      .post("http://localhost:4000/clients/create", payload)
+      .then((client) => {
+        dispatch({
+          type: POST_PELUQUERIA,
+          payload: client,
+        });
+      });
+
+    return response;
+  };
 }

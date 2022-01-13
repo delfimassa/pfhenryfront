@@ -28,7 +28,7 @@ function App() {
     auth.onAuthStateChanged((authUser) => {
       if(authUser){
         dispatch(setUser(authUser))
-        authUser.getIdTokenResult().then((token) =>{console.log(token)})
+        // authUser.getIdTokenResult().then((token) =>{console.log(token)})
       } else{
         dispatch(setUser(null))
       }

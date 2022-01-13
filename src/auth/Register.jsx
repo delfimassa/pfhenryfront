@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
-import { registerInitiate, loginGoogleInitiate } from "../Redux/actions/register";
+import { registerInitiate, loginGoogleInitiate, postClient } from "../Redux/actions/register";
 import { signInWithGoogle } from "../firebase-config";
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
   const [user, setUser] = useState({
     name: "",
-    email: "",
+    username: "",
     password: "",
     passwordConfirm: "",
   });
 
   //extraer de usario
-  const { name, email, password, passwordConfirm } = user;
+  const { name, username, password, passwordConfirm } = user;
   const currentUser = useSelector((state) => state.user)
 
   const navigate = useNavigate()
@@ -40,7 +40,7 @@ const NuevaCuenta = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacíos
-    if(!name || !email || !password || !passwordConfirm){
+    if(!name || !username || !password || !passwordConfirm){
       return
     }
     //Contraseñas iguales
@@ -48,8 +48,9 @@ const NuevaCuenta = () => {
       return;
     }
     //Pasarlo al reducer
-    dispatch(registerInitiate(name, email, password));
-    setUser({name: "", email: "", password: "", passwordConfirm: ""});
+    dispatch(postClient(user));
+    dispatch(registerInitiate(name, username, password));
+    setUser({name: "", username: "", password: "", passwordConfirm: ""});
   }; 
   return (
     <div className="form-usuario">
@@ -69,13 +70,13 @@ const NuevaCuenta = () => {
             />
           </div>
           <div className="campo-form">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Email</label>
             <input
               type="email"
-              id="email"
-              name="email"
-              placeholder="Tu Email"
-              value={email}
+              id="username"
+              name="username"
+              placeholder="Tu email"
+              value={username}
               onChange={onChange}
               required
             />

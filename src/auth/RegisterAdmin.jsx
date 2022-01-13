@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {useDispatch, useSelector} from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
-import { postPeluqueria, registerAdminInitiate } from "../Redux/actions/adminlog";
-import { loginGoogleAdminInitiate } from "../Redux/actions/adminlog";
+import { postPeluqueria } from "../Redux/actions/adminlog";
 import SelectProvince from "../Components/SelectProvince";
 
 
@@ -54,13 +53,9 @@ const NuevaCuenta = () => {
     }
     //Pasarlo al reducer
     dispatch(postPeluqueria(user, username, password))
-    // dispatch(registerAdminInitiate(name, username, password));
     setUser({name: "", username: "", password: "", passwordConfirm: "", address: ""});
   }; 
 
-  const loginGoogle = () => {
-    dispatch(loginGoogleAdminInitiate())
-  }
   return (
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
@@ -184,14 +179,6 @@ const NuevaCuenta = () => {
             >Registrar Cuenta</button>
           </div>
         </form>
-        {/* <div className="campo-form">
-          <input
-            type="submit"
-            className="btn btn-primario btn-block"
-            value="Registrarse con Google"
-            onClick={loginGoogle}
-          />
-        </div> */}
 
         <Link to={"/login"} className="enlace-cuenta">
           {/*CAMBIAR A PATH LOGIN*/}

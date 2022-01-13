@@ -1,6 +1,7 @@
 import React from "react";
 import "./Card.css";
 
+
 function Card({ name, address, city, state, rating, avatar, schedule }) {
   return (
     <div className="all">

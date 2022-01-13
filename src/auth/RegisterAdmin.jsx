@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postPeluqueria } from "../Redux/actions/adminlog";
 import SelectProvince from "../Components/SelectProvince";
-
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
@@ -24,13 +23,12 @@ const NuevaCuenta = () => {
   const { name, username, password, passwordConfirm, address, city, phone, state, schedule } = user;
   const currentUser = useSelector((state) => state.user)
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
-    
     if(currentUser) {
       navigate("/home")
     }
-  }, [currentUser, navigate])
+  }, [currentUser, navigate]);
 
   const dispatch = useDispatch();
 
@@ -44,11 +42,12 @@ const NuevaCuenta = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacíos
+
     if(!name || !username || !password || !passwordConfirm){
       return
     }
     //Contraseñas iguales
-    if(password !== passwordConfirm){
+    if (password !== passwordConfirm) {
       return;
     }
     //Pasarlo al reducer

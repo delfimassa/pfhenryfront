@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import {useDispatch, useSelector} from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { registerInitiate, loginGoogleInitiate, postClient } from "../Redux/actions/register";
 import { signInWithGoogle } from "../firebase-config";
+import style from "./styles/Register.module.css";
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
@@ -14,15 +15,16 @@ const NuevaCuenta = () => {
   });
 
   //extraer de usario
+
   const { name, username, password, passwordConfirm } = user;
   const currentUser = useSelector((state) => state.user)
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
-    if(currentUser) {
-      navigate("/home")
+    if (currentUser) {
+      navigate("/home");
     }
-  }, [currentUser, navigate])
+  }, [currentUser, navigate]);
 
   const dispatch = useDispatch();
 
@@ -34,8 +36,8 @@ const NuevaCuenta = () => {
   };
 
   const loginGoogle = () => {
-    dispatch(loginGoogleInitiate())
-  }
+    dispatch(loginGoogleInitiate());
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +46,7 @@ const NuevaCuenta = () => {
       return
     }
     //Contraseñas iguales
-    if(password !== passwordConfirm){
+    if (password !== passwordConfirm) {
       return;
     }
     //Pasarlo al reducer
@@ -120,11 +122,6 @@ const NuevaCuenta = () => {
             onClick={loginGoogle}
           />
         </div>
-
-        <Link to={"/login"} className="enlace-cuenta">
-          {/*CAMBIAR A PATH LOGIN*/}
-          Ya tengo cuenta
-        </Link>
       </div>
     </div>
   );

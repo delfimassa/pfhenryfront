@@ -6,12 +6,8 @@ import Landing from "./Components/Landing";
 import Favoritos from "./Components/Favoritos";
 import PeluDetail from "./Components/PeluDetail";
 import RegistroPelus from "./Components/RegistroPelus";
-<<<<<<< HEAD
-import Panel from "./Components/Admin/Panel";
-=======
 import Admin from "./Components/Admin";
 import Panel from "./Components/Admin/Panel"
->>>>>>> db603768a6424816438982a91aa2e433be89acb1
 import Carrito from "./Components/Carrito";
 import Perfil from "./Components/Perfil";
 import TusCompras from "./Components/TusCompras";

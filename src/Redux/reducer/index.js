@@ -268,6 +268,23 @@ export default function rootReducer(state = initialState, action) {
       return { ...state, allPeluquerias: state.filteredPeluquerias };
     }
 
+    case actions.FILTER_CALENDAR:{
+      const semana = ["Domingo","Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo","Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+      state.allPeluquerias = state.backupPeluquerias;
+      state.filteredPeluquerias = state.allPeluquerias.filter((e) => { 
+        let dia = e.schedule.split(' ').slice(0, 3) //claro
+        let diaInicio = semana.indexOf(dia[0])
+        let diaFin = semana.indexOf(dia[2])
+        if (diaInicio > diaFin) diaFin = semana.lastIndexOf(dia[3])
+        let diasDeAtencion = semana.slice(diaInicio, diaFin + 1) //si
+        console.log(diasDeAtencion.indexOf(action.payload))
+
+        return diasDeAtencion.indexOf(action.payload) === -1 ?  false: true
+      })
+      console.log('algo', state.filteredPeluquerias)
+      return { ...state, allPeluquerias: state.filteredPeluquerias }
+    }
+
     // case actions.SEARCH_CITY:{
     //   state.allPeluquerias = state.backupPeluquerias
     //   state.filteredPeluquerias = state.allPeluquerias.filter(e => e.city.includes(action.payload))

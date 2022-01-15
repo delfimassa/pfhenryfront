@@ -1,21 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as actionCreator from '../../Redux/actions/filters'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import './FilterPanel.css'
+import { DatePicker } from '@material-ui/pickers'
 // import SearchProvincia from './SearchProvincia'
-
+ 
 
 function FilterPanel(props) {
 
-    function serviciosChange(e){
-        props.filterServicies(e.target.value)
-    }
-
+    const semana = ["Domingo","Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+    
     function ratingChange(e){
         props.filterRating(e.target.value)
     }
-
+    
 
     return (
         <div className='content-filterpanel'>
@@ -28,7 +27,16 @@ function FilterPanel(props) {
                 </ul></div>
             <div>
                 <h3 className='title-filterpanel'>Buscar por fecha</h3>
-                <p>Aqui va un pequeño calendario</p>
+                <DatePicker
+                    variant='inline'
+                    format='dd/MM/yyyy'
+                    label="Basic example"
+                    onChange={e => {//no
+                        let nombreDia= semana[e.getDay()]
+                        props.filterCalendar(nombreDia)
+                    }}
+                    animateYearScrolling
+                />
             </div>
 
             

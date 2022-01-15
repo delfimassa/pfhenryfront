@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from "react-redux";
 import store from "./Redux/store/index";
+import { MuiPickersUtilsProvider } from '@material-ui/pickers'
+import esLocale from 'date-fns/locale/es'
+import DateFnsUtils from '@date-io/date-fns'
 import 'antd/dist/antd.css'
 // import dotenv from "dotenv";
 import axios from 'axios';
@@ -20,8 +23,9 @@ ReactDOM.render(
      <Provider store={store}>
       <Router>
         <PersistGate persistor={persistor}>
-          <App />
-
+          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={esLocale}>
+            <App />
+          </MuiPickersUtilsProvider>
         </PersistGate>
       </Router>
     </Provider>

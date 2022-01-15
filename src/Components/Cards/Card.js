@@ -7,12 +7,7 @@ function Card({name, address, city, state, rating, avatar, schedule}) {
     return (
         <div className="all">
                   <div className="containerImg">
-<<<<<<< HEAD
           {avatar ? <img
-=======
-          {avatar ? 
-          <img
->>>>>>> db603768a6424816438982a91aa2e433be89acb1
             className="image"
             src={avatar}
             alt="Avatar"

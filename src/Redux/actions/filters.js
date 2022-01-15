@@ -1,4 +1,4 @@
-import { FILTER_RATING, FILTER_SERVICIES} from "../types/types";
+import { FILTER_CALENDAR, FILTER_RATING, FILTER_SERVICIES} from "../types/types";
 
 export function filterRating(data){
     return{
@@ -10,6 +10,13 @@ export function filterRating(data){
 export function filterServicies(data){
     return{
         type: FILTER_SERVICIES,
+        payload: data
+    }
+}
+
+export function filterCalendar(data){
+    return{
+        type: FILTER_CALENDAR,
         payload: data
     }
 }

@@ -6,9 +6,6 @@ import {
   faPhoneAlt,
   faMapMarkerAlt,
   faClock,
-  faEnvelope,
-  faCut,
-  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 
 function Card({ name, address, city, state, rating, avatar, schedule, phone }) {

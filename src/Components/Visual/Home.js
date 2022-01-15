@@ -7,7 +7,6 @@ import "./Home.css";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-
 function Home() {
   const currentUser = useSelector((state) => state.user);
   const allPeluquerias = useSelector((state) => state.allPeluquerias);
@@ -24,16 +23,19 @@ function Home() {
     // obtenerDatos();
     console.log("user home " + currentUser);
   }, [currentUser, navigate]);
-  
+
   // useEffect(() => {
   //   getPeluquerias();
   // }, [getPeluquerias]);
 
   return (
     <div>
-      <SearchBar />
+      <div className="barraSearch">
+        <SearchBar />
+      </div>
+
       <div className="container-home">
-        <FilterPanel />
+        <div className="filterpanel-container p-0"><FilterPanel /></div>
         <div className="cards-container">
           <Cards peluquerias={allPeluquerias} />
         </div>
@@ -42,11 +44,11 @@ function Home() {
   );
 }
 
-function mapStateToProps(state){
-    return{
-        peluquerias: state.allPeluquerias,
-        orden: state.orden
-    }
+function mapStateToProps(state) {
+  return {
+    peluquerias: state.allPeluquerias,
+    orden: state.orden,
+  };
 }
 
 export default connect(mapStateToProps, { getPeluquerias })(Home);

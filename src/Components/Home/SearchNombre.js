@@ -25,7 +25,7 @@ function SearchNombre({ searchName }) {
   // }
 
   return (
-    <form className="d-flex">
+    <form className="d-flex inputSearchs">
       <input
         className="form-control input-search"
         type="text"
@@ -33,9 +33,8 @@ function SearchNombre({ searchName }) {
         onChange={buscadorChange}
       />
       <button
-        style={{ borderRadius: "3px" }}
         type="submit"
-        className="btn btn-primary my-2 my-sm-0"
+        className="btn btn-primary my-0"
       >
         Search
       </button>

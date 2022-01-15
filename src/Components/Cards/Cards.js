@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Card from './Card'
+import  "./Card.css"
 
 // dipatch getPeluqueriaById(id)
 // useSelector me complete el estado selectedPelu
@@ -19,6 +20,7 @@ function Cards({peluquerias}) {
                 rating={e.rating}
                 avatar={e.avatar}
                 schedule={e.schedule}
+                phone={e.phone}
             />
         </Link>
     ))

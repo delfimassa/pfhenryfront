@@ -21,12 +21,11 @@ const SearchCiudad = () => {
         placeholder="Ciudad"
         onChange={(e) => handleOnChange(e)}
       />
-      <select style={{ outline: "none", width: "200px" }} className="me-sm-2">
+      <select className="mr-2">
         <option name="ciudad">Provincia</option>
         <option name="servicio">opc provincias</option>
       </select>
       <button
-        style={{ borderRadius: "3px" }}
         type="submit"
         className="btn btn-primary my-2 my-sm-0"
       >

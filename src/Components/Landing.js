@@ -4,8 +4,7 @@ import "./Landing.css"
 
 const Landing = () => {
     return (
-        <div className="container-landing">
-            <h2 className="title">Reservá tu turno</h2>
+        <div className="parentLanding">
             <SearchBar />
         </div>
     );

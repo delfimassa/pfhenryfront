@@ -14,7 +14,7 @@ const SearchServicio = () => {
     setSearch(e.target.value);
   }
   return (
-      <form className="d-flex" onSubmit={(e) => handleOnSubmit(e)}>
+      <form className="d-flex inputSearchs" onSubmit={(e) => handleOnSubmit(e)}>
         <input
           className="form-control input-search"
           type="text"
@@ -22,9 +22,8 @@ const SearchServicio = () => {
           onChange={(e) => handleOnChange(e)}
         />
         <button
-          style={{ borderRadius: "3px" }}
           type="submit"
-          className="btn btn-primary my-2 my-sm-0"
+          className="btn btn-primary my-0"
         >
           Search
         </button>{" "}

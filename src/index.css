@@ -1,3 +1,12 @@
+body,html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+
 :root {
   --blanco: #ffffff;
   --gris1: #edf2f6;
@@ -19,12 +28,13 @@ html {
   /* font-size: 62.5% */
 }
 body {
-  min-height: 100%;
   background-color: var(--gris1);
   font-size: 16px;
   font-size: 1.6rem;
   font-family: var(--textFont);
 }
+
+
 h1,
 h2 {
   font-family: var(--headingFont);
@@ -104,11 +114,11 @@ a {
 /** BOTONES **/
 .btn {
   margin-top: 2rem;
-  font-family: var(--headingFont);
+  /* font-family: var(--headingFont); */
   padding: 1.5rem;
   font-size: 1.4;
-  font-weight: 400;
-  border-radius: 0.5rem;
+  /* font-weight: 400; */
+  /* border-radius: 0.5rem; */
   border: none;
   transition: background-color 0.3s ease;
 }

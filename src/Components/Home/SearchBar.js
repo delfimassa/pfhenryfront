@@ -11,10 +11,9 @@ const SearchBar = () => {
     e.preventDefault();
     setSearchBar(valor);
   }
-
   return (
-    <div className="barraSearch">
-      <div className="conenidoTitleBarra">
+    
+      <div className="conenidoTitleBarra text-center">
         <h2>Encontrá tu peluquería donde sea que estes!</h2>
         {searchBar === "ciudad" ? (
           <SearchCiudad />
@@ -28,8 +27,7 @@ const SearchBar = () => {
             onClick={(e) => {
               botonBusqueda("nombre", e);
             }}
-            style={{ borderRadius: "3px" }}
-            className="btn btn-primary my-2 mx-1 my-sm-0"
+            className="btn btn-primary my-2 mx-1"
           >
             Buscar por Nombre
           </button>
@@ -37,8 +35,7 @@ const SearchBar = () => {
             onClick={(e) => {
               botonBusqueda("ciudad", e);
             }}
-            style={{ borderRadius: "3px" }}
-            className="btn btn-primary my-2 mx-1 my-sm-0"
+            className="btn btn-primary my-2 mx-1"
 
           >
             Buscar por ciudad
@@ -47,14 +44,13 @@ const SearchBar = () => {
             onClick={(e) => {
               botonBusqueda("servicio", e);
             }}
-            style={{ borderRadius: "3px" }}
-            className="btn btn-primary my-2 mx-1 my-sm-0"
+            className="btn btn-primary my-2 mx-1"
           >
             Buscar por servicio
           </button>
         </div>
       </div>
-    </div>
+    
   );
 };
 

@@ -13,30 +13,49 @@
     background-color: rgb(226, 226, 226);
 }
 
-.barraSearch {
-    height: 50vh;
-    /* width: 100vw;     */
-    background-image: url(https://i.imgur.com/ZgpHM5R.jpg);
-    background-size: 100% ;
-    background-repeat:no-repeat;
-    object-fit: cover;
-    z-index: 2;
-    margin-bottom: 15px;
-    background-position: bottom;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .conenidoTitleBarra {
-    display:flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 130vh;
-    height: 30vh;
-    background-color: rgba(255, 255, 255, 0.719);
-    border-radius: 3px;
+    /* background-color: rgb(226, 226, 226); */
+    background-color: rgba(226, 226, 226, 0.850);
 }
 
 
+/*MEDIA QUERIES*/
+/*X-SMALL DEVICES */
+@media all and (max-width: 576px) {
+    .conenidoTitleBarra {
+        padding: 2rem ;}
+}
+
+/*SMALL DEVICES*/
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .conenidoTitleBarra {
+        padding: 2rem;}
+}
+
+/*MEDIUM DEVICES*/
+@media all and (min-width: 767px) and (max-width: 991px) {
+    .inputSearchs{
+    padding:0rem 8.5rem 0rem 8.5rem;
+}
+.conenidoTitleBarra {
+    padding: 3rem;}
+}
+/*LARGE DEVICES*/
+@media all and (min-width: 991px) and (max-width: 1200px) {
+    .inputSearchs{
+    padding:0rem 8.5rem 0rem 8.5rem;
+}
+.conenidoTitleBarra {
+    padding: 3rem;}
+}
+
+/*XTRA LARGE DEVICES*/
+@media all and (min-width: 1200px) {
+    .inputSearchs{
+    padding:0rem 8.5rem 0rem 8.5rem;
+}
+.conenidoTitleBarra {
+    padding: 3rem;}
+}

@@ -1,0 +1,113 @@
+.bg-peludetail {
+  background-color: rgb(243, 243, 243);
+}
+.peluDetailGrid{
+  display: grid;
+}
+
+.imgPelu {
+  object-fit: cover;
+  z-index: 2;
+  margin-bottom: 15px;
+}
+
+/* a{
+  text-decoration: none;
+  color: #1a202d !important;
+}
+a:hover{
+  color:blue !important;
+} */
+
+
+h5 {
+  padding-bottom: 1rem;
+}
+
+/*MEDIA QUERIES*/
+/*X-SMALL DEVICES */
+@media all and (max-width: 576px) {
+  .noxs {
+    display: none;
+    padding: 2rem 1rem 2rem 1rem;
+  }
+  .bg-peludetail {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+  .infoColumn{
+    margin-top: 7rem;
+  }
+}
+/*SMALL DEVICES*/
+@media all and (min-width: 576px) and (max-width: 767px) {
+  .nosm {
+    display: none;
+  }
+  .bg-peludetail {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+  .infoColumn{
+    margin-top: 7rem;
+  }
+}
+
+/*MEDIUM DEVICES*/
+@media all and (min-width: 767px) and (max-width: 991px) {
+  .nomd {
+    display: none;
+  }
+  .bg-peludetail {
+    padding: 3rem;
+    margin: 3rem;
+  }
+  .peluDetailGrid{
+    grid-template-columns: 30% 70%;
+  }
+  .infoColumn {
+    padding: 2rem;
+  }
+  .rating {
+    margin-left: 2rem;
+  }
+}
+/*LARGE DEVICES*/
+@media all and (min-width: 991px) and (max-width: 1200px) {
+  .nolg {
+    display: none;
+  }
+  .bg-peludetail {
+    padding: 4rem;
+    margin: 3rem;
+  }
+  .peluDetailGrid{
+    grid-template-columns: 30% 70%;
+
+  }
+  .infoColumn {
+    padding: 0 3rem 0 3rem;
+    align-items: center;
+  }
+  .rating {
+    margin-left: 2rem;
+  }
+}
+/*XTRA LARGE DEVICES*/
+@media all and (min-width: 1200px) {
+  .noxl {
+    display: none;
+  }
+  .bg-peludetail {
+    padding: 4rem;
+    margin: 3rem;
+  }
+  .peluDetailGrid{
+    grid-template-columns: 30% 70%;
+  }
+  .infoColumn {
+    padding: 0 3rem 0 3rem;
+    align-items: center;
+  }
+  .rating {
+    margin-left: 2rem;
+  }
+}

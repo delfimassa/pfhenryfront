@@ -7,7 +7,7 @@ function Card({name, address, city, state, rating, avatar, schedule}) {
     return (
         <div className="all">
                   <div className="containerImg">
-          {avatar[0] === 'h' ? <img
+          {avatar ? <img
             className="image"
             src={avatar}
             alt="Avatar"

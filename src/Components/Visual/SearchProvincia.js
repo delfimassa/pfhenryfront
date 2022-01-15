@@ -19,7 +19,7 @@ function SearchProvincia({searchCity}) {
             </select>
             <input type="submit" />
         </form>
-    )
+    ) 
 }
 
 function mapStateToProps(state){

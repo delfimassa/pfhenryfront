@@ -6,7 +6,7 @@ import Landing from "./Components/Landing";
 import Favoritos from "./Components/Favoritos";
 import PeluDetail from "./Components/PeluDetail";
 import RegistroPelus from "./Components/RegistroPelus";
-import Admin from "./Components/Admin";
+import Panel from "./Components/Admin/Panel";
 import Carrito from "./Components/Carrito";
 import Perfil from "./Components/Perfil";
 import TusCompras from "./Components/TusCompras";
@@ -49,7 +49,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />}/>
         <Route path="/perfil" element={<Perfil />}/>
         <Route path="/tuscompras" element={<TusCompras />}/>
-        <Route path="/admin" element={<Admin />}/>
+        <Route path="/admin/:id" element={<Panel />}/>
         {/* <Route path="/detallepeluqueria/:id" element={<PeluDetail />}/> */}
         {/* <Route path="/detallepeluqueria/:id" element={({match})=> <PeluDetail id={match.params.id}/>}/> */}
         <Route path="/:id" element={<PeluDetail />} />

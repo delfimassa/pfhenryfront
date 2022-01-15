@@ -11,13 +11,12 @@
   margin-bottom: 15px;
 }
 
-/* a{
-  text-decoration: none;
-  color: #1a202d !important;
+.phonepelu {
+  color: black;
 }
-a:hover{
-  color:blue !important;
-} */
+.phonepelu:hover {
+  color: #e0c29e !important;
+}
 
 
 h5 {

@@ -14,7 +14,7 @@ const SearchCiudad = () => {
     setSearch(e.target.value);
   }
   return (
-    <form className="d-flex" onSubmit={(e) => handleOnSubmit(e)}>
+    <form className="d-flex inputSearchs" onSubmit={(e) => handleOnSubmit(e)}>
       <input
         className="form-control input-search"
         type="text"

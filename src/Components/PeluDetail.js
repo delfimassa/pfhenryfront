@@ -75,6 +75,7 @@ const PeluDetail = () => {
                   href={`https://api.whatsapp.com/send?phone=${pelu[0].phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="phonepelu"
                 >
                   <FontAwesomeIcon icon={faPhoneAlt} className="mx-3" />
                   Teléfono: {pelu[0].phone}
@@ -95,12 +96,16 @@ const PeluDetail = () => {
               {/* mapeo estilistas */}
               <h5>
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
-                Servicios:
+                Servicios: {pelu[0].services.lenght >0? (pelu[0].services.map()):("Lo sentimos, no encontramos ningún servicio")}
               </h5>
-              {/* mapeo servicios */}
             </div>
             {/* fin infocol */}
           </div>
+          {/* reviews */}
+          <div>
+            
+          </div>
+          {/* finreviews */}
           {/* fin peluDetailGrid */}
         </div>
       )}

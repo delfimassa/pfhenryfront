@@ -1,37 +1,105 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
+import {useSelector} from "react-redux"
+let prov = require("../../provincias.json");
 
 const SearchCiudad = () => {
-  const [search, setSearch] = useState("");
-  const dispatch = useDispatch();
+  // const [search, setSearch] = useState("");
+  // const dispatch = useDispatch();
 
-  function handleOnSubmit(e) {
-    e.preventDefault();
-    dispatch(console.log(search)); // con dispatch usar la function que viene desde actions
+  // function handleOnSubmit(e) {
+  //   e.preventDefault();
+  //   dispatch(console.log(search)); // con dispatch usar la function que viene desde actions
+  // }
+  // function handleOnChange(e) {
+  //   e.preventDefault();
+  //   setSearch(e.target.value);
+  // }
+
+  // SELECT
+  const [citySelect, setCitySelect] = useState();
+  const [stateSelect, setStateSelect] = useState();
+
+  const provDepartamentos = prov[0].departamentos;
+  const nombreProvincias = provDepartamentos.map((e) => {
+    return e.provincia.nombre;
+  });
+
+  const filteredProv = nombreProvincias.filter((elem, rep) => {
+    return nombreProvincias.indexOf(elem) == rep;
+  });
+
+  const changeCity = function (e) {
+    const option = e.target.value;
+    setCitySelect(option);
+  };
+
+  const changeState = function (e) {
+    const option = e.target.value;
+    setStateSelect(option);
+    // setUser({ city: citySelect, state: stateSelect });
+  };
+
+  const searchCity = provDepartamentos.map((e) => {
+    if (e.provincia.nombre == citySelect) {
+      return e.nombre;
+    }
+  });
+
+  const filterCity = searchCity.filter((elem, rep) => {
+    return searchCity.indexOf(elem) == rep;
+  });
+
+  console.log("city =>" + citySelect);
+  console.log("state =>" + stateSelect);
+
+// FILTER
+const peluquerias = useSelector((state) => state.allPeluquerias);
+const peluqueriasProvincias = peluquerias.map((e) => {
+  if(e.state == "Tucuman"){
+    return e
   }
-  function handleOnChange(e) {
-    e.preventDefault();
-    setSearch(e.target.value);
-  }
+})
+
+const filteredPelus = peluqueriasProvincias.filter(e => e)
+console.log(peluqueriasProvincias)
+console.log(filteredPelus)
+
   return (
-    <form className="d-flex inputSearchs" onSubmit={(e) => handleOnSubmit(e)}>
-      <input
-        className="form-control input-search"
-        type="text"
-        placeholder="Ciudad"
-        onChange={(e) => handleOnChange(e)}
-      />
-      <select className="mr-2">
-        <option name="ciudad">Provincia</option>
-        <option name="servicio">opc provincias</option>
-      </select>
-      <button
-        type="submit"
-        className="btn btn-primary my-2 my-sm-0"
-      >
-        Buscar
-      </button>{" "}
-    </form>
+    <div>
+      <div className="campo-form">
+        <label>Provincia</label>
+        <select
+          name="city"
+          id="city"
+          onClick={changeCity}
+          // className={style.selectProv}
+        >
+          <option disabled selected>
+            Selecciona una provincia
+          </option>
+          {filteredProv.map((i) => {
+            return <option value={i}>{i}</option>;
+          })}
+        </select>
+      </div>
+      <div className="campo-form">
+        <label>Ciudad</label>
+        <select
+          name="state"
+          id="state"
+          onClick={changeState}
+          // className={style.selectProv}
+        >
+          <option disabled selected>
+            Selecciona una ciudad
+          </option>
+          {filterCity.map((i) => {
+            return <option value={i}>{i}</option>;
+          })}
+        </select>
+      </div>
+    </div>
   );
 };
 

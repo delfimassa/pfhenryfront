@@ -13,6 +13,7 @@ import {
   faCut,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
+import { Rating } from 'react-simple-star-rating';
 
 const PeluDetail = () => {
   const [pelu, setPelu] = useState(null);
@@ -32,7 +33,6 @@ const PeluDetail = () => {
       ) : (
         <div className="bg-peludetail">
           <div className="peluDetailGrid">
-
             <div className="mb-0 text-center">
               <h1 className="nomd nolg noxl">{pelu[0].name}</h1>
               <div className="parentSatrs nols nomd noxl mb-3">
@@ -71,7 +71,7 @@ const PeluDetail = () => {
                 Horario de atención: {pelu[0].schedule}
               </h5>
               <h5>
-                <a 
+                <a
                   href={`https://api.whatsapp.com/send?phone=${pelu[0].phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -91,19 +91,73 @@ const PeluDetail = () => {
               </h5>
               <h5>
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
-                Nuestros Estilistas:
+                Nuestros Estilistas:{" "}
+                {pelu[0].stylists.lenght > 0
+                  ? pelu[0].stylists.map()
+                  : "Lo sentimos, no encontramos ningún nombre"}
               </h5>
               {/* mapeo estilistas */}
               <h5>
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
-                Servicios: {pelu[0].services.lenght >0? (pelu[0].services.map()):("Lo sentimos, no encontramos ningún servicio")}
+                Servicios:{" "}
+                {pelu[0].services.lenght > 0
+                  ? pelu[0].services.map((s) => <p>{s.name}, </p>)
+                  : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
             </div>
             {/* fin infocol */}
           </div>
           {/* reviews */}
-          <div>
-            
+          <div className="reviewsZone mt-5 pt-5">
+            <div className="colDejatureview">
+              <h2 className="d-flex">Opiniones</h2>
+              <h5 className="mb-2 p-0">
+                Deja tu opinión sobre esta peluquería aqui:{" "}
+              </h5>
+              <p>
+                Puntuación:{" "}
+                {/* <Stars
+                  stars={0}
+                  outOf={5}
+                  full={"#1a202d"}
+                  empty={"#edf2f6"}
+                  stroke={"#1a202d"}
+                /> */}
+                 <Rating fillColor={"#1a202d"} />
+              </p>
+              <div className="contenedorTextArea">
+                <textarea
+                  className="textareareviews"
+                  placeholder="Cuentanos que te pareció este lugar aqui..."
+                ></textarea>
+              </div>
+              <button className="btn btn-primary mt-0 d-flex btnEnviarReview">
+                Enviar
+              </button>
+            </div>
+            <div className="colLeelasreviews">
+              {pelu[0].reviews.length > 0 ? (
+                pelu[0].reviews.map((r) => (
+                  <div className="commentBox">
+                    <h5>{r.client}</h5>
+                    <Stars
+                      stars={r.rating}
+                      outOf={5}
+                      full={"#1a202d"}
+                      empty={"#edf2f6"}
+                      stroke={"#1a202d"}
+                    />
+                    <p>{r.comment}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="commentBox">
+                  <p>
+                    Parece que aún no hay opiniones sobre esta peluquería...
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
           {/* finreviews */}
           {/* fin peluDetailGrid */}

@@ -13,6 +13,7 @@ import {
   faCut,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
+import Favorite from "./Favorite/Favorite";
 
 const PeluDetail = () => {
   const [pelu, setPelu] = useState(null);
@@ -65,6 +66,7 @@ const PeluDetail = () => {
                     stroke={"#1a202d"}
                   />
                 </div>
+                <Favorite/>
               </div>
               <h5>
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
@@ -96,7 +98,7 @@ const PeluDetail = () => {
               {/* mapeo estilistas */}
               <h5>
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
-                Servicios: {pelu[0].services.lenght >0? (pelu[0].services.map()):("Lo sentimos, no encontramos ningún servicio")}
+                {/* Servicios: {pelu[0].services.lenght >0? (pelu[0].services.map()):("Lo sentimos, no encontramos ningún servicio")} */}
               </h5>
             </div>
             {/* fin infocol */}

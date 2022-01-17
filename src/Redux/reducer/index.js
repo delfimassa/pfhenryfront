@@ -296,7 +296,16 @@ export default function rootReducer(state = initialState, action) {
     //   state.filteredPeluquerias = state.allPeluquerias.filter(e => e.city.includes(action.payload))
     //   return {...state,allPeluquerias: state.filteredPeluquerias}
     // }
-
+    case actions.POST_FAVORITE:{
+      return{
+        ...state
+      }
+    }
+    case actions.DELETE_FAVORITE:{
+      return{
+        ...state
+      }
+    }
     //DEFAULT
 
     default:

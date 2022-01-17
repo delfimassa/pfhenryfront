@@ -14,6 +14,7 @@ import {
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from 'react-simple-star-rating';
+import Favorite from "./Favorite/Favorite";
 
 const PeluDetail = () => {
   const [pelu, setPelu] = useState(null);
@@ -65,6 +66,7 @@ const PeluDetail = () => {
                     stroke={"#1a202d"}
                   />
                 </div>
+                <Favorite/>
               </div>
               <h5>
                 <FontAwesomeIcon icon={faClock} className="mx-3" />

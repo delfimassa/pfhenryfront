@@ -1,0 +1,12 @@
+.parent-filterpanel{
+    padding: 2rem; 
+    background-color: rgb(243, 243, 243);
+    margin-bottom: 3rem;
+}
+
+.title-filterpanel{
+    font-weight: bold;
+}
+.filter{
+    margin:0rem 0 3rem 0;
+}

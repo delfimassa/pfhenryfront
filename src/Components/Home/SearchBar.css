@@ -1,0 +1,61 @@
+.select-Search {
+    outline: none;
+    border:none;
+    border-left: 0.5px rgba(185, 185, 185, 0.616) solid;
+    width: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+}
+
+.input-search {
+    background-color: rgb(226, 226, 226);
+}
+
+.conenidoTitleBarra {
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(226, 226, 226); */
+    background-color: rgba(226, 226, 226, 0.850);
+}
+
+
+/*MEDIA QUERIES*/
+/*X-SMALL DEVICES */
+@media all and (max-width: 576px) {
+    .conenidoTitleBarra {
+        padding: 2rem ;}
+}
+
+/*SMALL DEVICES*/
+@media all and (min-width: 576px) and (max-width: 767px) {
+    .conenidoTitleBarra {
+        padding: 2rem;}
+}
+
+/*MEDIUM DEVICES*/
+@media all and (min-width: 767px) and (max-width: 991px) {
+    .inputSearchs{
+    padding:0rem 8.5rem 0rem 8.5rem;
+}
+.conenidoTitleBarra {
+    padding: 3rem;}
+}
+/*LARGE DEVICES*/
+@media all and (min-width: 991px) and (max-width: 1200px) {
+    .inputSearchs{
+    padding:0rem 8.5rem 0rem 8.5rem;
+}
+.conenidoTitleBarra {
+    padding: 3rem;}
+}
+
+/*XTRA LARGE DEVICES*/
+@media all and (min-width: 1200px) {
+    .inputSearchs{
+    padding:0rem 8.5rem 0rem 8.5rem;
+}
+.conenidoTitleBarra {
+    padding: 3rem;}
+}

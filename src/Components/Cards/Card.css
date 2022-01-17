@@ -1,0 +1,27 @@
+.parent-card {
+  background-color: rgb(243, 243, 243);
+}
+.card-body {
+  padding: 1.3rem 2.5rem;
+}
+
+.text-titular {
+  font-weight: 800;
+}
+
+.containerImg:hover .image {
+  opacity: 0.3;
+}
+
+.imagenes {
+  overflow: hidden;
+  object-fit: cover;
+  height: 32vh;
+}
+
+.phonepelu {
+  color: black;
+}
+.phonepelu:hover {
+  color: #e0c29e !important;
+}

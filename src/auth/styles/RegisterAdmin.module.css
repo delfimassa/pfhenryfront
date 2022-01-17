@@ -69,3 +69,7 @@
     border-radius: 0;
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
+
+.selectProv{
+    width: 100%;
+}

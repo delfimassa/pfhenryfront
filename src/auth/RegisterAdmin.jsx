@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postPeluqueria } from "../Redux/actions/adminlog";
 import SelectProvince from "../Components/SelectProvince";
+import style from "./styles/RegisterAdmin.module.css";
+let prov = require("../provincias.json");
 
 const NuevaCuenta = () => {
   // State para iniciar sesión
@@ -16,17 +18,27 @@ const NuevaCuenta = () => {
     state: "",
     phone: "",
     schedule: "",
-    services: []
+    services: [],
   });
 
   //extraer de usario
-  const { name, username, password, passwordConfirm, address, city, phone, state, schedule } = user;
-  const currentUser = useSelector((state) => state.user)
+  const {
+    name,
+    username,
+    password,
+    passwordConfirm,
+    address,
+    city,
+    phone,
+    state,
+    schedule,
+  } = user;
+  const currentUser = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   useEffect(() => {
-    if(currentUser) {
-      navigate("/home")
+    if (currentUser) {
+      navigate("/home");
     }
   }, [currentUser, navigate]);
 
@@ -43,18 +55,62 @@ const NuevaCuenta = () => {
     e.preventDefault();
     //Validar que no haya campos vacíos
 
-    if(!name || !username || !password || !passwordConfirm){
-      return
+    if (!name || !username || !password || !passwordConfirm) {
+      return;
     }
     //Contraseñas iguales
     if (password !== passwordConfirm) {
       return;
     }
     //Pasarlo al reducer
-    dispatch(postPeluqueria(user, username, password))
-    setUser({name: "", username: "", password: "", passwordConfirm: "", address: ""});
-  }; 
+    dispatch(postPeluqueria(user, username, password));
+    setUser({
+      name: "",
+      username: "",
+      password: "",
+      passwordConfirm: "",
+      address: "",
+    });
+  };
 
+  // Select Provincias
+  const [citySelect, setCitySelect] = useState();
+  const [stateSelect, setStateSelect] = useState();
+
+  const provDepartamentos = prov[0].departamentos;
+  const nombreProvincias = provDepartamentos.map((e) => {
+    return e.provincia.nombre;
+  });
+
+  const filteredProv = nombreProvincias.filter((elem, rep) => {
+    return nombreProvincias.indexOf(elem) == rep;
+  });
+
+  const changeCity = function (e) {
+    const option = e.target.value;
+    setCitySelect(option);
+  };
+
+  const changeState = function (e) {
+    const option = e.target.value;
+    setStateSelect(option);
+    setUser({city: citySelect, state: stateSelect})
+  };
+
+  const searchCity = provDepartamentos.map((e) => {
+    if (e.provincia.nombre == citySelect) {
+      return e.nombre;
+    }
+  });
+
+  const filterCity = searchCity.filter((elem, rep) => {
+    return searchCity.indexOf(elem) == rep;
+  });
+
+  console.log("city =>" + citySelect)
+  console.log("state => " + stateSelect)
+
+  // const select = 
   return (
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
@@ -72,7 +128,7 @@ const NuevaCuenta = () => {
               required
             />
           </div>
-        
+
           <div className="campo-form">
             <label htmlFor="username">Email</label>
             <input
@@ -121,31 +177,26 @@ const NuevaCuenta = () => {
               required
             />
           </div>
-          <SelectProvince className="campo-form"></SelectProvince>
-          {/* <div className="campo-form">
-            <label htmlFor="username">Ciudad</label>
-            <input
-              type="text"
-              id="city"
-              name="city"
-              placeholder="Ciudad"
-              value={city}
-              onChange={onChange}
-              required
-            />
+          {/* <SelectProvince className="campo-form"></SelectProvince> */}
+          <div className="campo-form">
+            <label>Provincia</label>
+            <select name="city" id="city" onClick={changeCity} className={style.selectProv}>
+              <option disabled selected>Selecciona una provincia</option>
+              {filteredProv.map((i) => {
+                  return <option value={i}>{i}</option>;
+              })}
+            </select>
           </div>
           <div className="campo-form">
-            <label htmlFor="username">Provicia</label>
-            <input
-              type="text"
-              id="state"
-              name="state"
-              placeholder="Provicia"
-              value={state}
-              onChange={onChange}
-              required
-            />
-          </div> */}
+            <label>Ciudad</label>
+            <select name="state" id="state" onClick={changeState} className={style.selectProv}>
+              {/* <option value={filterCity}>{filterCity}</option> */}
+              <option disabled selected>Selecciona una ciudad</option>
+              {filterCity.map((i) => {
+                return <option value={i}>{i}</option>;
+              })}
+            </select>
+          </div>
           <div className="campo-form">
             <label htmlFor="username">Telefono</label>
             <input
@@ -170,12 +221,11 @@ const NuevaCuenta = () => {
               required
             />
           </div>
- 
+
           <div className="campo-form">
-            <button
-              type="submit"
-              className="btn btn-primario btn-block" 
-            >Registrar Cuenta</button>
+            <button type="submit" className="btn btn-primario btn-block">
+              Registrar Cuenta
+            </button>
           </div>
         </form>
 

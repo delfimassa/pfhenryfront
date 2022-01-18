@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import {useSelector} from "react-redux"
+import {filterState, filterCity} from '../../Redux/actions/filters'
 let prov = require("../../provincias.json");
 
 const SearchCiudad = () => {
@@ -15,6 +16,7 @@ const SearchCiudad = () => {
   //   e.preventDefault();
   //   setSearch(e.target.value);
   // }
+  const dispatch = useDispatch();
 
   // SELECT
   const [citySelect, setCitySelect] = useState();
@@ -32,11 +34,13 @@ const SearchCiudad = () => {
   const changeCity = function (e) {
     const option = e.target.value;
     setCitySelect(option);
+    dispatch(filterState(option))
   };
 
   const changeState = function (e) {
     const option = e.target.value;
     setStateSelect(option);
+    dispatch(filterCity(option))
     // setUser({ city: citySelect, state: stateSelect });
   };
 
@@ -46,7 +50,7 @@ const SearchCiudad = () => {
     }
   });
 
-  const filterCity = searchCity.filter((elem, rep) => {
+  const filteredCity = searchCity.filter((elem, rep) => {
     return searchCity.indexOf(elem) == rep;
   });
 
@@ -62,6 +66,7 @@ const peluqueriasProvincias = peluquerias.map((e) => {
 })
 
 const filteredPelus = peluqueriasProvincias.filter(e => e)
+console.log(peluquerias)
 console.log(peluqueriasProvincias)
 console.log(filteredPelus)
 
@@ -94,7 +99,7 @@ console.log(filteredPelus)
           <option disabled selected>
             Selecciona una ciudad
           </option>
-          {filterCity.map((i) => {
+          {filteredCity.map((i) => {
             return <option value={i}>{i}</option>;
           })}
         </select>

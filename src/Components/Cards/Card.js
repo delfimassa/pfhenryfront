@@ -1,14 +1,16 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./Card.css";
-import Stars from "simple-rating-stars";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPhoneAlt,
   faMapMarkerAlt,
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
+import { Rating } from "react-simple-star-rating";
 
 function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
+  const [ratingCien, setRatingCien] = useState(rating*20);
+  
   return (
     <div className="parent-card row mb-3 p-0">
       <div className="containerImg m-0 p-0 col-md-4 col-sm-12">
@@ -42,16 +44,12 @@ function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
             <FontAwesomeIcon icon={faPhoneAlt} className="mx-2" /> {phone}
           </p>
         </a>
-        {/* <p className="">
-          {rating ? rating + " Estrellas" : "Aun no fue calificado"}
-        </p> */}
-          <Stars
-            stars={rating}
-            outOf={5}
-            full={"black"}
-            empty={"#edf2f6"}
-            stroke={"black"}
-          />
+        <Rating
+          fillColor={"#1a202d"}
+          allowHalfIcon={true}
+          ratingValue={ratingCien}
+          readonly={true}
+        />
       </div>
     </div>
   );

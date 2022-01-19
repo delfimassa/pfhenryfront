@@ -44,3 +44,6 @@ export const POST_PELUQUERIA = 'POST_PELUQUERIA'
 
 export const POST_FAVORITE = 'POST_FAVORITE';
 export const DELETE_FAVORITE = 'DELETE_FAVORITE';
+
+export const  POST_REVIEW = "POST_REVIEW";
+export const GET_REVIEWS = "GET_REVIEWS";

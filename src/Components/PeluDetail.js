@@ -13,19 +13,83 @@ import {
   faCut,
   faUsers,
 } from "@fortawesome/free-solid-svg-icons";
-import { Rating } from 'react-simple-star-rating';
+import { Rating } from "react-simple-star-rating";
 import Favorite from "./Favorite/Favorite";
 
 const PeluDetail = () => {
   const [pelu, setPelu] = useState(null);
   let { id } = useParams();
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState({
+    rating: 0,
+    client: "", // Id del cliente
+    comment: "",
+    peluqueria: id,
+  });
 
   useEffect(() => {
     axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
       setPelu([response.data]);
     });
   }, []);
-  console.log("pelu", pelu);
+  // console.log("pelu", pelu);
+
+  const handleRating = (rate) => {
+    setRating(rate);
+    // console.log(rating, rate);
+    if (rate == 20) {
+      setReview({
+        ...review,
+        rating: 1,
+      });
+    }
+    if (rate == 40) {
+      setReview({
+        ...review,
+        rating: 2,
+      });
+    }
+    if (rate == 60) {
+      setReview({
+        ...review,
+        rating: 3,
+      });
+    }
+    if (rate == 80) {
+      setReview({
+        ...review,
+        rating: 4,
+      });
+    }
+    if (rate == 100) {
+      setReview({
+        ...review,
+        rating: 5,
+      });
+    }
+    console.log(review);
+  };
+
+  function handleChange(e) {
+    setReview({
+      ...review,
+      comment: e.target.value,
+    });
+  }
+
+  // async
+   function handleSubmit(e) {
+    e.preventDefault();
+    console.log(review);
+    // await axios.post("http://localhost:4000/review/create", review);
+    alert("Gracias por tu comentario :)");
+   setReview({
+    rating: 0,
+    client: "", 
+    comment: "",
+    peluqueria: id
+   })
+  }
 
   return (
     <div>
@@ -58,15 +122,16 @@ const PeluDetail = () => {
               <div className="d-flex align-items-center mb-4">
                 <h1 className="pb-0 mb-0 nosm noxs">{pelu[0].name}</h1>
                 <div className="mx-5 nosm noxs">
-                  <Stars
-                    stars={pelu[0].rating}
+                  {/* <Stars
+                    stars={review.rating}
                     outOf={5}
                     full={"#1a202d"}
                     empty={"#edf2f6"}
                     stroke={"#1a202d"}
-                  />
+                  /> */}
+                  <Rating fillColor={"#1a202d"} allowHalfIcon={true} ratingValue={pelu[0].rating*20} readonly={true}/>
                 </div>
-                <Favorite/>
+                <Favorite />
               </div>
               <h5>
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
@@ -116,26 +181,38 @@ const PeluDetail = () => {
               <h5 className="mb-2 p-0">
                 Deja tu opinión sobre esta peluquería aqui:{" "}
               </h5>
-              <p>
-                Puntuación:{" "}
-                {/* <Stars
+              <form onSubmit={handleSubmit}>
+                <p>
+                  Puntuación:{" "}
+                  {/* <Stars
                   stars={0}
                   outOf={5}
                   full={"#1a202d"}
                   empty={"#edf2f6"}
                   stroke={"#1a202d"}
                 /> */}
-                 <Rating fillColor={"#1a202d"} />
-              </p>
-              <div className="contenedorTextArea">
-                <textarea
-                  className="textareareviews"
-                  placeholder="Cuentanos que te pareció este lugar aqui..."
-                ></textarea>
-              </div>
-              <button className="btn btn-primary mt-0 d-flex btnEnviarReview">
-                Enviar
-              </button>
+                  <Rating
+                    fillColor={"#1a202d"}
+                    allowHalfIcon={false}
+                    ratingValue={rating}
+                    onClick={handleRating}
+                  />
+                </p>
+                <div className="contenedorTextArea">
+                  <textarea
+                    onChange={(e) => handleChange(e)}
+                    className="textareareviews"
+                    placeholder="Cuentanos que te pareció este lugar aqui..."
+                    value = {review.comment}
+                  ></textarea>
+                </div>
+                <button
+                  className="btn btn-primary mt-0 d-flex btnEnviarReview"
+                  type="submit"
+                >
+                  Enviar
+                </button>
+              </form>
             </div>
             <div className="colLeelasreviews">
               {pelu[0].reviews.length > 0 ? (

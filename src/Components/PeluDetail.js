@@ -15,8 +15,14 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "react-simple-star-rating";
 import Favorite from "./Favorite/Favorite";
+import Swal from "sweetalert2";
+import { connect, useSelector, useDispatch } from "react-redux";
+
 
 const PeluDetail = () => {
+  const currentUser = useSelector((state) => state.user);
+  console.log(currentUser);   
+  //ESTO ES DE FIREBASE
   const [pelu, setPelu] = useState(null);
   let { id } = useParams();
   const [rating, setRating] = useState(0);
@@ -24,19 +30,18 @@ const PeluDetail = () => {
     rating: 0,
     client: "", // Id del cliente
     comment: "",
-    peluqueria: id,
+    peluqueria: {id},
   });
 
   useEffect(() => {
     axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
       setPelu([response.data]);
+      console.log(pelu);
     });
   }, []);
-  // console.log("pelu", pelu);
 
   const handleRating = (rate) => {
     setRating(rate);
-    // console.log(rating, rate);
     if (rate == 20) {
       setReview({
         ...review,
@@ -78,17 +83,27 @@ const PeluDetail = () => {
   }
 
   // async
-   function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault();
     console.log(review);
-    // await axios.post("http://localhost:4000/review/create", review);
-    alert("Gracias por tu comentario :)");
-   setReview({
-    rating: 0,
-    client: "", 
-    comment: "",
-    peluqueria: id
-   })
+    try {
+      // await axios.post("http://localhost:4000/review/create", review);
+      Swal.fire("", "Muchas gracias por tu comentario :)", "success");
+    } catch (err) {
+      console.log(err);
+      Swal.fire(
+        "",
+        "Lo sentimos, no pudimos publicar tu comentario :(",
+        "error"
+      );
+    }
+    setReview({
+      rating: 0,
+      client: "",
+      comment: "",
+      peluqueria: id,
+    });
+    setRating(0);
   }
 
   return (
@@ -129,7 +144,12 @@ const PeluDetail = () => {
                     empty={"#edf2f6"}
                     stroke={"#1a202d"}
                   /> */}
-                  <Rating fillColor={"#1a202d"} allowHalfIcon={true} ratingValue={pelu[0].rating*20} readonly={true}/>
+                  <Rating
+                    fillColor={"#1a202d"}
+                    allowHalfIcon={true}
+                    ratingValue={pelu[0].rating * 20}
+                    readonly={true}
+                  />
                 </div>
                 <Favorite />
               </div>
@@ -184,13 +204,6 @@ const PeluDetail = () => {
               <form onSubmit={handleSubmit}>
                 <p>
                   Puntuación:{" "}
-                  {/* <Stars
-                  stars={0}
-                  outOf={5}
-                  full={"#1a202d"}
-                  empty={"#edf2f6"}
-                  stroke={"#1a202d"}
-                /> */}
                   <Rating
                     fillColor={"#1a202d"}
                     allowHalfIcon={false}
@@ -203,7 +216,7 @@ const PeluDetail = () => {
                     onChange={(e) => handleChange(e)}
                     className="textareareviews"
                     placeholder="Cuentanos que te pareció este lugar aqui..."
-                    value = {review.comment}
+                    value={review.comment}
                   ></textarea>
                 </div>
                 <button

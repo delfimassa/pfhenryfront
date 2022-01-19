@@ -4,9 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { registerInitiate, loginGoogleInitiate, postClient } from "../Redux/actions/register";
 import { signInWithGoogle } from "../firebase-config";
 import style from "./styles/Register.module.css";
-// import Swal from "sweetalert2";
-
-
 import Swal from "sweetalert2";
 
 // {

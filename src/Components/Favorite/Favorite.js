@@ -21,10 +21,10 @@ export default function Favorite() {
     });
   }, []); 
   const peluqueria = pelu == null ? "no hay" : pelu[0]._id
-  console.log(peluqueria)
+  // console.log(peluqueria)
 
   const currentUser = useSelector((state) => state.user);
-  console.log(currentUser.email)
+  // console.log(currentUser.email)
   const client = currentUser.email
 
   

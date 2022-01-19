@@ -21,14 +21,15 @@ import { connect, useSelector, useDispatch } from "react-redux";
 
 const PeluDetail = () => {
   const currentUser = useSelector((state) => state.user);
-  console.log(currentUser);   
+
+  console.log(`user desde peludetail: ${currentUser.email}`);   
   //ESTO ES DE FIREBASE
   const [pelu, setPelu] = useState(null);
   let { id } = useParams();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: "", // Id del cliente
+    client: currentUser.email, // email del cliente
     comment: "",
     peluqueria: {id},
   });
@@ -82,18 +83,17 @@ const PeluDetail = () => {
     });
   }
 
-  // async
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     console.log(review);
     try {
-      // await axios.post("http://localhost:4000/review/create", review);
-      Swal.fire("", "Muchas gracias por tu comentario :)", "success");
+      await axios.post("http://localhost:4000/review/create", review);
+      Swal.fire("", "Muchas gracias por tu comentario", "success");
     } catch (err) {
       console.log(err);
       Swal.fire(
         "",
-        "Lo sentimos, no pudimos publicar tu comentario :(",
+        "Lo sentimos, no pudimos publicar tu comentario",
         "error"
       );
     }
@@ -231,7 +231,7 @@ const PeluDetail = () => {
               {pelu[0].reviews.length > 0 ? (
                 pelu[0].reviews.map((r) => (
                   <div className="commentBox">
-                    <h5>{r.client}</h5>
+                    <h5>{r.username}</h5>
                     <Stars
                       stars={r.rating}
                       outOf={5}

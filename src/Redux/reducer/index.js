@@ -319,6 +319,43 @@ export default function rootReducer(state = initialState, action) {
       }
     }
 
+    //FILTER STATE, CITY
+    case actions.FILTER_STATE:{
+      let allPelus = state.backupPeluquerias    
+      const payyy = action.payload
+      
+      const peluqueriasProvincias = allPelus.map((e) => {
+        if(payyy == "Selecciona una provincia" || e.city == payyy){ //action.payload
+          return e
+        } 
+      })
+
+      const filteredPelus = peluqueriasProvincias.filter(e => e)
+  
+      return{
+        ...state,
+        allPeluquerias: filteredPelus,
+      }
+    }
+
+    case actions.FILTER_CITY:{
+      let allPelus = state.backupPeluquerias    
+      const payloadd = action.payload
+      
+      const peluqueriasProvinciasCiudad = allPelus.map((e) => {
+        if(payloadd == "Selecciona una provincia" || e.city == "Salsipuedes"){ //action.payload
+          return e
+        } 
+      })
+
+      const filteredPelusCiudad = peluqueriasProvinciasCiudad.filter(e => e)
+  
+      return{
+        ...state,
+        allPeluquerias: filteredPelusCiudad,
+      }
+    }
+
     case actions.GET_FAV:{
       state.allPeluquerias = state.backupPeluquerias
       let cliente= action.payload.favs
@@ -329,7 +366,6 @@ export default function rootReducer(state = initialState, action) {
         pelusFiltradas.push(filtered)
       }
 
-
       pelusFiltradas.concat()
       console.log(state.filteredPeluquerias) 
       return{
@@ -337,8 +373,8 @@ export default function rootReducer(state = initialState, action) {
         filteredPeluquerias: pelusFiltradas
       }
     }
-    //DEFAULT
 
+    //DEFAULT
     default:
       return state;
   }

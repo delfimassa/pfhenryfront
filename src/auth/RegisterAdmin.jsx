@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postPeluqueria } from "../Redux/actions/adminlog";
-import SelectProvince from "../Components/SelectProvince";
 import style from "./styles/RegisterAdmin.module.css";
 let prov = require("../provincias.json");
 
@@ -94,7 +93,7 @@ const NuevaCuenta = () => {
   const changeState = function (e) {
     const option = e.target.value;
     setStateSelect(option);
-    setUser({city: citySelect, state: stateSelect})
+    setUser({city: stateSelect, state: citySelect})
   };
 
   const searchCity = provDepartamentos.map((e) => {

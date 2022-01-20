@@ -1,12 +1,17 @@
 // import * as actions from "../actions/register";
 // import * as actions from "../actions/adminlog";
 // import * as actions from "../actions/peluqueria";
+import { push } from "firebase/database";
 import * as actions from "../types/types";
 
 const initialState = {
   allPeluquerias: [],
   backupPeluquerias: [],
   filteredPeluquerias: [],
+  peluqueriasFav: [],
+  backupUserMongo: [],
+  userMongo: [],
+  filteredUserMongo: [],
   orden: "",
   loading: false,
   currentUser: null,
@@ -98,6 +103,13 @@ export default function rootReducer(state = initialState, action) {
         currentUser: action.paylodad,
         user: action.payload,
       };
+    }
+
+    case actions.GET_USERMONGO: {
+      return{
+        ...state,
+        userMongo: action.payload
+      }
     }
 
     //REGISTER ADMIN
@@ -287,7 +299,6 @@ export default function rootReducer(state = initialState, action) {
 
         return diasDeAtencion.indexOf(action.payload) === -1 ?  false: true
       })
-      console.log('algo', state.filteredPeluquerias)
       return { ...state, allPeluquerias: state.filteredPeluquerias }
     }
 
@@ -296,14 +307,34 @@ export default function rootReducer(state = initialState, action) {
     //   state.filteredPeluquerias = state.allPeluquerias.filter(e => e.city.includes(action.payload))
     //   return {...state,allPeluquerias: state.filteredPeluquerias}
     // }
+    
     case actions.POST_FAVORITE:{
       return{
-        ...state
+        ...state,
       }
     }
     case actions.DELETE_FAVORITE:{
       return{
         ...state
+      }
+    }
+
+    case actions.GET_FAV:{
+      state.allPeluquerias = state.backupPeluquerias
+      let cliente= action.payload.favs
+      let id= cliente.map(e => e.peluqueria)
+      let pelusFiltradas = []
+      for (let i = 0; i < id.length; i++) {
+        let filtered = state.allPeluquerias.filter(e => e._id === id[i])
+        pelusFiltradas.push(filtered)
+      }
+
+
+      pelusFiltradas.concat()
+      console.log(state.filteredPeluquerias) 
+      return{
+        ...state,
+        filteredPeluquerias: pelusFiltradas
       }
     }
     //DEFAULT

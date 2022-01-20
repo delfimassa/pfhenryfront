@@ -19,7 +19,8 @@ const Favoritos = () => {
 
     const dispatch = useDispatch();
 
-
+    console.log(currentMongo)
+    console.log(currentFirebase)
 
     useEffect(() => {
         // dispatch(getFavorites(currentMongo.username)) 
@@ -32,13 +33,15 @@ const Favoritos = () => {
         return hola
     })
 
+    console.log(sacarLosMilYUnArrays)
+
     return (
         <div>
             <div className={s.titleAndSub}>
             <h1>Favoritos</h1>
             <p>Aqui puedes ver todas tus peluquerias favoritas</p>
             </div>
-            { !currentMongo ? <h3 className={s.iniciaSesion}>Inicia sesion para añadir tus favoritos</h3> :
+            { !currentMongo && sacarLosMilYUnArrays.length <= 0 ? <h3 className={s.iniciaSesion}>No tenes ningun fav o no estas logueado</h3> :
             <div className={s.cards}>
             <Cards peluquerias={sacarLosMilYUnArrays}  />
             </div>

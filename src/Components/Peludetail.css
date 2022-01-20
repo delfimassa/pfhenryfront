@@ -18,12 +18,13 @@
 .reviewsZone{
   display:grid;
 }
-h5 {
+.datoPelu{
   padding-bottom: 1rem;
 }
 .commentBox{
   background-color: #eeece9;
   padding:1.5rem;
+  margin:0.5rem 0rem 0.5rem 0rem;
 }
 /*MEDIA QUERIES*/
 /*X-SMALL DEVICES */

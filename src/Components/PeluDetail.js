@@ -3,7 +3,6 @@ import { useParams } from "react-router";
 import axios from "axios";
 import "./Peludetail.css";
 import Loading from "./Loading";
-import Stars from "simple-rating-stars";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPhoneAlt,
@@ -92,7 +91,7 @@ const PeluDetail = () => {
       console.log(err);
       Swal.fire(
         "",
-        "Lo sentimos, no pudimos publicar tu comentario",
+        "Lo sentimos, solo puedes dejar tu opinion una vez por cada lugar",
         "error"
       );
     }
@@ -115,13 +114,12 @@ const PeluDetail = () => {
             <div className="mb-0 text-center">
               <h1 className="nomd nolg noxl">{pelu[0].name}</h1>
               <div className="parentSatrs nols nomd noxl mb-3">
-                <Stars
-                  stars={pelu[0].rating}
-                  outOf={5}
-                  full={"#1a202d"}
-                  empty={"#edf2f6"}
-                  stroke={"#1a202d"}
-                />
+              <Rating
+                    fillColor={"#1a202d"}
+                    allowHalfIcon={true}
+                    ratingValue={pelu[0].rating * 20}
+                    readonly={true}
+                  size={"2rem"}/>
               </div>
               <img
                 className="imgPelu mb-0"
@@ -148,15 +146,15 @@ const PeluDetail = () => {
                     allowHalfIcon={true}
                     ratingValue={pelu[0].rating * 20}
                     readonly={true}
-                  />
+                  size={"2rem"}/>
                 </div>
                 <Favorite />
               </div>
-              <h5>
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
                 Horario de atención: {pelu[0].schedule}
               </h5>
-              <h5>
+              <h5 className="datoPelu">
                 <a
                   href={`https://api.whatsapp.com/send?phone=${pelu[0].phone}`}
                   target="_blank"
@@ -167,7 +165,7 @@ const PeluDetail = () => {
                   Teléfono: {pelu[0].phone}
                 </a>
               </h5>
-              <h5>
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mx-3" />{" "}
                 Dirección: {pelu[0].address}, {pelu[0].city}, {pelu[0].state}.
               </h5>
@@ -175,7 +173,7 @@ const PeluDetail = () => {
                 <FontAwesomeIcon icon={faEnvelope} className="mx-3" />
                 E-mail: {pelu[0].username}
               </h5>
-              <h5>
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
                 Nuestros Estilistas:{" "}
                 {pelu[0].stylists.lenght > 0
@@ -183,7 +181,7 @@ const PeluDetail = () => {
                   : "Lo sentimos, no encontramos ningún nombre"}
               </h5>
               {/* mapeo estilistas */}
-              <h5>
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
                 Servicios:{" "}
                 {pelu[0].services.lenght > 0
@@ -197,7 +195,7 @@ const PeluDetail = () => {
           <div className="reviewsZone mt-5 pt-5">
             <div className="colDejatureview">
               <h2 className="d-flex">Opiniones</h2>
-              <h5 className="mb-2 p-0">
+              <h5 className="mb-2 p-0 datoPelu">
                 Deja tu opinión sobre esta peluquería aqui:{" "}
               </h5>
               <form onSubmit={handleSubmit}>
@@ -208,6 +206,7 @@ const PeluDetail = () => {
                     allowHalfIcon={false}
                     ratingValue={rating}
                     onClick={handleRating}
+                    size={"2rem"}
                   />
                 </p>
                 <div className="contenedorTextArea">
@@ -231,13 +230,12 @@ const PeluDetail = () => {
                 pelu[0].reviews.map((r) => (
                   <div className="commentBox">
                     <h5>{r.username}</h5>
-                    <Stars
-                      stars={r.rating}
-                      outOf={5}
-                      full={"#1a202d"}
-                      empty={"#edf2f6"}
-                      stroke={"#1a202d"}
-                    />
+                    <Rating
+                    fillColor={"#1a202d"}
+                    allowHalfIcon={true}
+                    ratingValue={pelu[0].rating * 20}
+                    readonly={true}
+                  size={"2rem"}/>
                     <p>{r.comment}</p>
                   </div>
                 ))

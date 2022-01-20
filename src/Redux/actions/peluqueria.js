@@ -12,7 +12,6 @@ export function getPeluquerias() {
     axios
       .get("http://localhost:4000/peluqueria")
       .then((response) => {
-        console.log(response.data);
         dispatch({
           type: GET_PELUQUERIAS,
           payload: response.data,

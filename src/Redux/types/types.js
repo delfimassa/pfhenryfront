@@ -12,6 +12,7 @@ export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS";
 export const LOGOUT_FAIL = "LOGOUT_FAIL";
 //user
 export const SET_USER = "SET_USER"
+export const GET_USERMONGO = "GET_USERMONGO"
 //peluquerias
 export const GET_PELUQUERIAS = 'GET_PELUQUERIAS';
 export const GET_PELUQUERIA_BY_ID = 'GET_PELUQUERIA_BY_ID';
@@ -49,3 +50,4 @@ export const  POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const FILTER_STATE = 'FILTER_STATE';
 export const FILTER_CITY = 'FILTER_CITY';
+export const GET_FAV= 'GET_FAV'

@@ -20,11 +20,13 @@ export default function Favorite() {
       setPelu([response.data]);
     });
   }, []); 
+
   const peluqueria = pelu == null ? "no hay" : pelu[0]._id
   // console.log(peluqueria)
 
   const currentUser = useSelector((state) => state.user);
-  // console.log(currentUser.email)
+  console.log(currentUser.email)
+  
   const client = currentUser.email
 
   
@@ -34,7 +36,7 @@ export default function Favorite() {
 
       if(!favorite) {
         dispatch(postFavorite(client, peluqueria))
-      } else{
+      } else {
         dispatch(deleteFavorite(favorite))
       }
   }

@@ -176,16 +176,16 @@ const PeluDetail = () => {
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
                 Nuestros Estilistas:{" "}
-                {pelu[0].stylists.lenght > 0
-                  ? pelu[0].stylists.map()
+                {pelu[0].stylists.lenght > 0 || pelu !==null
+                  ? pelu[0].stylists.map((s) => s.name)
                   : "Lo sentimos, no encontramos ningún nombre"}
               </h5>
               {/* mapeo estilistas */}
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
                 Servicios:{" "}
-                {pelu[0].services.lenght > 0
-                  ? pelu[0].services.map((s) => <p>{s.name}, </p>)
+                {pelu[0].services.lenght > 0 || pelu !==null
+                  ? pelu[0].services.map((s) => <p>{s._id}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
             </div>

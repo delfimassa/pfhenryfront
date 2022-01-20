@@ -18,13 +18,17 @@ const Favoritos = () => {
     // console.log('firebase', currentFirebase);
 
     const dispatch = useDispatch();
-
+    
 
 
     useEffect(() => {
-        // dispatch(getFavorites(currentMongo.username)) 
-        dispatch(getUserMongo(currentFirebase.email))
-        dispatch(getFavorites(currentMongo))
+        // dispatch(getFavorites(currentMongo.username))
+        if(currentFirebase){
+            dispatch(getUserMongo(currentFirebase.email))
+        }
+        if(currentMongo){
+            dispatch(getFavorites(currentMongo))
+        } 
     }, []);
 
     let sacarLosMilYUnArrays =filteredPeluquerias.map(e => {
@@ -32,6 +36,9 @@ const Favoritos = () => {
         return hola
     })
 
+    console.log("currentMongo" + currentMongo);
+    console.log(currentFirebase);
+    console.log(filteredPeluquerias);
     return (
         <div>
             <div className={s.titleAndSub}>
@@ -40,7 +47,8 @@ const Favoritos = () => {
             </div>
             { !currentMongo && sacarLosMilYUnArrays.length <= 0 ? <h3 className={s.iniciaSesion}>No tenes ningun fav o no estas logueado</h3> :
             <div className={s.cards}>
-            <Cards peluquerias={sacarLosMilYUnArrays}  />
+                {Cards ? (<Cards peluquerias={sacarLosMilYUnArrays}  />) : "no hay nada" }
+            
             </div>
             }
         </div>

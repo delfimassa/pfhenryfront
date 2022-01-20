@@ -49,6 +49,7 @@ function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
           allowHalfIcon={true}
           ratingValue={ratingCien}
           readonly={true}
+          size={"20px"}
         />
       </div>
     </div>

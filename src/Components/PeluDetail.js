@@ -21,15 +21,14 @@ import { connect, useSelector, useDispatch } from "react-redux";
 
 const PeluDetail = () => {
   const currentUser = useSelector((state) => state.user);
-
   console.log(`user desde peludetail: ${currentUser.email}`);   
-  //ESTO ES DE FIREBASE
+  
   const [pelu, setPelu] = useState(null);
   let { id } = useParams();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: currentUser.email, // email del cliente
+    client: `${currentUser.email}`, // email del cliente
     comment: "",
     peluqueria: {id},
   });
@@ -37,7 +36,7 @@ const PeluDetail = () => {
   useEffect(() => {
     axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
       setPelu([response.data]);
-      console.log(pelu);
+      // console.log(pelu);
     });
   }, []);
 
@@ -99,7 +98,7 @@ const PeluDetail = () => {
     }
     setReview({
       rating: 0,
-      client: "",
+      client: currentUser.email,
       comment: "",
       peluqueria: id,
     });

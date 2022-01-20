@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postPeluqueria } from "../Redux/actions/adminlog";
+import { getServices } from "../Redux/actions/service";
 import style from "./styles/RegisterAdmin.module.css";
+import Select from "react-select";
 let prov = require("../provincias.json");
 
 const NuevaCuenta = () => {
@@ -31,11 +33,13 @@ const NuevaCuenta = () => {
     phone,
     state,
     schedule,
+    services,
   } = user;
   const currentUser = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(getServices());
     if (currentUser) {
       navigate("/home");
     }
@@ -93,7 +97,7 @@ const NuevaCuenta = () => {
   const changeState = function (e) {
     const option = e.target.value;
     setStateSelect(option);
-    setUser({city: stateSelect, state: citySelect})
+    setUser({ city: stateSelect, state: citySelect });
   };
 
   const searchCity = provDepartamentos.map((e) => {
@@ -106,10 +110,27 @@ const NuevaCuenta = () => {
     return searchCity.indexOf(elem) == rep;
   });
 
-  console.log("city =>" + citySelect)
-  console.log("state => " + stateSelect)
+  console.log("city =>" + citySelect);
+  console.log("state => " + stateSelect);
 
-  // const select = 
+  // services
+  let servicios = useSelector((state) => state.services);
+  console.log(servicios);
+
+  function handleSelect(e) {
+    setUser({
+      ...user,
+      services: [...user.services, e.target.value],
+    });
+  }
+  console.log(user.services);
+
+  function handleDelete(e) {
+    setUser({
+      ...user,
+      services: user.services.filter((t) => t !== e),
+    });
+  }
   return (
     <div className="form-usuario">
       <div className="contenedor-form sombra-dark">
@@ -179,18 +200,32 @@ const NuevaCuenta = () => {
           {/* <SelectProvince className="campo-form"></SelectProvince> */}
           <div className="campo-form">
             <label>Provincia</label>
-            <select name="city" id="city" onClick={changeCity} className={style.selectProv}>
-              <option disabled selected>Selecciona una provincia</option>
+            <select
+              name="city"
+              id="city"
+              onClick={changeCity}
+              className={style.selectProv}
+            >
+              <option disabled selected>
+                Selecciona una provincia
+              </option>
               {filteredProv.map((i) => {
-                  return <option value={i}>{i}</option>;
+                return <option value={i}>{i}</option>;
               })}
             </select>
           </div>
           <div className="campo-form">
             <label>Ciudad</label>
-            <select name="state" id="state" onClick={changeState} className={style.selectProv}>
+            <select
+              name="state"
+              id="state"
+              onClick={changeState}
+              className={style.selectProv}
+            >
               {/* <option value={filterCity}>{filterCity}</option> */}
-              <option disabled selected>Selecciona una ciudad</option>
+              <option disabled selected>
+                Selecciona una ciudad
+              </option>
               {filterCity.map((i) => {
                 return <option value={i}>{i}</option>;
               })}
@@ -219,6 +254,32 @@ const NuevaCuenta = () => {
               onChange={onChange}
               required
             />
+          </div>
+          <div className="campo-form">
+            <label>Servicios</label>
+            <select onChange={handleSelect}>
+              <option disabled selected>
+                {" "}
+                Seleccione los servicios brindados
+              </option>
+              {servicios &&
+                servicios.map((t) => {
+                  // console.log(t.name)
+                  return (
+                    <option value={t.name} label={t.name}>
+                      {t.name}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
+          <div className="campo-form">
+          {user.services.map(t => 
+                <div>
+                    <p>{t}</p>
+                    <button onClick={()=>handleDelete(t)}>x</button>
+                </div>
+            )}
           </div>
 
           <div className="campo-form">

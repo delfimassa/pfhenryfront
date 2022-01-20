@@ -60,7 +60,7 @@ export const getUsersId = async () => {
   querySnapshot.forEach((doc) => {
     // doc.data() is never undefined for query doc snapshots
     usersId.push(doc.id)
-    console.log(doc, " => ", doc.data());
+    // console.log(doc, " => ", doc.data());
   });
 //   console.log(usersId)
   return usersId;

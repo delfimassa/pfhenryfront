@@ -16,6 +16,7 @@ const initialState = {
   peluquerias: [],
   selectedPelu: {},
   text: "",
+  services: [],
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -343,6 +344,26 @@ export default function rootReducer(state = initialState, action) {
         allPeluquerias: filteredPelusCiudad,
       }
     }
+
+    //SERVICES
+    case actions.GET_SERVICES:{
+      return{
+        ...state,
+        services: action.payload.data
+      }
+    } 
+
+    case actions.FILTER_SERVICES:{
+      let allPelus = state.backupPeluquerias
+      allPelus = allPelus.filter((s) => s.services.find((elem) => elem.service == action.payload))
+      console.log(allPelus)
+      
+      return {
+        ...state,
+        allPeluquerias: allPelus
+      }
+    }
+
     //DEFAULT
 
     default:

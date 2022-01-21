@@ -233,7 +233,7 @@ const PeluDetail = () => {
                     <Rating
                     fillColor={"#1a202d"}
                     allowHalfIcon={true}
-                    ratingValue={pelu[0].rating * 20}
+                    ratingValue={r.rating * 20}
                     readonly={true}
                   size={"2rem"}/>
                     <p>{r.comment}</p>

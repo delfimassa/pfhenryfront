@@ -12,7 +12,7 @@ const Favoritos = () => {
     
     const currentMongo = useSelector((state) => state.userMongo)
     const currentFirebase = useSelector((state) => state.user)
-    const filteredPeluquerias = useSelector((state) => state.filteredPeluquerias)
+    const filteredPeluquerias = useSelector((state) => state.peluqueriasFav)
     
     // console.log('mongo', currentMongo.length== 0 ? 'cargando' : 'cargó') //NO BORRAR PORQUE NO ANDA (WTF)
     // console.log('firebase', currentFirebase);
@@ -23,10 +23,10 @@ const Favoritos = () => {
 
     useEffect(() => {
         // dispatch(getFavorites(currentMongo.username))
-        if(currentFirebase){
+        if(currentFirebase.email){
             dispatch(getUserMongo(currentFirebase.email))
         }
-        if(currentMongo){
+        if(currentMongo.username){
             dispatch(getFavorites(currentMongo))
         } 
     }, []);

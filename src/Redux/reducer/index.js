@@ -359,18 +359,18 @@ export default function rootReducer(state = initialState, action) {
     case actions.GET_FAV:{
       state.allPeluquerias = state.backupPeluquerias
       let cliente= action.payload.favs
-      let id= cliente.map(e => e.peluqueria)
+      let id = cliente.map(e => e.peluqueria)
       let pelusFiltradas = []
       for (let i = 0; i < id.length; i++) {
         let filtered = state.allPeluquerias.filter(e => e._id === id[i])
         pelusFiltradas.push(filtered)
       }
 
-      pelusFiltradas.concat()
-      console.log(state.filteredPeluquerias) 
+      // pelusFiltradas.concat()
+      // console.log(state.filteredPeluquerias) 
       return{
         ...state,
-        filteredPeluquerias: pelusFiltradas
+        peluqueriasFav: pelusFiltradas
       }
     }
 

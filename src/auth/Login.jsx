@@ -10,6 +10,7 @@ import { loginAdminInitiate } from "../Redux/actions/adminlog";
 import { signInWithGoogle } from "../firebase-config";
 import { Switch } from "antd";
 import style from "./styles/Login.module.css";
+import { getUserMongo } from "../Redux/actions/client";
 // import Swal from "sweetalert2";
 
 
@@ -66,6 +67,7 @@ const Login = () => {
       dispatch(loginAdminInitiate(email, password));
     } else {
       dispatch(loginInitiate(email, password));
+      dispatch(getUserMongo(email));
     }
     // dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
@@ -73,6 +75,7 @@ const Login = () => {
 
   const loginGoogle = () => {
     dispatch(loginGoogleInitiate());
+    dispatch(getUserMongo(currentUser.email));
   };
 
   return (

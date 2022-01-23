@@ -12,7 +12,8 @@ const Favoritos = () => {
     
     const currentMongo = useSelector((state) => state.userMongo)
     const currentFirebase = useSelector((state) => state.user)
-    const filteredPeluquerias = useSelector((state) => state.filteredPeluquerias)
+    const filteredPeluquerias = useSelector((state) => state.peluqueriasFav)
+    const currentUser = useSelector((state) => state.currentUser)
     
     // console.log('mongo', currentMongo.length== 0 ? 'cargando' : 'cargó') //NO BORRAR PORQUE NO ANDA (WTF)
     // console.log('firebase', currentFirebase);
@@ -20,17 +21,22 @@ const Favoritos = () => {
     const dispatch = useDispatch();
 
     console.log(currentMongo)
-    console.log(currentFirebase)
+    let auth; 
+    console.log(currentFirebase.displayName)
 
     useEffect(() => {
-        // dispatch(getFavorites(currentMongo.username)) 
+        // window.location.reload()
+        // if(!currentFirebase.email){
+        //     return window.location.reload()
+        // }
         dispatch(getUserMongo(currentFirebase.email))
         dispatch(getFavorites(currentMongo))
+       
     }, []);
 
     let sacarLosMilYUnArrays =filteredPeluquerias.map(e => {
-        let hola = e[0]
-        return hola
+        let final = e[0]
+        return final
     })
 
     console.log(sacarLosMilYUnArrays)

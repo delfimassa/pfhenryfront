@@ -1,12 +1,18 @@
 import axios from "axios";
 import { POST_FAVORITE, DELETE_FAVORITE, GET_FAV } from "../types/types";
 
-export function getFavorites(data) {
-  return{
-    type: GET_FAV,
-    payload: data
-  } //aca podriamos pasar ese usuario filtrado y usarlo para comparar el id 
-}
+export function getFavorites(mail) {
+  return function(dispatch) {
+    axios.get('http://localhost:4000/clients/'+mail)
+    .then(response => {
+      dispatch({
+        type: GET_FAV,
+        payload: response.data
+      })
+    })
+  }
+} //aca podriamos pasar ese usuario filtrado y usarlo para comparar el id 
+
 
 export function postFavorite(client, peluqueria) {
   return async function (dispatch) {

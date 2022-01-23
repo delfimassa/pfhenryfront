@@ -6,6 +6,7 @@ import { getPeluquerias } from "../../Redux/actions/peluqueria";
 import "./Home.css";
 import { connect, useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getUserMongo } from "../../Redux/actions/client";
 
 function Home() {
   const currentUser = useSelector((state) => state.user);
@@ -18,8 +19,9 @@ function Home() {
     dispatch(getPeluquerias());
     if (!currentUser) {
       navigate("/");
+    } else {
+      dispatch(getUserMongo(currentUser.email));
     }
-
     // obtenerDatos();
     console.log("user home " + currentUser);
   }, [currentUser, navigate]);

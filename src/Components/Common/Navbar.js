@@ -13,12 +13,15 @@ import { logoutInitiate } from "../../Redux/actions/register";
 
 const Navbar = ({}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const currentUser = useSelector((state) => state.user);
   const adminUserr = useSelector((state) => state.adminUser);
 
   const logout = () => {
     if (currentUser) {
       dispatch(logoutInitiate());
+      navigate("/");
     } else {
       alert("No estas logueado");
     }

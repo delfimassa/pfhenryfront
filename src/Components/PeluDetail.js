@@ -21,6 +21,7 @@ import { connect, useSelector, useDispatch } from "react-redux";
 
 const PeluDetail = () => {
   const currentUser = useSelector((state) => state.user);
+  const userMongo = useSelector((state) => state.userMongo);
   // const navigate = useNavigate();
 
   console.log(`user desde peludetail: ${currentUser.email}`);   
@@ -30,7 +31,7 @@ const PeluDetail = () => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: `${currentUser.email}`, // email del cliente
+    client: `${userMongo.username}`, // email del cliente
     comment: "",
     peluqueria: {id},
   });

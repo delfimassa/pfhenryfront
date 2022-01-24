@@ -12,6 +12,7 @@ import {
 import { logoutInitiate } from "../../Redux/actions/register";
 
 const Navbar = ({}) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.user);
   const adminUserr = useSelector((state) => state.adminUser);
@@ -19,6 +20,7 @@ const Navbar = ({}) => {
   const logout = () => {
     if (currentUser) {
       dispatch(logoutInitiate());
+      navigate("/");
     } else {
       alert("No estas logueado");
     }
@@ -27,7 +29,7 @@ const Navbar = ({}) => {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary p-3">
         <div className="container-fluid">
           <NavLink
             to="/home"
@@ -118,15 +120,15 @@ const Navbar = ({}) => {
                   </li>
                   <li className="nav-item">
                     {" "}
-                    <imput
-                      className="nav-link"
+                    <button
+                      className="nav-link btn m-0"
                       type="submit"
                       onClick={(e) => {
                         logout(e);
                       }}
                     >
-                      Log out
-                    </imput>
+                      Salir
+                    </button>
                   </li>
 
                   {/* <li className="nav-item dropdown">
@@ -189,7 +191,7 @@ const Navbar = ({}) => {
                     className="nav-link"
                     activeClassName="selected"
                   >
-                    Log in
+                    Ingresar
                   </NavLink>
                 </li>
                 <li className="nav-item">

@@ -5,7 +5,7 @@ import "./Navbar.css";
 
 const Footer = () => {
   return (
-    <div className="bg-beige text-center py-5 text-primary mt-5">
+    <div className="bg-beige text-center py-5 text-primary">
         <div className="mx-5">
       <h4>Creado con ♥ por alumnos del grupo 14 del cohorte 19a en Henry</h4>
       <h3>

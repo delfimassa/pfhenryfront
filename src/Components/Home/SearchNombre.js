@@ -36,7 +36,7 @@ function SearchNombre({ searchName }) {
         type="submit"
         className="btn btn-primary my-0"
       >
-        Search
+        Buscar
       </button>
     </form>
   );

@@ -122,7 +122,7 @@ const PeluDetail = () => {
                   size={"2rem"}/>
               </div>
               <img
-                className="imgPelu mb-0"
+                className="imgPelu mb-0  w-100 h-100"
                 width="100%"
                 height="100%"
                 src={pelu[0].avatar}

@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  loginInitiate,
-  logoutInitiate,
-  loginGoogleInitiate,
-} from "../Redux/actions/register";
+import { loginInitiate, loginGoogleInitiate } from "../Redux/actions/register";
 import { loginAdminInitiate } from "../Redux/actions/adminlog";
-import { signInWithGoogle } from "../firebase-config";
-import { Switch } from "antd";
 import style from "./styles/Login.module.css";
 import { getUserMongo } from "../Redux/actions/client";
 // import Swal from "sweetalert2";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState("ocultar");
+  
+  function mostrarOcultar(flag, e){
+    e.preventDefault();
+    setShowPassword(flag);
+  }
+
   // State para iniciar sesión
   const [state, setState] = useState({
     email: "",
@@ -78,25 +80,32 @@ const Login = () => {
     dispatch(getUserMongo(currentUser.email));
   };
 
+
   return (
     <div className={style.allLogin}>
       <div className={style.contenedorFormulario}>
         <div>
           <h1>Hola de nuevo!</h1>
           <div className={style.checkbox}>
-            <div class="form-check form-switch">
+            <div className="form-check form-switch">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 id="flexSwitchCheckDefault"
                 onClick={toggler}
               />
               {toggle ? (
-                <label class="form-check-label" for="flexSwitchCheckDefault">
+                <label
+                  className="form-check-label"
+                  for="flexSwitchCheckDefault"
+                >
                   Negocio
                 </label>
               ) : (
-                <label class="form-check-label" for="flexSwitchCheckDefault">
+                <label
+                  className="form-check-label"
+                  for="flexSwitchCheckDefault"
+                >
                   Cliente
                 </label>
               )}
@@ -105,8 +114,8 @@ const Login = () => {
         </div>
         <form onSubmit={onSubmit}>
           {/* <button onClick={(e)=>{activeAdmin(e)}}>Soy Peluqueria</button> */}
-          <div class="form-group">
-            <label htmlFor="email" class="form-label mt-4">
+          <div className="form-group">
+            <label htmlFor="email" className="form-label mt-4">
               Email
             </label>
             <input
@@ -115,45 +124,65 @@ const Login = () => {
               name="email"
               value={email}
               onChange={onChange}
-              class="form-control"
+              className="form-control"
               aria-describedby="emailHelp"
               placeholder="ejemplo@hairup.com"
             />
-            <small id="emailHelp" class="form-text text-muted">
+            <small id="emailHelp" className="form-text text-muted">
               Nunca compartiremos su correo electrónico con nadie más.
             </small>
           </div>
-          <div class="form-group">
-            <label htmlFor="email" class="form-label mt-4">
+          <div className="form-group">
+            <label htmlFor="email" className="form-label mt-4">
               Contraseña
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={password}
-              onChange={onChange}
-              class="form-control"
-              placeholder="********"
-            />
+            {showPassword === "mostrar" ? (
+              <div>
+                <input
+                  type="text"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="form-control"
+                  placeholder="********"
+                />
+               <button className={`btn m-0 px-1 ${style.botonMostrarPass}`} onClick={(e) => {mostrarOcultar("ocultar", e)}}> <small className="text-muted"><FontAwesomeIcon icon={faEyeSlash} className="mx-1" />Ocultar contraseña</small></button>
+              </div>
+            ) : (
+              <div>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="form-control"
+                  placeholder="********"
+                />
+                 <button className={`btn m-0 px-1 ${style.botonMostrarPass}`} onClick={(e) => {mostrarOcultar("mostrar", e)}}><small className=" text-muted"><FontAwesomeIcon icon={faEye} className="mx-1" />Mostrar contraseña</small></button>
+              </div>
+            )}
           </div>
-          <Link to={"/register"}>
-            <p className={style.linkRegister}>Registrarme</p>
-          </Link>
           <div className={style.contenedorBotones}>
-            <button type="submit" class="btn btn-outline-primary">
+            <button type="submit" className="btn btn-outline-primary">
               Iniciar Sesion
             </button>
             <button
               type="submit"
               value="Iniciar Sesión con Google"
               onClick={loginGoogle}
-              class="btn btn-outline-primary"
+              className="btn btn-outline-primary"
             >
               Iniciar con Google
             </button>
           </div>
         </form>
+        <Link to={"/register"}>
+          <p className={style.linkRegister}>
+            ¿No tienes una cuenta? Registrarme
+          </p>
+        </Link>
       </div>
     </div>
   );

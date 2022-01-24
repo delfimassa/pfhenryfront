@@ -235,47 +235,31 @@ export default function rootReducer(state = initialState, action) {
     }
     
     //filtros
-    case actions.FILTER_RATING: {
-      if (action.payload === "menor") {
-        state.allPeluquerias = state.backupPeluquerias;
-        state.allPeluquerias.forEach((e) => {
-          if (!e.rating) {
-            return (e.rating = 0);
-          }
-        });
-        state.allPeluquerias.sort((a, b) => {
-          if (a.rating < b.rating) {
-            return -1;
-          }
-          if (a.rating > b.rating) {
-            return 1;
-          }
-          return 0;
-        });
-      }
-      if (action.payload === "mayor") {
-        state.allPeluquerias = state.backupPeluquerias;
-        state.allPeluquerias.forEach((e) => {
-          if (!e.rating) {
-            return (e.rating = 0);
-          }
-        });
-        state.allPeluquerias.sort((a, b) => {
-          if (a.rating > b.rating) {
-            return -1;
-          }
-          if (a.rating < b.rating) {
-            return 1;
-          }
-          return 0;
-        });
-      }
+    case "ORDER_BY_RATING":
+      let sortedByRating =
+        action.payload === "asc"
+          ? state.allPeluquerias.sort(function (a, b) {
+              if (a.rating > b.rating) {
+                return 1;
+              }
+              if (a.rating < b.rating) {
+                return -1;
+              }
+              return 0;
+            })
+          : state.allPeluquerias.sort(function (a, b) {
+              if (a.rating > b.rating) {
+                return -1;
+              }
+              if (a.rating < b.rating) {
+                return 1;
+              }
+              return 0;
+            });
       return {
         ...state,
-        orden: action.payload,
-        allPeluquerias: state.backupPeluquerias,
+        allPeluquerias: sortedByRating,
       };
-    }
 
     case actions.SEARCH_NAME: {
       state.allPeluquerias = state.backupPeluquerias;

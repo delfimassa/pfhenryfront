@@ -1,29 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { registerInitiate, loginGoogleInitiate, postClient } from "../Redux/actions/register";
-import { signInWithGoogle } from "../firebase-config";
-import style from "./styles/Register.module.css";
-import Swal from "sweetalert2";
-
-// {
-//   Swal.fire(
-//     "Enhorabuena!",
-//     "Tu consulta fue enviada correctamente.",
-//     "success"
-//   );
-//   e.target.reset();
-//   setValidated(false);
-// },
-// (error) => {
-//   Swal.fire(
-//     "Ups!",
-//     "Hubo un problema al enviar tu consulta. Por favor intentalo nuevamente.",
-//     "error"
-//   );
-// }
+import { useNavigate } from "react-router-dom";
+import {
+  registerInitiate,
+  loginGoogleInitiate,
+  postClient,
+} from "../Redux/actions/register";
+import style from "./styles/Login.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 const NuevaCuenta = () => {
+  const [showPassword, setShowPassword] = useState("ocultar");
+
+  function mostrarOcultar(flag, e) {
+    e.preventDefault();
+    setShowPassword(flag);
+  }
+
   // State para iniciar sesión
   const [user, setUser] = useState({
     name: "",
@@ -35,7 +29,7 @@ const NuevaCuenta = () => {
   //extraer de usario
 
   const { name, username, password, passwordConfirm } = user;
-  const currentUser = useSelector((state) => state.user)
+  const currentUser = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -60,7 +54,7 @@ const NuevaCuenta = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     //Validar que no haya campos vacíos
-    if(!name || !username || !password || !passwordConfirm){
+    if (!name || !username || !password || !passwordConfirm) {
       // Swal.fire(
       //   "Ups!",
       //   "Por favor completa todos los campos",
@@ -78,15 +72,17 @@ const NuevaCuenta = () => {
     //Pasarlo al reducer
     dispatch(postClient(user));
     dispatch(registerInitiate(name, username, password));
-    setUser({name: "", username: "", password: "", passwordConfirm: ""});
-  }; 
+    setUser({ name: "", username: "", password: "", passwordConfirm: "" });
+  };
   return (
-    <div className="form-usuario">
-      <div className="contenedor-form sombra-dark">
+    <div className={style.allLogin}>
+      <div className={style.contenedorFormulario}>
         <h1>Registrarse</h1>
         <form onSubmit={onSubmit}>
-          <div className="campo-form">
-            <label htmlFor="name">Nombre</label>
+          <div className="form-group">
+            <label htmlFor="name" className="form-label mt-4">
+              Nombre
+            </label>
             <input
               type="text"
               id="name"
@@ -95,10 +91,13 @@ const NuevaCuenta = () => {
               value={name}
               onChange={onChange}
               required
+              className="form-control"
             />
           </div>
-          <div className="campo-form">
-            <label htmlFor="username">Email</label>
+          <div className="form-group">
+            <label htmlFor="username" className="form-label mt-4">
+              Email
+            </label>
             <input
               type="email"
               id="username"
@@ -107,47 +106,111 @@ const NuevaCuenta = () => {
               value={username}
               onChange={onChange}
               required
+              className="form-control"
             />
           </div>
-          <div className="campo-form">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Tu Contraseña"
-              value={password}
-              onChange={onChange}
-              required
-            />
+          <div className="form-group">
+            <label htmlFor="password" className="form-label mt-4">
+              Contraseña
+            </label>
+            {showPassword === "mostrar" ? (
+              <div>
+                <input
+                  type="text"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="form-control"
+                  placeholder="Tu contraseña"
+                />
+                <div className="form-group">
+                  <label htmlFor="passwordConfirm" className="form-label mt-4">
+                    Confirmar Contraseña
+                  </label>
+                  <input
+                    type="text"
+                    id="passwordConfirm"
+                    name="passwordConfirm"
+                    placeholder="Repite tu contraseña"
+                    value={passwordConfirm}
+                    onChange={onChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+
+                <button
+                  className={`btn m-0 px-1 ${style.botonMostrarPass}`}
+                  onClick={(e) => {
+                    mostrarOcultar("ocultar", e);
+                  }}
+                >
+                  {" "}
+                  <small className="text-muted">
+                    <FontAwesomeIcon icon={faEyeSlash} className="mx-1" />
+                    Ocultar contraseña
+                  </small>
+                </button>
+              </div>
+            ) : (
+              <div>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="form-control"
+                  placeholder="**********"
+                />
+
+                <div className="form-group">
+                  <label htmlFor="passwordConfirm" className="form-label mt-4">
+                    Confirmar Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    id="passwordConfirm"
+                    name="passwordConfirm"
+                    placeholder="**********"
+                    value={passwordConfirm}
+                    onChange={onChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+                <button
+                  className={`btn m-0 px-1 ${style.botonMostrarPass}`}
+                  onClick={(e) => {
+                    mostrarOcultar("mostrar", e);
+                  }}
+                >
+                  <small className=" text-muted">
+                    <FontAwesomeIcon icon={faEye} className="mx-1" />
+                    Mostrar contraseña
+                  </small>
+                </button>
+              </div>
+            )}
           </div>
-          <div className="campo-form">
-            <label htmlFor="passwordConfirm">Confirmar Contraseña</label>
-            <input
-              type="password"
-              id="passwordConfirm"
-              name="passwordConfirm"
-              placeholder="Repite tu contraseña"
-              value={passwordConfirm}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="campo-form">
+
+          <div className={style.contenedorBotones}>
+            <button type="submit" className="btn btn-outline-primary">
+              Registrar Cuenta
+            </button>
+
             <button
               type="submit"
-              className="btn btn-primario btn-block" 
-            >Registrar Cuenta</button>
+              value="Iniciar Sesión con Google"
+              onClick={loginGoogle}
+              className="btn btn-outline-primary"
+            >
+              {" "}
+              Iniciar con Google
+            </button>
           </div>
         </form>
-        <div className="campo-form">
-          <input
-            type="submit"
-            className="btn btn-primario btn-block"
-            value="Registrarse con Google"
-            onClick={loginGoogle}
-          />
-        </div>
       </div>
     </div>
   );

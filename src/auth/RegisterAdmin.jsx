@@ -2,10 +2,21 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { postPeluqueria } from "../Redux/actions/adminlog";
-import style from "./styles/RegisterAdmin.module.css";
+import style from "./styles/Login.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+
+
 let prov = require("../provincias.json");
 
 const NuevaCuenta = () => {
+  const [showPassword, setShowPassword] = useState("ocultar");
+
+  function mostrarOcultar(flag, e) {
+    e.preventDefault();
+    setShowPassword(flag);
+  }
+
   // State para iniciar sesión
   const [user, setUser] = useState({
     name: "",
@@ -109,14 +120,13 @@ const NuevaCuenta = () => {
   console.log("city =>" + citySelect)
   console.log("state => " + stateSelect)
 
-  // const select = 
   return (
-    <div className="form-usuario">
-      <div className="contenedor-form sombra-dark">
-        <h1>Registro negocio</h1>
+    <div className={style.allLogin}>
+      <div  className={`${style.contenedorFormulario} ${style.contenedorFormRegistro}`}>
+        <h1>Registra tu negocio</h1>
         <form onSubmit={onSubmit}>
-          <div className="campo-form">
-            <label htmlFor="name">Nombre del negocio</label>
+          <div className="form-group">
+            <label htmlFor="name"  className="form-label mt-4">Nombre del negocio</label>
             <input
               type="text"
               id="name"
@@ -125,11 +135,12 @@ const NuevaCuenta = () => {
               value={name}
               onChange={onChange}
               required
+              className="form-control"
             />
           </div>
 
-          <div className="campo-form">
-            <label htmlFor="username">Email</label>
+          <div className="form-group">
+            <label htmlFor="username"  className="form-label mt-4">Email</label>
             <input
               type="email"
               id="username"
@@ -138,34 +149,94 @@ const NuevaCuenta = () => {
               value={username}
               onChange={onChange}
               required
+              className="form-control"
             />
           </div>
-          <div className="campo-form">
-            <label htmlFor="password">Contraseña</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Tu Contraseña"
-              value={password}
-              onChange={onChange}
-              required
-            />
+          <div className="form-group">
+            <label htmlFor="password"  className="form-label mt-4">Contraseña</label>
+            {showPassword === "mostrar" ? (
+              <div>
+                <input
+                  type="text"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="form-control"
+                  placeholder="Tu contraseña"
+                />
+                <div className="form-group">
+                  <label htmlFor="passwordConfirm" className="form-label mt-4">
+                    Confirmar Contraseña
+                  </label>
+                  <input
+                    type="text"
+                    id="passwordConfirm"
+                    name="passwordConfirm"
+                    placeholder="Repite tu contraseña"
+                    value={passwordConfirm}
+                    onChange={onChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+
+                <button
+                  className={`btn m-0 px-1 ${style.botonMostrarPass}`}
+                  onClick={(e) => {
+                    mostrarOcultar("ocultar", e);
+                  }}
+                >
+                  {" "}
+                  <small className="text-muted">
+                    <FontAwesomeIcon icon={faEyeSlash} className="mx-1" />
+                    Ocultar contraseña
+                  </small>
+                </button>
+              </div>
+            ) : (
+              <div>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  value={password}
+                  onChange={onChange}
+                  className="form-control"
+                  placeholder="**********"
+                />
+
+                <div className="form-group">
+                  <label htmlFor="passwordConfirm" className="form-label mt-4">
+                    Confirmar Contraseña
+                  </label>
+                  <input
+                    type="password"
+                    id="passwordConfirm"
+                    name="passwordConfirm"
+                    placeholder="**********"
+                    value={passwordConfirm}
+                    onChange={onChange}
+                    required
+                    className="form-control"
+                  />
+                </div>
+                <button
+                  className={`btn m-0 px-1 ${style.botonMostrarPass}`}
+                  onClick={(e) => {
+                    mostrarOcultar("mostrar", e);
+                  }}
+                >
+                  <small className=" text-muted">
+                    <FontAwesomeIcon icon={faEye} className="mx-1" />
+                    Mostrar contraseña
+                  </small>
+                </button>
+              </div>
+            )}
           </div>
-          <div className="campo-form">
-            <label htmlFor="passwordConfirm">Confirmar Contraseña</label>
-            <input
-              type="password"
-              id="passwordConfirm"
-              name="passwordConfirm"
-              placeholder="Repite tu contraseña"
-              value={passwordConfirm}
-              onChange={onChange}
-              required
-            />
-          </div>
-          <div className="campo-form">
-            <label htmlFor="address">Direccion</label>
+          <div className="form-group">
+            <label htmlFor="address"  className="form-label mt-4">Direccion</label>
             <input
               type="text"
               id="address"
@@ -174,21 +245,22 @@ const NuevaCuenta = () => {
               value={address}
               onChange={onChange}
               required
+              className="form-control"
             />
           </div>
           {/* <SelectProvince className="campo-form"></SelectProvince> */}
-          <div className="campo-form">
-            <label>Provincia</label>
-            <select name="city" id="city" onClick={changeCity} className={style.selectProv}>
-              <option disabled selected>Selecciona una provincia</option>
+          <div className="form-group">
+            <label  className="form-label mt-4">Provincia</label>
+            <select name="city" id="city" onClick={changeCity} className="">
+            <option disabled selected>Selecciona una provincia</option>
               {filteredProv.map((i) => {
                   return <option value={i}>{i}</option>;
               })}
             </select>
           </div>
-          <div className="campo-form">
-            <label>Ciudad</label>
-            <select name="state" id="state" onClick={changeState} className={style.selectProv}>
+          <div className="form-group">
+            <label  className="form-label mt-4">Ciudad</label>
+            <select name="state" id="state" onClick={changeState} className="h">
               {/* <option value={filterCity}>{filterCity}</option> */}
               <option disabled selected>Selecciona una ciudad</option>
               {filterCity.map((i) => {
@@ -196,8 +268,8 @@ const NuevaCuenta = () => {
               })}
             </select>
           </div>
-          <div className="campo-form">
-            <label htmlFor="username">Telefono</label>
+          <div className="form-group">
+            <label htmlFor="username"  className="form-label mt-4">Telefono</label>
             <input
               type="text"
               id="phone"
@@ -206,10 +278,11 @@ const NuevaCuenta = () => {
               value={phone}
               onChange={onChange}
               required
+              className="form-control"
             />
           </div>
-          <div className="campo-form">
-            <label htmlFor="username">Calendario</label>
+          {/* <div className="form-group">
+            <label htmlFor="username"  className="form-label mt-4">Calendario</label>
             <input
               type="text"
               id="schedule"
@@ -218,11 +291,12 @@ const NuevaCuenta = () => {
               value={schedule}
               onChange={onChange}
               required
+              className="form-control"
             />
-          </div>
+          </div> */}
 
-          <div className="campo-form">
-            <button type="submit" className="btn btn-primario btn-block">
+          <div className={style.contenedorBotones}> 
+            <button type="submit" className="btn btn-outline-primary mb-3">
               Registrar Cuenta
             </button>
           </div>

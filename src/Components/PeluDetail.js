@@ -16,10 +16,13 @@ import { Rating } from "react-simple-star-rating";
 import Favorite from "./Favorite/Favorite";
 import Swal from "sweetalert2";
 import { connect, useSelector, useDispatch } from "react-redux";
+// import {useNavigate} from "react-router-dom"
 
 
 const PeluDetail = () => {
   const currentUser = useSelector((state) => state.user);
+  // const navigate = useNavigate();
+
   console.log(`user desde peludetail: ${currentUser.email}`);   
   
   const [pelu, setPelu] = useState(null);
@@ -122,10 +125,10 @@ const PeluDetail = () => {
                   size={"2rem"}/>
               </div>
               <img
-                className="imgPelu mb-0"
+                className="imgPelu mb-0  w-100 h-100"
                 width="100%"
                 height="100%"
-                src={pelu[0].avatar}
+                 src={pelu[0].avatar ? pelu[0].avatar : "https://images.pexels.com/photos/3993125/pexels-photo-3993125.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
                 alt="logo de la peluqueria"
               />
             </div>
@@ -176,16 +179,16 @@ const PeluDetail = () => {
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
                 Nuestros Estilistas:{" "}
-                {pelu[0].stylists.lenght > 0
-                  ? pelu[0].stylists.map()
+                {pelu[0].stylists.lenght > 0 || pelu !==null
+                  ? pelu[0].stylists.map((s) => s.name)
                   : "Lo sentimos, no encontramos ningún nombre"}
               </h5>
               {/* mapeo estilistas */}
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
                 Servicios:{" "}
-                {pelu[0].services.lenght > 0
-                  ? pelu[0].services.map((s) => <p>{s.name}, </p>)
+                {pelu[0].services.lenght > 0 || pelu !==null
+                  ? pelu[0].services.map((s) => <p>{s.service.name}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
             </div>
@@ -233,7 +236,7 @@ const PeluDetail = () => {
                     <Rating
                     fillColor={"#1a202d"}
                     allowHalfIcon={true}
-                    ratingValue={pelu[0].rating * 20}
+                    ratingValue={r.rating * 20}
                     readonly={true}
                   size={"2rem"}/>
                     <p>{r.comment}</p>

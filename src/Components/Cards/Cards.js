@@ -9,8 +9,9 @@ import  "./Card.css"
 
 function Cards({peluquerias}) {
 
-    return (peluquerias.map(e =>
-        <Link style={{textDecoration: 'none', color: 'black'}} to={`/${e._id}`}> 
+    return (peluquerias.map(e => 
+         (typeof e !== "undefined" && 
+         <Link style={{textDecoration: 'none', color: 'black'}} to={`/${e._id}`}> 
             <Card 
                 id={e._id}
                 name= {e.name}
@@ -22,7 +23,7 @@ function Cards({peluquerias}) {
                 schedule={e.schedule}
                 phone={e.phone}
             />
-        </Link>
+        </Link>)
     ))
 }
 

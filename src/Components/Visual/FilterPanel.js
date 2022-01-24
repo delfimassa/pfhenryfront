@@ -27,6 +27,7 @@ function FilterPanel(props) {
     e.preventDefault();
     dispatch(orderByRating(e.target.value));
     setOrder(`Ordenado ${e.target.value}`);
+    console.log("despachando desde filter panel")
   }
 
 

@@ -237,8 +237,10 @@ export default function rootReducer(state = initialState, action) {
     //filtros
     case "ORDER_BY_RATING":
       let sortedByRating =
-        action.payload === "asc"
-          ? state.allPeluquerias.sort(function (a, b) {
+       state.allPeluquerias = state.backupPeluquerias ;
+       action.payload === "asc"?
+          state.allPeluquerias.sort(function (a, b) {
+            console.log("asc")
               if (a.rating > b.rating) {
                 return 1;
               }
@@ -247,7 +249,8 @@ export default function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : state.allPeluquerias.sort(function (a, b) {
+          : 
+          state.allPeluquerias.sort(function (a, b) {
               if (a.rating > b.rating) {
                 return -1;
               }
@@ -255,7 +258,7 @@ export default function rootReducer(state = initialState, action) {
                 return 1;
               }
               return 0;
-            });
+            })
       return {
         ...state,
         allPeluquerias: sortedByRating,

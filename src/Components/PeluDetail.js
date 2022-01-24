@@ -16,6 +16,7 @@ import { Rating } from "react-simple-star-rating";
 import Favorite from "./Favorite/Favorite";
 import Swal from "sweetalert2";
 import { connect, useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 
 const PeluDetail = () => {
@@ -188,6 +189,7 @@ const PeluDetail = () => {
                   ? pelu[0].services.map((s) => <p>{s._id}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
+              <Link to={`/reserva/${pelu[0]._id}`}>reservá un turno maestro </Link>
             </div>
             {/* fin infocol */}
           </div>
@@ -249,6 +251,7 @@ const PeluDetail = () => {
             </div>
           </div>
           {/* finreviews */}
+          
           {/* fin peluDetailGrid */}
         </div>
       )}

@@ -34,13 +34,31 @@ function Panel() {
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr className="color-cliente">
                   <td>Lucho</td>
                   <td>16/01/2022 13:00</td>
                   <td>Corte</td>
                   <td>3489569730</td>
                   <td>
                     <button>Eliminar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Libre</td>
+                  <td>16/01/2022 12:00</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button>Ocupar</button>
+                  </td>
+                </tr>
+                <tr className="color-ocupado">
+                  <td>Ocupado</td>
+                  <td>16/01/2022 12:00</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button>Desocupar</button>
                   </td>
                 </tr>
               </tbody>

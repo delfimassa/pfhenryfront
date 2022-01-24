@@ -7,6 +7,7 @@ import { DatePicker } from "@material-ui/pickers";
 // import SearchProvincia from './SearchProvincia'
 
 function FilterPanel(props) {
+  const [selectedDate, handleDateChange] = useState(new Date()); 
   const semana = [
     "Domingo",
     "Lunes",
@@ -40,10 +41,10 @@ function FilterPanel(props) {
         </p>
         <DatePicker
           variant="inline"
-          format="dd/MM/yyyy"
-          label="Basic example"
+          format="dd/M/yy"
+          value={selectedDate}
           onChange={(e) => {
-            //no
+            handleDateChange(e)
             let nombreDia = semana[e.getDay()];
             props.filterCalendar(nombreDia);
           }}

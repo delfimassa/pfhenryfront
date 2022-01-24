@@ -227,7 +227,7 @@ export default function rootReducer(state = initialState, action) {
       };
     }
 
-    case actions.GET_PELUQUERIA_BY_ID: {
+    case actions.GET_PELU_DETAIL: {
       return {
         ...state,
         selectedPelu: action.payload,
@@ -235,7 +235,8 @@ export default function rootReducer(state = initialState, action) {
     }
     
     //filtros
-    case actions.FILTER_RATING: {
+    case actions.FILTER_RATING: 
+    {
       if (action.payload === "menor") {
         state.allPeluquerias = state.backupPeluquerias;
         state.allPeluquerias.forEach((e) => {

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PELUQUERIAS, GET_PELUQUERIA_BY_ID } from "../types/types";
+import { GET_PELUQUERIAS, GET_PELUQUERIA_BY_ID, GET_PELU_DETAIL } from "../types/types";
 
 export function getPeluquerias() {
   return function (dispatch) {
@@ -41,6 +41,21 @@ export function getPeluqueriaById(id) {
       console.log("getbyid desde actions", resp);
       return dispatch({
         type: GET_PELUQUERIA_BY_ID,
+        payload: resp.data,
+      });
+    } catch (err) {
+      console.log("no se pudo traer el detalle", err);
+    }
+  };
+}
+
+export function getPeluDetail(id) {
+  return async function (dispatch) {
+    try {
+      var resp = axios.get(`http://localhost:4000/peluqueria/${id}`);
+      console.log("getbyid desde actions", resp);
+      return dispatch({
+        type: GET_PELU_DETAIL,
         payload: resp.data,
       });
     } catch (err) {

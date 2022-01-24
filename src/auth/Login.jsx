@@ -146,7 +146,7 @@ const Login = () => {
                   value={password}
                   onChange={onChange}
                   className="form-control"
-                  placeholder="********"
+                  placeholder="Contraseña"
                 />
                <button className={`btn m-0 px-1 ${style.botonMostrarPass}`} onClick={(e) => {mostrarOcultar("ocultar", e)}}> <small className="text-muted"><FontAwesomeIcon icon={faEyeSlash} className="mx-1" />Ocultar contraseña</small></button>
               </div>

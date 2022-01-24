@@ -50,4 +50,5 @@ export const  POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
 export const FILTER_STATE = 'FILTER_STATE';
 export const FILTER_CITY = 'FILTER_CITY';
-export const GET_FAV= 'GET_FAV'
+export const GET_FAV= 'GET_FAV';
+export const GET_PELU_DETAIL = "GET_PELU_DETAIL"

@@ -14,15 +14,14 @@ function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
   return (
     <div className="parent-card row mb-3 p-0">
       <div className="containerImg m-0 p-0 col-md-4 col-sm-12">
-        {avatar !== 0 ? (
-          <img className="imagenes w-100" src={avatar} alt="Avatar" />
-        ) : (
+        {
+          <img className="imagenes w-100" src={avatar} alt="Avatar" /> ||
           <img
             className="imagenes w-100"
-            src="https://image.freepik.com/foto-gratis/tijeras-peluquero-peluqueria-hombre-brutal-bigote-macho-peluqueria-corte-pelo-afeitado-mans-corte-pelo-peluqueria-perfil-hombre-barba-elegante-tijeras-hombre-barbudo-aislado-espacio-blanco_264277-227.jpg"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQakURH-9kvEQgPlj0sZfnAmMhnS6V9t_Tglw&usqp=CAU"
             alt="Avatar"
           />
-        )}
+        }
       </div>
 
       <div className="card-body col-md-8">

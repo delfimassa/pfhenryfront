@@ -7,10 +7,12 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "react-simple-star-rating";
+import {Stars} from "simple-rating-stars"
 
 function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
-  const [ratingCien, setRatingCien] = useState(rating*20);
-  
+  // const [ratingCien, setRatingCien] = useState(rating*20);
+  // console.log('rating 100: ', ratingCien)
+  console.log(rating)
   return (
     <div className="parent-card row mb-3 p-0">
       <div className="containerImg m-0 p-0 col-md-4 col-sm-12">
@@ -46,7 +48,8 @@ function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
         <Rating
           fillColor={"#1a202d"}
           allowHalfIcon={true}
-          ratingValue={ratingCien}
+          initialValue={rating}
+          ratingValue={rating}
           readonly={true}
           size={"20px"}
         />

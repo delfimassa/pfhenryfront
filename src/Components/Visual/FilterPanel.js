@@ -22,26 +22,35 @@ function FilterPanel(props) {
     "Sabado",
   ];
 
+  function borrarFiltros(e){
+    props.filtrosDelete()
+  }
   
   function handleOrderByRating(e) {
-    e.preventDefault();
-    dispatch(orderByRating(e.target.value));
-    setOrder(`Ordenado ${e.target.value}`);
-    console.log("despachando desde filter panel")
+    // e.preventDefault();
+    // dispatch(orderByRating(e.target.value));
+    // setOrder(`Ordenado ${e.target.value}`);
+    // console.log("despachando desde filter panel")
+    props.filtrosDelete()
+    props.orderByRating(e.target.value)
   }
 
-
+ 
   return (
     <div className="parent-filterpanel">
       <div className="filter">
         <h3 className="title-filterpanel"> Ordenar por: </h3>
         <ul>
           <select onChange={(e) => handleOrderByRating(e)}>
-            <option value="desc">Mejores reseñas</option>
-            <option value="asc">Peores reseñas</option>
+            <option value='default'>Filtrar por reseñas</option>
+            <option value="asc">Mejores reseñas</option>
+            <option value="desc">Peores reseñas</option>
           </select>
         </ul>
       </div>
+      <button className="btn-primary btn m-2" onClick={(e) => {
+        borrarFiltros(e)
+      }}>limpiar filtros</button>
       <div className="filter">
         <h3 className="title-filterpanel">Buscar por fecha</h3>
         <p>

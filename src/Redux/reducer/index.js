@@ -235,12 +235,13 @@ export default function rootReducer(state = initialState, action) {
     }
     
     //filtros
-    case "ORDER_BY_RATING":
-      let sortedByRating =
-       state.allPeluquerias = state.backupPeluquerias ;
-       action.payload === "asc"?
-          state.allPeluquerias.sort(function (a, b) {
-            console.log("asc")
+    case actions.ORDER_BY_RATING:
+      // if(action.payload === 'default'){
+      //   return {...state, allPeluquerias: state.backupPeluquerias}
+      // }
+      if(action.payload === 'desc'){
+        state.allPeluquerias = state.backupPeluquerias
+        state.allPeluquerias.sort(function (a, b) {
               if (a.rating > b.rating) {
                 return 1;
               }
@@ -249,22 +250,24 @@ export default function rootReducer(state = initialState, action) {
               }
               return 0;
             })
-          : 
-          state.allPeluquerias.sort(function (a, b) {
-              if (a.rating > b.rating) {
-                return -1;
-              }
+      }
+      else{
+        state.allPeluquerias = state.backupPeluquerias
+        state.allPeluquerias.sort(function (a, b) {
               if (a.rating < b.rating) {
                 return 1;
               }
+              if (a.rating > b.rating) {
+                return -1;
+              }
+              
               return 0;
             })
-            console.log(sortedByRating)
+      }
       return {
         ...state,
-        allPeluquerias: sortedByRating,
-        orden: action.payload
-        // allPeluquerias: state.backupPeluquerias,
+        orden: action.payload, 
+        allPeluquerias: state.backupPeluquerias,
       };
 
     case actions.SEARCH_NAME: {
@@ -363,6 +366,9 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         peluqueriasFav: pelusFiltradas
       }
+    }
+    case actions.FILTROS_DELETE:{
+      return {...state, orden: '', }
     }
 
     //DEFAULT

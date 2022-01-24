@@ -50,10 +50,3 @@ export function getPeluqueriaById(id) {
 }
 
 
-export function orderByRating(payload) {
-  console.log("despachada")
-  return {
-    type: ORDER_BY_RATING,
-    payload,
-  };
-}

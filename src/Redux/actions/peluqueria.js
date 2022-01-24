@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_PELUQUERIAS, GET_PELUQUERIA_BY_ID } from "../types/types";
+import { GET_PELUQUERIAS, GET_PELUQUERIA_BY_ID, ORDER_BY_RATING } from "../types/types";
 
 export function getPeluquerias() {
   return function (dispatch) {
@@ -46,5 +46,14 @@ export function getPeluqueriaById(id) {
     } catch (err) {
       console.log("no se pudo traer el detalle", err);
     }
+  };
+}
+
+
+export function orderByRating(payload) {
+  console.log("despachada")
+  return {
+    type: ORDER_BY_RATING,
+    payload,
   };
 }

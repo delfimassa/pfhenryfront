@@ -92,19 +92,30 @@ export function registerAdminFail(error) {
 
 
 //POST DB
+// export function postPeluqueria(payload, username, password) {
+//   return async function (dispatch) {
+//     const response = await axios
+//       .post("http://localhost:4000/peluqueria/create", payload)
+//       .then((pelus) => {
+//         dispatch({
+//           type: POST_PELUQUERIA,
+//           payload: pelus,
+//         });
+//       });
+   
+//     const hola = await getUsersId()
+//     return response;
+//   };
+// }
+
 export function postPeluqueria(payload, username, password) {
   return async function (dispatch) {
-    const response = await axios
-      .post("http://localhost:4000/peluqueria/create", payload)
-      .then((pelus) => {
-        dispatch({
-          type: POST_PELUQUERIA,
-          payload: pelus,
-        });
-      });
-    const user = await createUserWithEmailAndPassword(auth, username, password);
+    try {
+      await axios.post("http://localhost:4000/peluqueria/create", payload);
+       const user = await createUserWithEmailAndPassword(auth, username, password);
     dispatch(registerAdminSuccess(user));
-    const hola = await getUsersId()
-    return response;
+    } catch (error) {
+      console.log(error);
+    }
   };
 }

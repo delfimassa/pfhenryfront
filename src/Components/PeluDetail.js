@@ -16,17 +16,16 @@ import { Rating } from "react-simple-star-rating";
 import Favorite from "./Favorite/Favorite";
 import Swal from "sweetalert2";
 import { connect, useSelector, useDispatch } from "react-redux";
-import {getPeluDetail} from "../Redux/actions/peluqueria";
+// import {useNavigate} from "react-router-dom"
 
 
 const PeluDetail = () => {
   const currentUser = useSelector((state) => state.user);
-  const pelu = useSelector((state) => state.selectedPelu);
+  // const navigate = useNavigate();
 
-  const dispatch = useDispatch(); 
   console.log(`user desde peludetail: ${currentUser.email}`);   
   
-  // const [pelu, setPelu] = useState(null);
+  const [pelu, setPelu] = useState(null);
   let { id } = useParams();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
@@ -36,16 +35,12 @@ const PeluDetail = () => {
     peluqueria: {id},
   });
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
-  //     setPelu([response.data]);
-  //     console.log(pelu);
-  //   });
-  // }, []);
-
   useEffect(() => {
-    dispatch(getPeluDetail(id))
-    },[dispatch, id]);
+    axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
+      setPelu([response.data]);
+      // console.log(pelu);
+    });
+  }, []);
 
   const handleRating = (rate) => {
     setRating(rate);
@@ -110,25 +105,22 @@ const PeluDetail = () => {
       peluqueria: id,
     });
     setRating(0);
-    /////
   }
 
   return (
     <div>
       {pelu == null ? (
-        <div>
         <Loading />
-        {console.log(pelu)}</div>
       ) : (
         <div className="bg-peludetail">
           <div className="peluDetailGrid">
             <div className="mb-0 text-center">
-              <h1 className="nomd nolg noxl">{pelu.name}</h1>
+              <h1 className="nomd nolg noxl">{pelu[0].name}</h1>
               <div className="parentSatrs nols nomd noxl mb-3">
               <Rating
                     fillColor={"#1a202d"}
                     allowHalfIcon={true}
-                    ratingValue={pelu.rating * 20}
+                    ratingValue={pelu[0].rating * 20}
                     readonly={true}
                   size={"2rem"}/>
               </div>
@@ -136,14 +128,14 @@ const PeluDetail = () => {
                 className="imgPelu mb-0  w-100 h-100"
                 width="100%"
                 height="100%"
-                src={pelu.avatar}
+                src={pelu[0].avatar}
                 alt="logo de la peluqueria"
               />
             </div>
 
             <div className="infoColumn">
               <div className="d-flex align-items-center mb-4">
-                <h1 className="pb-0 mb-0 nosm noxs">{pelu.name}</h1>
+                <h1 className="pb-0 mb-0 nosm noxs">{pelu[0].name}</h1>
                 <div className="mx-5 nosm noxs">
                   {/* <Stars
                     stars={review.rating}
@@ -155,7 +147,7 @@ const PeluDetail = () => {
                   <Rating
                     fillColor={"#1a202d"}
                     allowHalfIcon={true}
-                    ratingValue={pelu.rating * 20}
+                    ratingValue={pelu[0].rating * 20}
                     readonly={true}
                   size={"2rem"}/>
                 </div>
@@ -163,42 +155,42 @@ const PeluDetail = () => {
               </div>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
-                Horario de atención: {pelu.schedule}
+                Horario de atención: {pelu[0].schedule}
               </h5>
               <h5 className="datoPelu">
                 <a
-                  href={`https://api.whatsapp.com/send?phone=${pelu.phone}`}
+                  href={`https://api.whatsapp.com/send?phone=${pelu[0].phone}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="phonepelu"
                 >
                   <FontAwesomeIcon icon={faPhoneAlt} className="mx-3" />
-                  Teléfono: {pelu.phone}
+                  Teléfono: {pelu[0].phone}
                 </a>
               </h5>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mx-3" />{" "}
-                Dirección: {pelu.address}, {pelu.city}, {pelu.state}.
+                Dirección: {pelu[0].address}, {pelu[0].city}, {pelu[0].state}.
               </h5>
               <h5>
                 <FontAwesomeIcon icon={faEnvelope} className="mx-3" />
-                E-mail: {pelu.username}
+                E-mail: {pelu[0].username}
               </h5>
-              {/* <h5 className="datoPelu">
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
                 Nuestros Estilistas:{" "}
-                {pelu.stylists.length > 0 || pelu !==null
-                  ? pelu.stylists.map((s) => s.name)
+                {pelu[0].stylists.lenght > 0 || pelu !==null
+                  ? pelu[0].stylists.map((s) => s.name)
                   : "Lo sentimos, no encontramos ningún nombre"}
-              </h5> */}
+              </h5>
               {/* mapeo estilistas */}
-              {/* <h5 className="datoPelu">
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
                 Servicios:{" "}
-                {pelu.services.length > 0 || pelu !==null
-                  ? pelu.services.map((s) => <p>{s.service.name}, </p>)
+                {pelu[0].services.lenght > 0 || pelu !==null
+                  ? pelu[0].services.map((s) => <p>{s.service.name}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
-              </h5> */}
+              </h5>
             </div>
             {/* fin infocol */}
           </div>
@@ -236,9 +228,9 @@ const PeluDetail = () => {
                 </button>
               </form>
             </div>
-            {/* <div className="colLeelasreviews">
-              {pelu.reviews.length > 0 ? (
-                pelu.reviews.map((r) => (
+            <div className="colLeelasreviews">
+              {pelu[0].reviews.length > 0 ? (
+                pelu[0].reviews.map((r) => (
                   <div className="commentBox">
                     <h5>{r.username}</h5>
                     <Rating
@@ -257,7 +249,7 @@ const PeluDetail = () => {
                   </p>
                 </div>
               )}
-            </div> */}
+            </div>
           </div>
           {/* finreviews */}
           {/* fin peluDetailGrid */}

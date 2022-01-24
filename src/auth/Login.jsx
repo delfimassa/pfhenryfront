@@ -41,6 +41,7 @@ const Login = () => {
   useEffect(() => {
     if (currentUser) {
       navigate("/home");
+      dispatch(getUserMongo(currentUser.email))
     }
   }, [currentUser, navigate]);
 

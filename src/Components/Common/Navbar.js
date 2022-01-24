@@ -14,6 +14,8 @@ import { logoutInitiate } from "../../Redux/actions/register";
 const Navbar = ({}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
   const currentUser = useSelector((state) => state.user);
   const adminUserr = useSelector((state) => state.adminUser);
 

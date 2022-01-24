@@ -259,9 +259,11 @@ export default function rootReducer(state = initialState, action) {
               }
               return 0;
             })
+            console.log(sortedByRating)
       return {
         ...state,
         allPeluquerias: sortedByRating,
+        // allPeluquerias: state.backupPeluquerias,
       };
 
     case actions.SEARCH_NAME: {

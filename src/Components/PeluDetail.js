@@ -128,7 +128,7 @@ const PeluDetail = () => {
                 className="imgPelu mb-0  w-100 h-100"
                 width="100%"
                 height="100%"
-                src={pelu[0].avatar}
+                src={pelu[0].avatar ? pelu[0].avatar : "https://images.pexels.com/photos/3993125/pexels-photo-3993125.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
                 alt="logo de la peluqueria"
               />
             </div>

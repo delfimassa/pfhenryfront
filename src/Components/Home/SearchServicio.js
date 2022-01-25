@@ -1,19 +1,24 @@
-import { React, useState } from "react";
-import { useDispatch } from "react-redux";
+import { React, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getServices, filterServices } from "../../Redux/actions/service";
 
 const SearchServicio = () => {
-  const [search, setSearch] = useState("");
+  const servicios = useSelector((state) => state.services);
   const dispatch = useDispatch();
 
-  function handleOnSubmit(e) {
-    e.preventDefault();
-    dispatch(console.log(search)); // con dispatch usar la function que viene desde actions
-  }
+  useEffect(() => {
+    dispatch(getServices());
+  }, []);
+
+  // console.log(servicios);
+
   function handleOnChange(e) {
-    e.preventDefault();
-    setSearch(e.target.value);
+    // e.preventDefault();
+    dispatch(filterServices(e.target.value));
   }
+
   return (
+<<<<<<< HEAD
       <form className="d-flex inputSearchs" onSubmit={(e) => handleOnSubmit(e)}>
         <input
           className="form-control input-search"
@@ -28,6 +33,19 @@ const SearchServicio = () => {
           Buscar
         </button>{" "}
       </form>
+=======
+    <div>
+      <p>Filtrar Por:</p>
+      <select name="filterServices" onChange={handleOnChange}>
+        <option value="services" label={"Busca por servicios"} />
+
+        {servicios &&
+          servicios.map((s) => {
+            return <option key={s.id} value={s._id} label={s.name} />;
+          })}
+      </select>
+    </div>
+>>>>>>> origin/services
   );
 };
 

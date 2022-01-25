@@ -30,7 +30,7 @@ export const REGISTER_ADMIN = "REGISTER_ADMIN_USER";
 export const REGISTER_ADMIN_SUCCESS = "REGISTER_ADMIN_SUCCESS";
 export const REGISTER_ADMIN_FAIL = "REGISTER_ADMIN_FAIL";
 //filtros
-export const FILTER_SERVICIES = 'FILTER_SERVICIES';
+export const FILTER_SERVICES = 'FILTER_SERVICES';
 export const FILTER_RATING = 'FILTER_RATING';
 export const FILTER_CALENDAR= 'FILTER_CALENDAR';
 //search name
@@ -48,6 +48,12 @@ export const DELETE_FAVORITE = 'DELETE_FAVORITE';
 
 export const  POST_REVIEW = "POST_REVIEW";
 export const GET_REVIEWS = "GET_REVIEWS";
+
 export const FILTER_STATE = 'FILTER_STATE';
 export const FILTER_CITY = 'FILTER_CITY';
+<<<<<<< HEAD
 export const GET_FAV= 'GET_FAV'
+=======
+
+export const GET_SERVICES = 'GET_SERVICES'
+>>>>>>> origin/services

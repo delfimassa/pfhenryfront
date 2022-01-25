@@ -182,8 +182,8 @@ const PeluDetail = () => {
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
                 Nuestros Estilistas:{" "}
-                {pelu[0].stylists.lenght > 0 || pelu !==null
-                  ? pelu[0].stylists.map((s) => s.name)
+                {pelu[0].stylists.lenght > 0 || pelu !== null
+                  ? pelu[0].stylists.map((s) => <p>{s.name}</p>)
                   : "Lo sentimos, no encontramos ningún nombre"}
               </h5>
               {/* mapeo estilistas */}

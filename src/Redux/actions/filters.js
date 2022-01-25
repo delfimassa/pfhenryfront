@@ -1,4 +1,4 @@
-import { FILTER_CALENDAR, FILTER_RATING, FILTER_SERVICIES, FILTER_STATE, FILTER_CITY} from "../types/types";
+import { FILTER_CALENDAR, FILTER_RATING, FILTER_SERVICES, FILTER_STATE, FILTER_CITY} from "../types/types";
 
 export function filterRating(data){
     return{
@@ -7,12 +7,12 @@ export function filterRating(data){
     }
 }
 
-export function filterServicies(data){
-    return{
-        type: FILTER_SERVICIES,
-        payload: data
-    }
-}
+// export function filterServicies(data){
+//     return{
+//         type: FILTER_SERVICES,
+//         payload: data
+//     }
+// }
 
 export function filterCalendar(data){
     return{

@@ -42,11 +42,13 @@ const NuevaCuenta = () => {
     phone,
     state,
     schedule,
+    services,
   } = user;
   const currentUser = useSelector((state) => state.user);
 
   const navigate = useNavigate();
   useEffect(() => {
+    dispatch(getServices());
     if (currentUser) {
       navigate("/home");
     }
@@ -122,6 +124,27 @@ const NuevaCuenta = () => {
   // console.log("city =>" + citySelect)
   // console.log("state => " + stateSelect)
 
+  console.log("city =>" + citySelect);
+  console.log("state => " + stateSelect);
+
+  // services
+  let servicios = useSelector((state) => state.services);
+  console.log(servicios);
+
+  function handleSelect(e) {
+    setUser({
+      ...user,
+      services: [...user.services, e.target.value],
+    });
+  }
+  console.log(user.services);
+
+  function handleDelete(e) {
+    setUser({
+      ...user,
+      services: user.services.filter((t) => t !== e),
+    });
+  }
   return (
     <div className={style.allLogin}>
       <div  className={`${style.contenedorFormulario} ${style.contenedorFormRegistro}`}>
@@ -256,7 +279,7 @@ const NuevaCuenta = () => {
             <select name="city" id="city" onClick={changeCity} className="">
             <option disabled selected>Selecciona una provincia</option>
               {filteredProv.map((i) => {
-                  return <option value={i}>{i}</option>;
+                return <option value={i}>{i}</option>;
               })}
             </select>
           </div>
@@ -264,7 +287,9 @@ const NuevaCuenta = () => {
             <label  className="form-label mt-4">Ciudad</label>
             <select name="state" id="state" onClick={changeState} className="h">
               {/* <option value={filterCity}>{filterCity}</option> */}
-              <option disabled selected>Selecciona una ciudad</option>
+              <option disabled selected>
+                Selecciona una ciudad
+              </option>
               {filterCity.map((i) => {
                 return <option value={i}>{i}</option>;
               })}
@@ -295,6 +320,32 @@ const NuevaCuenta = () => {
               required
               className="form-control"
             />
+          </div>
+          <div className="campo-form">
+            <label>Servicios</label>
+            <select onChange={handleSelect}>
+              <option disabled selected>
+                {" "}
+                Seleccione los servicios brindados
+              </option>
+              {servicios &&
+                servicios.map((t) => {
+                  // console.log(t.name)
+                  return (
+                    <option value={t.name} label={t.name}>
+                      {t.name}
+                    </option>
+                  );
+                })}
+            </select>
+          </div>
+          <div className="campo-form">
+          {user.services.map(t => 
+                <div>
+                    <p>{t}</p>
+                    <button onClick={()=>handleDelete(t)}>x</button>
+                </div>
+            )}
           </div>
 
           <div className={style.contenedorBotones}> 

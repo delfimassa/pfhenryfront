@@ -17,6 +17,7 @@ import Login from "./auth/Login";
 import Register from "./auth/Register";
 import RegisterAdmin from "./auth/RegisterAdmin";
 import "bootswatch/dist/lux/bootstrap.min.css";
+import FormReserva from "./Components/FormReserva/FormReserva"
 import Home from "./Components/Visual/Home";
 import { auth } from "./firebase-config";
 import {setUser} from "./Redux/actions/register";
@@ -54,6 +55,7 @@ function App() {
         {/* <Route path="/detallepeluqueria/:id" element={<PeluDetail />}/> */}
         {/* <Route path="/detallepeluqueria/:id" element={({match})=> <PeluDetail id={match.params.id}/>}/> */}
         <Route path="/:id" element={<PeluDetail />} />
+        <Route path="/reserva/:id" element={<FormReserva />}/> 
       </Routes>
       <Footer />
     </div>

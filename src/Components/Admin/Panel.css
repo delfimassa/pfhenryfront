@@ -1,0 +1,14 @@
+.color-thead{
+    background-color: rgb(56, 56, 70);
+    color: white;
+}
+
+.color-ocupado{
+    
+    background-color: rgb(197, 194, 194);
+}
+
+.color-cliente{
+    color: black;
+    background-color: rgb(51, 102, 51);
+}

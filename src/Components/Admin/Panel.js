@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import axios from "axios";
+import './Panel.css'
 
 function Panel() {
   const [pelu, setPelu] = useState(null);
@@ -12,8 +14,6 @@ function Panel() {
     });
   }, []);
 
-  console.log(id);
-  console.log(pelu[0]);
   return (
     <div>
       <div>
@@ -23,9 +23,46 @@ function Panel() {
         ) : (
           <div>
             <p>{pelu[0].name}</p>
-            <p>{pelu[0].address}</p>
-            <p>{pelu[0].phone}</p>
-            <img src={pelu[0].avatar} />
+            <table class="table">
+              <thead class="color-thead">
+                <tr>
+                  <th scope="col">nombre</th>
+                  <th scope="col">fecha/turno</th>
+                  <th scope="col">servicio</th>
+                  <th scope="col">contacto</th>
+                  <th scope="col">admin</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="color-cliente">
+                  <td>Lucho</td>
+                  <td>16/01/2022 13:00</td>
+                  <td>Corte</td>
+                  <td>3489569730</td>
+                  <td>
+                    <button>Eliminar</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Libre</td>
+                  <td>16/01/2022 12:00</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button>Ocupar</button>
+                  </td>
+                </tr>
+                <tr className="color-ocupado">
+                  <td>Ocupado</td>
+                  <td>16/01/2022 12:00</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <button>Desocupar</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         )}
       </div>
@@ -34,3 +71,4 @@ function Panel() {
 }
 
 export default Panel;
+

@@ -104,8 +104,10 @@ const NuevaCuenta = () => {
   const changeState = function (e) {
     const option = e.target.value;
     setStateSelect(option);
-    setUser({city: stateSelect, state: citySelect})
+    setUser({...user , city: stateSelect, state: citySelect})
   };
+
+  console.log(user);
 
   const searchCity = provDepartamentos.map((e) => {
     if (e.provincia.nombre == citySelect) {
@@ -117,8 +119,8 @@ const NuevaCuenta = () => {
     return searchCity.indexOf(elem) == rep;
   });
 
-  console.log("city =>" + citySelect)
-  console.log("state => " + stateSelect)
+  // console.log("city =>" + citySelect)
+  // console.log("state => " + stateSelect)
 
   return (
     <div className={style.allLogin}>

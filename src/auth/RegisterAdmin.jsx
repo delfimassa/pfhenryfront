@@ -281,7 +281,7 @@ const NuevaCuenta = () => {
               className="form-control"
             />
           </div>
-          {/* <div className="form-group">
+          <div className="form-group">
             <label htmlFor="username"  className="form-label mt-4">Calendario</label>
             <input
               type="text"
@@ -293,7 +293,7 @@ const NuevaCuenta = () => {
               required
               className="form-control"
             />
-          </div> */}
+          </div>
 
           <div className={style.contenedorBotones}> 
             <button type="submit" className="btn btn-outline-primary mb-3">

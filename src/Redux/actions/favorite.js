@@ -2,24 +2,22 @@ import axios from "axios";
 import { POST_FAVORITE, DELETE_FAVORITE, GET_FAV } from "../types/types";
 
 export function getFavorites(mail) {
-  return function(dispatch) {
-    axios.get('http://localhost:4000/clients/'+mail)
-    .then(response => {
+  return function (dispatch) {
+    axios.get("http://localhost:4000/clients/" + mail).then((response) => {
       dispatch({
         type: GET_FAV,
-        payload: response.data
-      })
-    })
-  }
-} //aca podriamos pasar ese usuario filtrado y usarlo para comparar el id 
-
+        payload: response.data,
+      });
+    });
+  };
+} //aca podriamos pasar ese usuario filtrado y usarlo para comparar el id
 
 export function postFavorite(client, peluqueria) {
   return async function (dispatch) {
     const response = await axios
-      .post("http://localhost:4000/favorite/create", {client, peluqueria})
+      .post("http://localhost:4000/favorite/create", { client, peluqueria })
       .then((favorites) => {
-        console.log('asdas', favorites);
+        console.log("asdas", favorites);
         dispatch({
           type: POST_FAVORITE,
           payload: favorites,
@@ -29,10 +27,9 @@ export function postFavorite(client, peluqueria) {
   };
 }
 
-export function deleteFavorite(payload) {
+export function deleteFavorite(id) {
   return async function (dispatch) {
-    const response = await axios
-      .delete("http://localhost:4000/favorite/delete", payload)
+    const response = await axios.put(`http://localhost:4000/favorite/delete/`, { id })
       .then((favorites) => {
         dispatch({
           type: DELETE_FAVORITE,

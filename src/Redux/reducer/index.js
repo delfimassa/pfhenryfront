@@ -326,7 +326,7 @@ export default function rootReducer(state = initialState, action) {
       const payyy = action.payload
       
       const peluqueriasProvincias = allPelus.map((e) => {
-        if(payyy == "Selecciona una provincia" || e.city == payyy){ //action.payload
+        if(payyy == "Selecciona una provincia" || e.state == action.payload){ //action.payload
           return e
         } 
       })
@@ -344,7 +344,7 @@ export default function rootReducer(state = initialState, action) {
       const payloadd = action.payload
       
       const peluqueriasProvinciasCiudad = allPelus.map((e) => {
-        if(payloadd == "Selecciona una provincia" || e.city == "Salsipuedes"){ //action.payload
+        if(payloadd == "Selecciona una provincia" || e.city === payloadd){ //action.payload
           return e
         } 
       })

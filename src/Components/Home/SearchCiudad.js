@@ -60,14 +60,14 @@ const SearchCiudad = () => {
 // FILTER
 const peluquerias = useSelector((state) => state.allPeluquerias);
 const peluqueriasProvincias = peluquerias.map((e) => {
-  if(e.state == "Tucuman"){
+  if(e.state == stateSelect){
     return e
   }
 })
 
 const filteredPelus = peluqueriasProvincias.filter(e => e)
-console.log(peluquerias)
-console.log(peluqueriasProvincias)
+// console.log(peluquerias)
+// console.log(peluqueriasProvincias)
 console.log(filteredPelus)
 
   return (

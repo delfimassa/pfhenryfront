@@ -1,6 +1,4 @@
 .form-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    background-color: rgb(243, 243, 243);
+    padding:1rem;
 }

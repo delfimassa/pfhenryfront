@@ -398,6 +398,13 @@ export default function rootReducer(state = initialState, action) {
       }
     }
 
+    // POST TURNO
+    case actions.POST_TURNO: {
+      return {
+        ...state
+      }
+    }
+
     //DEFAULT
     default:
       return state;

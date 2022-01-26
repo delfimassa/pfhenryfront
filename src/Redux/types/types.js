@@ -51,9 +51,6 @@ export const GET_REVIEWS = "GET_REVIEWS";
 
 export const FILTER_STATE = 'FILTER_STATE';
 export const FILTER_CITY = 'FILTER_CITY';
-<<<<<<< HEAD
 export const GET_FAV= 'GET_FAV'
-=======
 
 export const GET_SERVICES = 'GET_SERVICES'
->>>>>>> origin/services

@@ -18,22 +18,6 @@ const SearchServicio = () => {
   }
 
   return (
-<<<<<<< HEAD
-      <form className="d-flex inputSearchs" onSubmit={(e) => handleOnSubmit(e)}>
-        <input
-          className="form-control input-search"
-          type="text"
-          placeholder="Servicio"
-          onChange={(e) => handleOnChange(e)}
-        />
-        <button
-          type="submit"
-          className="btn btn-primary my-0"
-        >
-          Buscar
-        </button>{" "}
-      </form>
-=======
     <div>
       <p>Filtrar Por:</p>
       <select name="filterServices" onChange={handleOnChange}>
@@ -45,7 +29,6 @@ const SearchServicio = () => {
           })}
       </select>
     </div>
->>>>>>> origin/services
   );
 };
 

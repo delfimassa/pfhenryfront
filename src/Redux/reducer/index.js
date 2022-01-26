@@ -368,7 +368,9 @@ export default function rootReducer(state = initialState, action) {
 
     case actions.FILTER_SERVICES:{
       let allPelus = state.backupPeluquerias
-      allPelus = allPelus.filter((s) => s.services.find((elem) => elem.service == action.payload))
+      // console.log(allPelus)
+      // let allPelus2 = allPelus.filter((s) => console.log(s.services))
+      allPelus = allPelus.filter((s) => s.services.find((elem) => elem.service._id == action.payload))
       console.log(allPelus)
       
       return {

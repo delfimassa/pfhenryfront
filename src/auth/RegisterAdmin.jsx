@@ -5,6 +5,7 @@ import { postPeluqueria } from "../Redux/actions/adminlog";
 import style from "./styles/Login.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
+import {getServices} from "../Redux/actions/service"
 
 
 let prov = require("../provincias.json");
@@ -31,6 +32,7 @@ const NuevaCuenta = () => {
     services: [],
   });
 
+  const [nameServ, setNameServ] = useState([])
   //extraer de usario
   const {
     name,
@@ -121,7 +123,7 @@ const NuevaCuenta = () => {
     return searchCity.indexOf(elem) == rep;
   });
 
-  // console.log("city =>" + citySelect)
+  
   // console.log("state => " + stateSelect)
 
   console.log("city =>" + citySelect);
@@ -136,6 +138,10 @@ const NuevaCuenta = () => {
       ...user,
       services: [...user.services, e.target.value],
     });
+    // let nameTarget = e.target.getAttribute(value)
+    console.log("target", e.target)
+    setNameServ([...nameServ, e.target.id])
+    // setNameServ(nameServ => [...nameServ, e.target.name]);
   }
   console.log(user.services);
 
@@ -144,7 +150,10 @@ const NuevaCuenta = () => {
       ...user,
       services: user.services.filter((t) => t !== e),
     });
+    setNameServ([nameServ.pop(e)])
   }
+
+  console.log("nameServ" + nameServ)
   return (
     <div className={style.allLogin}>
       <div  className={`${style.contenedorFormulario} ${style.contenedorFormRegistro}`}>
@@ -321,9 +330,9 @@ const NuevaCuenta = () => {
               className="form-control"
             />
           </div>
-          <div className="campo-form">
+          <div className="form-group">
             <label>Servicios</label>
-            <select onChange={handleSelect}>
+            <select value={user.services} onChange={(e) => {handleSelect(e)}}>
               <option disabled selected>
                 {" "}
                 Seleccione los servicios brindados
@@ -332,18 +341,18 @@ const NuevaCuenta = () => {
                 servicios.map((t) => {
                   // console.log(t.name)
                   return (
-                    <option value={t.name} label={t.name}>
+                    <option key={t._id} value={t._id} label={t.name} name={t.name} id={t.name}>
                       {t.name}
                     </option>
                   );
                 })}
             </select>
           </div>
-          <div className="campo-form">
-          {user.services.map(t => 
-                <div>
-                    <p>{t}</p>
-                    <button onClick={()=>handleDelete(t)}>x</button>
+          <div className="form-group d-flex ">
+          {nameServ.map(t => 
+                <div className="d-flex mx-2 align-items-center">
+                    <p className="m-0 p-0">{t}</p>
+                    <button className="m-1 px-1 py-0 btn btn-primary" onClick={()=>handleDelete(t)}>x</button>
                 </div>
             )}
           </div>

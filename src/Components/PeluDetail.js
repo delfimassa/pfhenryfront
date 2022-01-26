@@ -31,6 +31,7 @@ const PeluDetail = () => {
   console.log(`user desde peludetail: ${currentUser.email}`);   
   
   const [pelu, setPelu] = useState(null);
+  const [turnos, setTurnos] = useState(null);
   let { id } = useParams();
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
@@ -44,6 +45,10 @@ const PeluDetail = () => {
     axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
       setPelu([response.data]);
       // console.log(pelu);
+    });
+    axios.get(`http://localhost:4000/turno/peluqueria/${id}`).then((response) => {
+      setTurnos(response.data);
+      // console.log("turnos ", turnos);
     });
   }, []);
 
@@ -113,6 +118,7 @@ const PeluDetail = () => {
   }
 
   console.log("pelu", pelu)
+  console.log("turnos", turnos)
 
   return (
     <div>

@@ -59,7 +59,7 @@ const Navbar = ({}) => {
                   {/* SI ES PELU */}
                   <li className="nav-item">
                     <NavLink
-                      to={`/admin?username=${currentUser.email}}`}
+                      to={`/admin?username=${currentUser.email}`}
                       // to="/admin/61edef039870e080350d59ab"
                       className="nav-link"
                       activeClassName="selected"

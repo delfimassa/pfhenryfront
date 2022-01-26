@@ -5,11 +5,15 @@ import './Panel.css'
 
 function Panel() {
   let currentAdmin = useSelector(state => state.user); 
+  let username = currentAdmin.email
 
   const [pelu, setPelu] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/peluqueria/username?username=${currentAdmin.email}`).then((response) => {
+    // axios.get(`http://localhost:4000/peluqueria/username?username=${currentAdmin.email}`).then((response) => {
+    //   setPelu([response.data]);
+    // });
+    axios.get(`http://localhost:4000/peluqueria/username`, { username }).then((response) => {
       setPelu([response.data]);
     });
   }, []);

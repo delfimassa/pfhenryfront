@@ -204,7 +204,7 @@ const PeluDetail = () => {
                   ? pelu[0].services.map((s) => <p>{s.service.name}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
-              <Link to={`/reserva/${pelu[0]._id}`}>reservá un turno maestro </Link>
+              <Link to={`/reserva/${pelu[0]._id}`}>reservá un turno </Link>
             </div>
             {/* fin infocol */}
           </div>

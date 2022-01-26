@@ -48,3 +48,18 @@ export function getPeluqueriaById(id) {
     }
   };
 }
+
+// export function getPeluqueriaByUsername(username) {
+//   return async function (dispatch) {
+//     try {
+//       var resp = axios.get(`http://localhost:4000/peluqueria/username?username=${username}`);
+//       console.log("getbyid desde actions", resp);
+//       return dispatch({
+//         type: GET_PELUQUERIA_BY_ID,
+//         payload: resp.data,
+//       });
+//     } catch (err) {
+//       console.log("no se pudo traer el detalle", err);
+//     }
+//   };
+// }

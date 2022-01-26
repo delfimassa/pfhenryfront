@@ -140,7 +140,8 @@ const NuevaCuenta = () => {
     });
     // let nameTarget = e.target.getAttribute(value)
     console.log("target", e.target)
-    setNameServ([...nameServ, e.target.id])
+    // setNameServ([...nameServ, e.target.id])
+    // setUser({...user, [user.services : e.target.value]})
     // setNameServ(nameServ => [...nameServ, e.target.name]);
   }
   console.log(user.services);
@@ -341,7 +342,7 @@ const NuevaCuenta = () => {
                 servicios.map((t) => {
                   // console.log(t.name)
                   return (
-                    <option key={t._id} value={t._id} label={t.name} name={t.name} id={t.name}>
+                    <option key={t.name} value={t.name} label={t.name} name={t.name} id={t.name}>
                       {t.name}
                     </option>
                   );
@@ -349,7 +350,7 @@ const NuevaCuenta = () => {
             </select>
           </div>
           <div className="form-group d-flex ">
-          {nameServ.map(t => 
+          {user.services.map(t => 
                 <div className="d-flex mx-2 align-items-center">
                     <p className="m-0 p-0">{t}</p>
                     <button className="m-1 px-1 py-0 btn btn-primary" onClick={()=>handleDelete(t)}>x</button>

@@ -28,6 +28,8 @@ const Navbar = ({}) => {
     console.log(currentUser);
   };
 
+  
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary p-3">
@@ -57,7 +59,8 @@ const Navbar = ({}) => {
                   {/* SI ES PELU */}
                   <li className="nav-item">
                     <NavLink
-                      to="/admin"
+                      to={`/admin?username=${currentUser.email}}`}
+                      // to="/admin/61edef039870e080350d59ab"
                       className="nav-link"
                       activeClassName="selected"
                     >

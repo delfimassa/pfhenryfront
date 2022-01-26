@@ -25,6 +25,8 @@ const PeluDetail = () => {
   const userMongo = useSelector((state) => state.userMongo);
   // const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user);
+  const adminUserr = useSelector((state) => state.adminUser);
+  console.log("admin", adminUserr)
 
   console.log(`user desde peludetail: ${currentUser.email}`);   
   
@@ -110,6 +112,8 @@ const PeluDetail = () => {
     setRating(0);
   }
 
+  console.log("pelu", pelu)
+
   return (
     <div>
       {pelu == null ? (
@@ -154,7 +158,7 @@ const PeluDetail = () => {
                     readonly={true}
                   size={"2rem"}/>
                 </div>
-                <Favorite />
+                {/* <Favorite /> */}
               </div>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
@@ -200,8 +204,8 @@ const PeluDetail = () => {
           </div>
           {/* reviews */}
           <div className="reviewsZone mt-5 pt-5">
-            <div className="colDejatureview">
               <h2 className="d-flex">Opiniones</h2>
+            {adminUserr===true? null : (<div className="colDejatureview">
               <h5 className="mb-2 p-0 datoPelu">
                 Deja tu opinión sobre esta peluquería aqui:{" "}
               </h5>
@@ -231,7 +235,8 @@ const PeluDetail = () => {
                   Enviar
                 </button>
               </form>
-            </div>
+            </div>)}
+            {/* adminUserr? (adminUserr ===true? (no muesrtro):(muestro))  : muestro */}
             <div className="colLeelasreviews">
               {pelu[0].reviews.length > 0 ? (
                 pelu[0].reviews.map((r) => (

@@ -51,7 +51,7 @@ function App() {
         <Route path="/carrito" element={<Carrito />}/>
         <Route path="/perfil" element={<Perfil />}/>
         <Route path="/tuscompras" element={<TusCompras />}/>
-        <Route path="/admin/:id" element={<Panel />}/>
+        <Route path="/admin" element={<Panel />}/>
         {/* <Route path="/detallepeluqueria/:id" element={<PeluDetail />}/> */}
         {/* <Route path="/detallepeluqueria/:id" element={({match})=> <PeluDetail id={match.params.id}/>}/> */}
         <Route path="/:id" element={<PeluDetail />} />

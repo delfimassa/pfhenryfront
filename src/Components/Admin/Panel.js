@@ -1,15 +1,15 @@
-
+import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router";
 import axios from "axios";
 import './Panel.css'
 
 function Panel() {
+  let currentAdmin = useSelector(state => state.user); 
+
   const [pelu, setPelu] = useState(null);
-  let { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
+    axios.get(`http://localhost:4000/peluqueria/username?username=${currentAdmin.email}`).then((response) => {
       setPelu([response.data]);
     });
   }, []);

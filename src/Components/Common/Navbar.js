@@ -95,7 +95,7 @@ const Navbar = ({}) => {
                       Tus Favoritos
                     </NavLink>
                   </li>
-                  <li className="nav-item">
+                  {/* <li className="nav-item">
                     <NavLink
                       to="/carrito"
                       className="nav-link"
@@ -104,7 +104,7 @@ const Navbar = ({}) => {
                       <FontAwesomeIcon icon={faShoppingCart} className="mx-1" />
                       Carrito
                     </NavLink>
-                  </li>
+                  </li> */}
 
                   <li className="nav-item">
                     <NavLink

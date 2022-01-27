@@ -214,8 +214,8 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
           </div>
           {/* reviews */}
           <div className="reviewsZone mt-5 pt-5">
-              <h2 className="d-flex">Opiniones</h2>
             {adminUserr===true? null : (<div className="colDejatureview">
+              <h2 className="d-flex">Opiniones</h2>
               <h5 className="mb-2 p-0 datoPelu">
                 Deja tu opinión sobre esta peluquería aqui:{" "}
               </h5>

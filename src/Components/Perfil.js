@@ -43,9 +43,9 @@ const Perfil = () => {
               <p className={s.divisionName}>MIS FAVORITOS</p>
             </div>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/carrito">
+          <Link style={{ textDecoration: "none" }} to="/tuscompras">
             <div className={s.buttons}>
-              <p className={s.divisionName}>MI CARRITO</p>
+              <p className={s.divisionName}>MIS COMPRAS</p>
             </div>
           </Link>
         </div>

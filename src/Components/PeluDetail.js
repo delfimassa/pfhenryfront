@@ -40,10 +40,11 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: `${currentUser.email ? currentUser.email :  userMongo.username}`, // email del cliente
+    client: `${ currentUser.email ? currentUser.email : userMongo.username }`, // email del cliente
     comment: "",
     peluqueria: {id},
   });
+
 
   useEffect(() => {
     axios.get(`http://localhost:4000/peluqueria/${id}`).then((response) => {
@@ -208,7 +209,7 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
                   ? pelu[0].services.map((s) => <p>{s.service.name}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
-              <Link to={`/reserva/${pelu[0]._id}`}>reservá un turno </Link>
+              <Link to={`/reserva/${pelu[0]._id}`} className="btn btn-primary">reservá un turno </Link>
             </div>
             {/* fin infocol */}
           </div>

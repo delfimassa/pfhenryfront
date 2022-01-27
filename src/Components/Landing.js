@@ -7,6 +7,9 @@ const Landing = () => {
     return (
         <div className="parentLanding">
             {/* <SearchBar /> */}
+            <Link to={'/registerAdmin'} >
+                <button className='btn btn-primary mx-3'>Registrar Peluqueria </button>
+            </Link>
             <Link to={"/login"} >
 
                 <button className='btn btn-primary mx-3'>Ingresar </button>
@@ -14,9 +17,7 @@ const Landing = () => {
             <Link to={'/register'} >
                 <button className='btn btn-primary mx-3'>Registrarse </button>
             </Link>
-            <Link to={'/registerAdmin'} >
-                <button className='btn btn-primary mx-3'>Registrar Peluqueria </button>
-            </Link>
+            
         </div>
     );
 };

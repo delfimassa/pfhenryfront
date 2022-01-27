@@ -80,13 +80,13 @@ const NuevaCuenta = () => {
     }
     //Pasarlo al reducer
     dispatch(postPeluqueria(user, username, password));
-    setUser({
-      name: "",
-      username: "",
-      password: "",
-      passwordConfirm: "",
-      address: "",
-    });
+    // setUser({
+    //   name: "",
+    //   username: "",
+    //   password: "",
+    //   passwordConfirm: "",
+    //   address: "",
+    // });
   };
 
   // Select Provincias
@@ -365,12 +365,13 @@ const NuevaCuenta = () => {
             </select>
           </div>
           <div className="form-group d-flex ">
-          {user.services.map(t => 
+          { user.services && user.services.map(t => 
                 <div className="d-flex mx-2 align-items-center">
                     <p className="m-0 p-0">{t}</p>
                     <button className="m-1 px-1 py-0 btn btn-primary" onClick={()=>handleDelete(t)}>x</button>
                 </div>
-            )}
+            )
+            }
           </div>
 
           <div className={style.contenedorBotones}> 

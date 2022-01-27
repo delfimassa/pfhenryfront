@@ -40,7 +40,7 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: `${currentUser.email ? currentUser.email : currentUser.user.email ? currentUser.user.email : userMongo.username}`, // email del cliente
+    client: `${currentUser.email ? currentUser.email :  userMongo.username}`, // email del cliente
     comment: "",
     peluqueria: {id},
   });

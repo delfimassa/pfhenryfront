@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const TusCompras = () => {
   const currrentUser = useSelector((state) => state.user);
@@ -27,12 +28,27 @@ const TusCompras = () => {
       <p>tus compras!</p>
       {compras &&
         compras[0].map((e) => (
-          <div className="card col-md-8">
-            <p className="card-title">{e.peluqueria.name}</p>
-            <p className="card-text" >{e.service.name}</p>
-            <p className="card-text">{e.service.price}</p>
-            <p className="card-text">{e.date}</p>
-            <p className="card-text">{e.time}</p>
+          // <div className="card col-md-8">
+          //   <p className="card-title">{e.peluqueria.name}</p>
+          //   <p className="card-text" >{e.service.name}</p>
+          //   <p className="card-text">{e.service.price}</p>
+          //   <p className="card-text">{e.date}</p>
+          //   <p className="card-text">{e.time}</p>
+          // </div>
+          <div className="card m-3">
+            <img src={e.peluqueria.avatar} />
+            <div className="card-body">
+              <h5 className="card-title">{e.peluqueria.name}</h5>
+              <p className="card-text">{e.service.name}</p>
+              <p className="card-text">{e.service.price}</p>
+              <p className="card-text">{e.date}</p>
+              <p className="card-text">{e.time}</p>
+              <Link to={`/reserva/${e.peluqueria._id}`}>
+                <a href="#" class="btn btn-primary">
+                  volver a reservar
+                </a>
+              </Link>
+            </div>
           </div>
         ))}
     </div>

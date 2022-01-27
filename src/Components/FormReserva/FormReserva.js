@@ -5,15 +5,15 @@ import "./FormReserva.css";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import {postTurno} from '../../Redux/actions/turno'
+import { useNavigate } from "react-router-dom";
 // import { DatePicker } from "@material-ui/pickers";
 
 function FormReserva() {
   let { id } = useParams();
   let client = useSelector((state) => state.userMongo);
-  let clienttemail = client.username;
-  console.log("client ", clienttemail);
-
+  
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const initialDate = new Date().toLocaleString("es-AR", {
     dateStyle: "short",
@@ -24,7 +24,7 @@ function FormReserva() {
     service: "",
     time: "",
     date: initialDate,
-    client: client.username,
+    client: client ? client.username : "",
     peluqueria:  id ,
   };
 
@@ -37,6 +37,7 @@ function FormReserva() {
       setPelu([response.data]);
       console.log([response.data]);
     });
+
   }, []);
   console.log(pelu);
 
@@ -57,6 +58,7 @@ function FormReserva() {
   function onSubmit(){
     console.log("falta esto")
     dispatch(postTurno(data))
+    // navigate('/carrito');
   }
 
   //  let fecha = getDate();
@@ -69,7 +71,7 @@ function FormReserva() {
       {pelu ? (
         <div className="d-flex flex-column align-items-center co">
           <h1>reserva en {pelu[0].name}</h1>
-          <form onSubmit={onSubmit} className="form-container  d-flex flex-column align-items-start">
+          <form onSubmit={onSubmit} action='http://localhost:4000/MP/create' method='POST' className="form-container  d-flex flex-column align-items-start" >
           <div className="form-group"> 
             <label className="form-label mt-4">Ingresa tu teléfono (sin 0 ni 15)</label>
             <input
@@ -96,7 +98,7 @@ function FormReserva() {
                   {pelu &&
                     pelu[0].services.map((t) => {
                       return (
-                        <option value={t.service.name} key={t.service.name}>
+                        <option value={t.service.name} key={t.service.name} >
                           {t.service.name}
                         </option>
                       );
@@ -140,7 +142,10 @@ function FormReserva() {
               </div>
             )} </div>
 
-            <button type="submit" className="btn btn-primary mb-3">Enviar</button>
+            {/* <button type="submit" className="btn btn-primary mb-3">Enviar</button> */}
+            <input type='hidden' value={pelu[0].name} name='title'/>
+            <input type='hidden' value='1' name='price'/>
+            <input type='submit' value='comprar' className='btn btn-primary mb-3'/>
           </form>
         </div>
       ) : (

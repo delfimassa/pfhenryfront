@@ -40,7 +40,7 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: `${currentUser.email ? currentUser.email :  userMongo.username}`, // email del cliente
+    client: `${currentUser.email ? currentUser.email : userMongo.username}`, // email del cliente
     comment: "",
     peluqueria: {id},
   });
@@ -168,11 +168,11 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
                     readonly={true}
                   size={"2rem"}/>
                 </div>
-            { adminUserr === null && <Favorite /> }
               </div>
+              <br></br>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
-                Horario de atención: {pelu[0].schedule}
+                <b>Horario de atención:</b> {pelu[0].schedule}
               </h5>
               <h5 className="datoPelu">
                 <a
@@ -182,20 +182,20 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
                   className="phonepelu"
                 >
                   <FontAwesomeIcon icon={faPhoneAlt} className="mx-3" />
-                  Teléfono: {pelu[0].phone}
+                  <b>Teléfono:</b> {pelu[0].phone}
                 </a>
               </h5>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faMapMarkerAlt} className="mx-3" />{" "}
-                Dirección: {pelu[0].address}, {pelu[0].city}, {pelu[0].state}.
+                <b>Dirección:</b> {pelu[0].address}, {pelu[0].city}, {pelu[0].state}.
               </h5>
-              <h5>
+              <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faEnvelope} className="mx-3" />
-                E-mail: {pelu[0].username}
+                <b>E-mail:</b> {pelu[0].username}
               </h5>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faUsers} className="mx-3" />
-                Nuestros Estilistas:{" "}
+                <b>Nuestros Estilistas:</b>{" "}
                 {pelu[0].stylists.lenght > 0 || pelu !== null
                   ? pelu[0].stylists.map((s) => <p>{s.name}</p>)
                   : "Lo sentimos, no encontramos ningún nombre"}
@@ -203,12 +203,21 @@ console.log(`userMongo desde peludetail: ${userMongo}`);
               {/* mapeo estilistas */}
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faCut} className="mx-3" />
-                Servicios:{" "}
+                <b>Servicios:</b>{" "}
                 {pelu[0].services.lenght > 0 || pelu !==null
-                  ? pelu[0].services.map((s) => <p>{s.service.name}, </p>)
+                  ? pelu[0].services.map((s) => <p className='servicios'>{s.service.name}, </p>)
                   : "Lo sentimos, no encontramos ningún servicio"}
               </h5>
-              <Link to={`/reserva/${pelu[0]._id}`}>reservá un turno </Link>
+              <div className='buttonsBar'>
+                { adminUserr === null && <Favorite /> }
+              <Link to={`/reserva/${pelu[0]._id}`}>
+              <button
+                  className="btn btn-primary mt-0 d-flex btnEnviarReview"
+                >
+                Reservar turno 
+                  </button>
+                </Link>
+              </div>
             </div>
             {/* fin infocol */}
           </div>

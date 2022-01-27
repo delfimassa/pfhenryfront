@@ -1,9 +1,12 @@
 .favorite{
     color: grey;
     border: 0px;
+    height: 42px;
 }
 
 .favorite-red{
     color: red;
     border: 0px;
+    height: 42px;
+    background-color: rgb(255, 232, 232);
 }

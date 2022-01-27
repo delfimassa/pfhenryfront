@@ -29,6 +29,7 @@ const NuevaCuenta = () => {
     state: "",
     phone: "",
     schedule: "",
+    time: "",
     services: [],
   });
 
@@ -44,6 +45,7 @@ const NuevaCuenta = () => {
     phone,
     state,
     schedule,
+    time,
     services,
   } = user;
   const currentUser = useSelector((state) => state.user);
@@ -329,6 +331,19 @@ const NuevaCuenta = () => {
               onChange={onChange}
               required
               className="form-control"
+            />
+          </div>
+          <div>
+            <label htmlFor="username" className="form-label mt-4">Tiempo</label>
+            <input 
+              type="number"
+              id="time"
+              name="time"
+              placeholder="Tiempo"
+              value={time}
+              onChange={onChange}
+              required
+              className="form-control"              
             />
           </div>
           <div className="form-group">

@@ -18,6 +18,7 @@ import Swal from "sweetalert2";
 import { connect, useSelector, useDispatch } from "react-redux";
 // import {useNavigate} from "react-router-dom"
 import { Link } from "react-router-dom";
+import imagen from "../IMG/JOVEN_MANOS_DE_TIJERAS.jpg"
 
 
 const PeluDetail = () => {
@@ -141,7 +142,7 @@ const PeluDetail = () => {
                 className="imgPelu mb-0  w-100 h-100"
                 width="100%"
                 height="100%"
-                src={pelu[0].avatar}
+                src={pelu[0].avatar? pelu[0].avatar: imagen}
                 alt="logo de la peluqueria"
               />
             </div>

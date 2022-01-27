@@ -7,6 +7,7 @@ import {
   faClock,
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "react-simple-star-rating";
+import imagen from "../../IMG/JOVEN_MANOS_DE_TIJERAS.jpg"
 
 function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
   const [ratingCien, setRatingCien] = useState(rating*20);
@@ -15,7 +16,7 @@ function Card({ name, address, city, state, rating, avatar, schedule, phone }) {
     <div className="parent-card row mb-3 p-0">
       <div className="containerImg m-0 p-0 col-md-4 col-sm-12">
         {
-          <img className="imagenes w-100" src={avatar} alt="Avatar" /> ||
+          <img className="imagenes w-100" src={avatar? avatar: imagen} alt="Avatar" /> ||
           <img
             className="imagenes w-100"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQakURH-9kvEQgPlj0sZfnAmMhnS6V9t_Tglw&usqp=CAU"

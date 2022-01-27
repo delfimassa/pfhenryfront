@@ -70,7 +70,7 @@ const Login = () => {
       dispatch(loginAdminInitiate(email, password));
     } else {
       dispatch(loginInitiate(email, password));
-      dispatch(getUserMongo(email));
+      // dispatch(getUserMongo(email));
     }
     // dispatch(loginInitiate(email, password));
     setState({ email: "", password: "" });
@@ -78,7 +78,7 @@ const Login = () => {
 
   const loginGoogle = () => {
     dispatch(loginGoogleInitiate());
-    dispatch(getUserMongo(currentUser.email));
+    // dispatch(getUserMongo(currentUser.email));
   };
 
 

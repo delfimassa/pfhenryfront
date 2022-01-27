@@ -4,18 +4,18 @@ import axios from "axios";
 import './Panel.css'
 
 function Panel() {
-  let currentAdmin = useSelector(state => state.user); 
-  let username = currentAdmin.email
-
+  let currentAdmin = useSelector(state => state.user);
+  console.log('usuario', currentAdmin);
+  // let username;
+  // if(currentAdmin.email) username = currentAdmin.email;
+  // else if(currentAdmin.user.email) username = currentAdmin.user.email;
   const [pelu, setPelu] = useState(null);
 
   useEffect(() => {
-    // axios.get(`http://localhost:4000/peluqueria/username?username=${currentAdmin.email}`).then((response) => {
-    //   setPelu([response.data]);
-    // });
-    axios.get(`http://localhost:4000/peluqueria/username`, { username }).then((response) => {
+    if(currentAdmin) axios.get(`http://localhost:4000/peluqueria/username/${currentAdmin.email ? currentAdmin.email: currentAdmin.user.email}`).then((response) => {
       setPelu([response.data]);
     });
+
   }, []);
 
   return (

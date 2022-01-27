@@ -17,6 +17,9 @@ const Navbar = ({}) => {
   
   const currentUser = useSelector((state) => state.user);
   const adminUserr = useSelector((state) => state.adminUser);
+  // let username;
+  // if(currentUser.email) username = currentUser.email;
+  // else if(currentUser.user.email) username = currentUser.user.email;
 
   const logout = () => {
     if (currentUser) {
@@ -59,7 +62,7 @@ const Navbar = ({}) => {
                   {/* SI ES PELU */}
                   <li className="nav-item">
                     <NavLink
-                      to={`/admin?username=${currentUser.email}`}
+                      to={`/admin/${currentUser.email? currentUser.email: currentUser.user.email}`}
                       // to="/admin/61edef039870e080350d59ab"
                       className="nav-link"
                       activeClassName="selected"
@@ -75,7 +78,7 @@ const Navbar = ({}) => {
                         logout(e);
                       }}
                     >
-                      Log out
+                      Salir
                     </button>
                   </li>
                 </ul>

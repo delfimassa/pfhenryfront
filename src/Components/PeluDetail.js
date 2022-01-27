@@ -14,6 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Rating } from "react-simple-star-rating";
 import Favorite from "./Favorite/Favorite";
+import { getUserMongo } from "../Redux/actions/client";
 import Swal from "sweetalert2";
 import { connect, useSelector, useDispatch } from "react-redux";
 // import {useNavigate} from "react-router-dom"
@@ -22,14 +23,16 @@ import imagen from "../IMG/JOVEN_MANOS_DE_TIJERAS.jpg"
 
 
 const PeluDetail = () => {
-  // const currentUser = useSelector((state) => state.user);
   const userMongo = useSelector((state) => state.userMongo);
-  // const navigate = useNavigate();
   const currentUser = useSelector((state) => state.user);
   const adminUserr = useSelector((state) => state.adminUser);
-  console.log("admin", adminUserr)
 
-  console.log(`user desde peludetail: ${currentUser.email}`);   
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  
+console.log("admin", adminUserr);
+console.log("user desde peludetail: ",currentUser);   
+console.log(`userMongo desde peludetail: ${userMongo}`);   
   
   const [pelu, setPelu] = useState(null);
   const [turnos, setTurnos] = useState(null);
@@ -37,7 +40,7 @@ const PeluDetail = () => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState({
     rating: 0,
-    client: `${currentUser.email ? currentUser.email : userMongo.username}`, // email del cliente
+    client: `${currentUser.email ? currentUser.email : currentUser.user.email ? currentUser.user.email : userMongo.username}`, // email del cliente
     comment: "",
     peluqueria: {id},
   });
@@ -165,7 +168,7 @@ const PeluDetail = () => {
                     readonly={true}
                   size={"2rem"}/>
                 </div>
-                {/* <Favorite /> */}
+            { adminUserr === null && <Favorite /> }
               </div>
               <h5 className="datoPelu">
                 <FontAwesomeIcon icon={faClock} className="mx-3" />
